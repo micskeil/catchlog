@@ -1,15 +1,22 @@
 <template>
   <div class="container-fluid d-flex flex-column align-items-center">
-    <sticky-nav></sticky-nav>
+    <StickyNav />
     <div class=" container row">
       <main class="col-md-8 p-3 d-flex flex-column align-items-center">
-        <base-card> </base-card>
-        <fishing-sessions></fishing-sessions>
+        <SessionStarting
+          v-if="isFishing === false"
+          v-on:start-fishing-session="startFishing"
+        />
+        <SessionEnding
+          v-if="isFishing === true"
+          v-on:finish-fishing-session="finishFishing"
+        />
+        <FishingSessions />
       </main>
       <div class=" col-md-4 p-3">
-        <h5>Your friends activity</h5>
+        <h5>Activity in your arrea</h5>
         <br />
-        <div>Your friends activity will be displayed here</div>
+        <div>Other users' catches will be here</div>
 
         <br />
         <footer class="footer pt-3">
@@ -21,15 +28,39 @@
 </template>
 
 <script>
-import BaseCard from "./components/BaseElements/BaseCard.vue";
-import StickyNav from "./components/LayoutElements/StickyNav.vue";
-import FishingSessions from "./components/FishingSession/FishingSessions.vue";
+import StickyNav from "./components/LayoutElements/StickyNav";
+import FishingSessions from "./components/FishingSession/FishingSessions";
+import SessionStarting from "./components/FishingSession/SessionStarting";
+import SessionEnding from "./components/FishingSession/SessionEnding";
 
 export default {
   components: {
-    "base-card": BaseCard,
-    "sticky-nav": StickyNav,
-    "fishing-sessions": FishingSessions,
+    StickyNav,
+    FishingSessions,
+    SessionStarting,
+    SessionEnding,
+  },
+  data() {
+    return {
+      isFishing: false,
+    };
+  },
+  methods: {
+    startFishing() {
+      if (this.isFishing === false) {
+        this.isFishing = true;
+      } else {
+        console.log("Can't start fishing session");
+      }
+    },
+    finishFishing() {
+      console.log("finish fishing");
+      if (this.isFishing === true) {
+        this.isFishing = false;
+      } else {
+        console.log("Can't stop fishing session");
+      }
+    },
   },
 };
 </script>

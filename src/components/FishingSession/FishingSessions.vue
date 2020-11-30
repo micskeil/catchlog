@@ -1,75 +1,53 @@
 <template>
-  <div class="card shadow">
-    <div
-      class="user-info p-3
-     d-flex align-items-center"
-    >
-      <img
-        src="../../../src/assets/img/user_1.jpg"
-        class="user-img
-      rounded-circle"
-        alt="user_img"
-      />
-      <div class="user-info-text pl-3 font-weight-bold ">
-        John Doe
-      </div>
-    </div>
-    <img
-      src="../../../src/assets/img/user_1_img_1.jpg"
-      class="card-img-top border-top border-bottom"
-      alt="user_img"
-    />
-    <div class="card-body p-3 d-flex justify-content-between">
-      <div class="fish-info d-flex">
-        <p class="card-text pr-3 font-weight-bold">
-          Carp
-        </p>
-        <p class="card-text pr-3">
-          6.9kg
-        </p>
-        <p class="card-text pr-3">
-          45cm
-        </p>
-      </div>
-      <div class="location-info d-flex">
-        <p class="card-text pr-3 font-weight-bold">
-          Tisza-tó
-        </p>
-        <p class="card-text pr-3 ">
-          2020-09-10
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div v-for="session in sessions" v-bind:key="session.session_id">
-    <div class="session-start pt-3">
-      Started fishing at {{ session.start_date }} at {{ session.location }}
-    </div>
+  <div v-for="session in sessions.slice().reverse()" v-bind:key="session.id">
+    <FishingSessionEnd v-bind:session="session" />
+    <FishingSessionStart v-bind:session="session" />
   </div>
 </template>
 
 <script>
+import FishingSessionStart from "./FishingSessionStart.vue";
+import FishingSessionEnd from "./FishingSessionEnd.vue";
+
 export default {
+  components: { FishingSessionStart, FishingSessionEnd },
   data() {
     return {
-      sessions: [
-        {
-          session_id: "1",
-          start_date: "2020-10-01 8:26",
-          location: "Tisza-tó",
-          method: "Casting",
-          end_date: "2020-10-01 11:25",
-        },
-        {
-          session_id: "2",
-          start_date: "2020-10-01 14:36",
-          location: "Tisza-tó",
-          method: "Casting",
-          end_date: "2020-10-01 20:10",
-        },
-      ],
+      sessions: [],
     };
+  },
+  methods: {
+    loadSessions() {
+      this.isLoading = true;
+      fetch("https://fishlog-75884.firebaseio.com/sessions.json")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          this.isLoading = false;
+
+          const results = [];
+
+          for (const id in data) {
+            results.push({
+              id: id,
+              start_date: data[id].start_date,
+              location: data[id].location,
+            });
+          }
+
+          this.sessions = results;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = "Failed to fetch data - pls try again later!";
+        });
+    },
+  },
+  mounted() {
+    this.loadSessions();
   },
 };
 </script>
@@ -78,7 +56,15 @@ export default {
 div {
   width: 100%;
 }
+
 .session-start {
   width: 100%;
+}
+
+.user-img {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid #6969d18c;
+  padding: 1px;
 }
 </style>
