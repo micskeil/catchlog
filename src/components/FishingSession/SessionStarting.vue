@@ -24,11 +24,8 @@
           </div>
 
           <div id="button" class="d-flex justify-content-center pt-3 ">
-            <button
-              v-on:click="startFishingSession"
-              class="btn btn-dark rounded justify-self-center"
-            >
-              Start
+            <button class="btn btn-dark rounded justify-self-center">
+              Start fishing!
             </button>
           </div>
         </form>
@@ -39,6 +36,7 @@
 
 <script>
 export default {
+  props: ["totalNumberOfSessions"],
   data() {
     return {
       new_session_start_date: new Date(),
@@ -52,22 +50,27 @@ export default {
     },
 
     submitForm() {
-      fetch("https://fishlog-75884.firebaseio.com/sessions.json", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          start_date: this.new_session_start_date,
-          location: this.new_session_location,
-          end_date: this.new_session_end_date,
-        }),
-      })
+      fetch(
+        "https://fishlog-75884.firebaseio.com/sessions/" +
+          this.totalNumberOfSessions +
+          ".json",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            start_date: this.new_session_start_date,
+            location: this.new_session_location,
+            end_date: this.new_session_end_date,
+          }),
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Could not save data!");
           } else {
-            this.isFishing = true;
+            this.startFishingSession();
           }
         })
         .catch((error) => {
@@ -102,7 +105,7 @@ export default {
         </iframe>`;
     },
   },
-  mounted() {
+  beforeMount() {
     this.getLocation();
   },
 };

@@ -26,8 +26,6 @@ export default {
           }
         })
         .then((data) => {
-          this.isLoading = false;
-
           const results = [];
 
           for (const id in data) {
@@ -35,6 +33,7 @@ export default {
               id: id,
               start_date: data[id].start_date,
               location: data[id].location,
+              end_date: data[id].end_date,
             });
           }
 

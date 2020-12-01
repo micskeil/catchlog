@@ -7,7 +7,8 @@
 
       <template v-slot:card-info>
         <div class="session-start pb-3">
-          <strong>Started fishing </strong>on {{ formatTime() }}
+          <strong>Started fishing </strong>on
+          {{ session.start_date }}
         </div>
       </template>
     </base-card>
@@ -22,9 +23,7 @@ export default {
   },
   computed: {},
   methods: {
-    formatTime() {
-      return this.session.start_date.toLocaleString();
-    },
+    formatTime() {},
     showPosition(latlon) {
       var x = document.getElementById(this.session.id);
 
@@ -40,6 +39,11 @@ export default {
         </iframe>`;
     },
   },
+  // filters: {
+  //   moment: function(date) {
+  //     return moment(date).format("MMMM Do YYYY, h:mm:ss a");
+  //   },
+  // },
 
   mounted() {
     this.showPosition(this.session.location);

@@ -3,8 +3,7 @@
     <base-card>
       <template v-slot:card-info>
         <div class="session-end pb-3">
-          <strong>Finished fishing </strong>on {{ session.end_date }} at
-          {{ session.location }}
+          <strong>Finished fishing </strong> on {{ session.end_date }}
         </div>
       </template>
     </base-card>
