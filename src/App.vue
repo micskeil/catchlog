@@ -1,14 +1,17 @@
 <template>
   <div class="container-fluid d-flex flex-column align-items-center">
     <StickyNav />
-    <div class=" container row">
+    <div class=" container  d-flex justify-content-between row">
       <main class="col-md-8 p-3 d-flex flex-column align-items-center">
         <SessionStarting
           v-if="isFishing === false"
           v-on:start-fishing-session="startFishing"
           v-bind:totalNumberOfSessions="totalNumberOfSessions"
         />
-        <NewCatch v-if="isFishing === true" />
+        <NewCatch
+          v-if="isFishing === true"
+          v-bind:totalNumberOfSessions="totalNumberOfSessions"
+        />
 
         <SessionEnding
           v-if="isFishing === true"
@@ -134,7 +137,7 @@ export default {
         });
     },
   },
-  beforeMount() {
+  created() {
     this.getTotalNumberOfSessions();
     this.getIsFishing();
   },

@@ -105,9 +105,7 @@ export default {
         </iframe>`;
     },
   },
-  beforeMount() {
-    this.getLocation();
-  },
+  beforeMount() {},
 };
 </script>
 

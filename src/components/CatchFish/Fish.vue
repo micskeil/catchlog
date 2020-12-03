@@ -22,29 +22,49 @@
     <div class="card-body p-3 d-flex justify-content-between">
       <div class="fish-info d-flex">
         <p class="card-text pr-3 font-weight-bold">
-          Carp
+          {{ fish.species }}
         </p>
         <p class="card-text pr-3">
-          6.9kg
+          {{ fish.weight }}
         </p>
         <p class="card-text pr-3">
-          45cm
+          {{ fish.lenght }}
         </p>
       </div>
       <div class="location-info d-flex">
         <p class="card-text pr-3 font-weight-bold">
-          Tisza-tó
+          {{ fish.location }}
         </p>
         <p class="card-text pr-3 ">
-          2020-09-10
+          {{ fish.catch_date }}
         </p>
       </div>
     </div>
   </div>
 </template>
-
 <script>
-export default {};
+export default {
+  props: ["fish"],
+  data() {
+    return {};
+  },
+  mounted() {},
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+div {
+  width: 100%;
+}
+
+.session-start {
+  width: 100%;
+}
+
+.user-img {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid #6969d18c;
+  padding: 1px;
+}
+</style>

@@ -1,6 +1,7 @@
 <template>
   <div v-for="session in sessions.slice().reverse()" v-bind:key="session.id">
     <FishingSessionEnd v-bind:session="session" />
+    <Catches v-bind:session="session" />
     <FishingSessionStart v-bind:session="session" />
   </div>
 </template>
@@ -8,9 +9,10 @@
 <script>
 import FishingSessionStart from "./FishingSessionStart.vue";
 import FishingSessionEnd from "./FishingSessionEnd.vue";
+import Catches from "../CatchFish/Catches.vue";
 
 export default {
-  components: { FishingSessionStart, FishingSessionEnd },
+  components: { FishingSessionStart, FishingSessionEnd, Catches },
   data() {
     return {
       sessions: [],

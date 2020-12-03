@@ -1,77 +1,24 @@
 <template>
   <header
-    class="header shadow p-0 m-0 container-fluid d-flex bg-light justify-content-center sticky-top"
+    class="header shadow p-0 m-0 container-fluid d-flex bg-light justify-content-center border sticky-top"
   >
     <nav
-      class="container navbar navbar-expand-md navbar-light bg-light d-flex justify-content-between"
-      v-bind:class="{ navbarOpen: show }"
+      class="container navbar navbar-expand-sm navbar-light bg-light d-flex justify-content-between  align-content-center"
     >
-      <a class="navbar-brand" href="./index.html">
-        <img
-          src="../../assets/catfish.png"
-          width="30"
-          height="30"
-          class="d-inline-block align-top"
-          alt=""
-        />
-        <a class="brand-name p-3">Fishing log</a>
-      </a>
+      <div
+        class="navbar-brand d-flex align-content-center p-0"
+        href="./index.html"
+      >
+        <img src="../../assets/logo.png" class="logo" alt="logo" />
+        <a class="brand-name nav-brandname pl-3">Fishing log</a>
+      </div>
+
       <div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          v-on:click="toggleNavbar"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          id="navbarNav"
-          class="collapse navbar-collapse bg-light "
-          v-bind:class="[
-            { in: show },
-            { show: show },
-            { bottomNav: show },
-            { shadow: show },
-            { border: show },
-          ]"
-        >
-          <ul
-            class="navbar-nav  mr-3 mt-1 mt-lg-0"
-            v-bind:class="[{ bottomList: show }]"
-          >
+        <div class="bottomNav bg-light ">
+          <ul class="navbar-nav bottomList mr-3 mt-1 mt-lg-0">
             <li class="nav-item active">
               <a class="nav-link" href="./index.html"
-                ><img src="../../assets/home.png" alt="home"
-              /></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html"
-                ><img src="../../assets/home.png" alt="home"
-              /></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html"
-                ><img src="../../assets/home.png" alt="home"
-              /></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html"
-                ><img src="../../assets/home.png" alt="home"
-              /></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html"
-                ><img src="../../assets/home.png" alt="home"
-              /></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html"
-                ><img src="../../assets/home.png" alt="home"
+                ><img class="nav-icon" src="../../assets/home.png" alt="home"
               /></a>
             </li>
           </ul>
@@ -81,41 +28,37 @@
   </header>
 </template>
 
-<script>
-export default {
-  props: {
-    msg: String,
-  },
-  data() {
-    return {
-      show: true,
-    };
-  },
-  methods: {
-    toggleNavbar() {
-      this.show = !this.show;
-    },
-  },
-};
-</script>
-
 <style scoped>
-.bottomNav {
-  position: fixed;
-  display: flex;
-  justify-content: space-around;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
+@media screen and (max-width: 576px) {
+  .bottomNav {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    border: 1px solid #dee2e6;
+  }
+  .bottomList {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+  }
 }
-.bottomList {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  width: 80%;
+.logo {
+  width: 3rem;
+  height: 3rem;
 }
-img {
-  width: 32px;
+.nav-brandname {
+  font-size: 1.75rem;
+  color: #3c3c3c;
+  text-decoration: none;
   opacity: 0.6;
+}
+.nav-icon {
+  width: 2rem;
+  opacity: 0.4;
 }
 </style>
