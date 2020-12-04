@@ -4,7 +4,10 @@
 
     <template v-slot:card-info>
       <div id="form" class="form-group row p-0 m-0">
-        <form class="pb-3 mb-3 col-12 p-0 m-0" v-on:submit.prevent="submitForm">
+        <form
+          class="pb-3 mb-3 col-12 p-0 m-0"
+          v-on:submit.prevent="startFishing()"
+        >
           <div class="form-group row">
             <label
               class="col-sm-3 col-form-label font-weight-bold"
@@ -45,11 +48,7 @@ export default {
     };
   },
   methods: {
-    startFishingSession() {
-      this.$emit("start-fishing-session");
-    },
-
-    submitForm() {
+    startFishing() {
       fetch(
         "https://fishlog-75884.firebaseio.com/sessions/" +
           this.totalNumberOfSessions +
@@ -60,6 +59,7 @@ export default {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            cought_fish: 0,
             start_date: this.new_session_start_date,
             location: this.new_session_location,
             end_date: this.new_session_end_date,
@@ -70,7 +70,10 @@ export default {
           if (!response.ok) {
             throw new Error("Could not save data!");
           } else {
-            this.startFishingSession();
+            console.log(
+              "Start fishing session on " + this.new_session_start_date
+            );
+            this.$emit("start-fishing-session");
           }
         })
         .catch((error) => {
@@ -105,7 +108,10 @@ export default {
         </iframe>`;
     },
   },
-  beforeMount() {},
+  beforeMount() {
+    this.getLocation();
+  },
+  mounted() {},
 };
 </script>
 

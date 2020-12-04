@@ -1,7 +1,22 @@
 <template>
+  <SessionStarting
+    v-if="isFishing === false"
+    v-on:start-fishing-session="startFishing"
+    v-bind:totalNumberOfSessions="totalNumberOfSessions"
+  />
+  <NewCatch
+    v-if="isFishing === true"
+    v-bind:totalNumberOfSessions="totalNumberOfSessions"
+  />
+  <SessionEnding
+    v-if="isFishing === true"
+    v-on:finish-fishing-session="finishFishing"
+    v-bind:totalNumberOfSessions="totalNumberOfSessions"
+  />
+
   <div v-for="session in sessions.slice().reverse()" v-bind:key="session.id">
     <FishingSessionEnd v-bind:session="session" />
-    <Catches v-bind:session="session" />
+    <!-- <Catches v-bind:session="session" /> -->
     <FishingSessionStart v-bind:session="session" />
   </div>
 </template>
@@ -9,13 +24,26 @@
 <script>
 import FishingSessionStart from "./FishingSessionStart.vue";
 import FishingSessionEnd from "./FishingSessionEnd.vue";
-import Catches from "../CatchFish/Catches.vue";
+// import Catches from "../CatchFish/Catches.vue";
+import SessionStarting from "./SessionStarting";
+import SessionEnding from "./SessionEnding";
+import NewCatch from "../CatchFish/NewCatch.vue";
 
 export default {
-  components: { FishingSessionStart, FishingSessionEnd, Catches },
+  components: {
+    FishingSessionStart,
+    FishingSessionEnd,
+    // Catches,
+    SessionStarting,
+    SessionEnding,
+    NewCatch,
+  },
+  emits: ["start-fishing-session", "finish-fishing-session"],
   data() {
     return {
       sessions: [],
+      totalNumberOfSessions: this.getTotalNumberOfSessions(),
+      isFishing: false,
     };
   },
   methods: {
@@ -46,9 +74,114 @@ export default {
           this.error = "Failed to fetch data - pls try again later!";
         });
     },
+
+    startFishing() {
+      if (this.isFishing === false) {
+        this.isFishing = true;
+        this.updateTotalNumberOfSessions();
+        console.log("Fishing session started.");
+        this.$forceUpdate();
+      } else {
+        console.log("Can't start fishing session");
+      }
+    },
+
+    finishFishing() {
+      if (this.isFishing === true) {
+        this.isFishing = false;
+        console.log("Fishing session ended");
+        this.$forceUpdate();
+      }
+    },
+
+    updateTotalNumberOfSessions() {
+      console.log(this.totalNumberOfSessions + 1 + " session(s) registered");
+      this.totalNumberOfSessions = this.totalNumberOfSessions + 1;
+      fetch("https://fishlog-75884.firebaseio.com/app_data.json", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          totalNumberOfSessions: this.totalNumberOfSessions,
+          isFishing: true,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Could not save data!");
+          } else {
+            this.startFishingSession();
+          }
+        })
+        .catch((error) => {
+          if (error.message === "Could not save data!") {
+            this.error = "Could not save data!";
+            console.log(error);
+          } else {
+            this.error = "Something went wrong. Pls try again later!";
+          }
+        });
+    },
+
+    getTotalNumberOfSessions() {
+      fetch(
+        "https://fishlog-75884.firebaseio.com/app_data/totalNumberOfSessions.json"
+      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          if (data !== null) {
+            this.totalNumberOfSessions = data;
+            console.log(
+              "Total number of sessions updated to " +
+                this.totalNumberOfSessions
+            );
+          } else {
+            this.totalNumberOfSessions = 0;
+            console.log("No fishing history found! ");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = "Failed to fetch data - pls try again later!";
+        });
+    },
+
+    getIsFishing() {
+      fetch("https://fishlog-75884.firebaseio.com/app_data/isFishing.json")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          if (data !== null) {
+            this.isFishing = data;
+          }
+        })
+        .catch((error) => {
+          this.isFishing = false;
+          console.log(error);
+          this.error = "Failed to fetch data - pls try again later!";
+        });
+    },
   },
+  beforeMount() {
+    this.getIsFishing();
+  },
+
   mounted() {
     this.loadSessions();
+  },
+
+  updated() {
+    this.loadSessions();
+
+    this.getIsFishing();
   },
 };
 </script>

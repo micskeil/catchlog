@@ -17,7 +17,7 @@
       <div id="form" class="form-group row p-0 m-0">
         <form
           class="pb-3 mb-3 col-12 p-0 m-0"
-          v-on:submit.prevent="submitCatch"
+          v-on:submit.prevent="submitCatch()"
         >
           <div class="form-group row">
             <label
@@ -99,21 +99,20 @@ export default {
   data() {
     return {
       catch_date: new Date(),
-      species: "",
-      weight: "",
-      lenght: "",
-      catch_id: 0,
+      species: "Pike",
+      weight: "2.5",
+      lenght: "75",
+      totalNumberOfCoughtFish: this.updateTotalNumberOfCoughtFish(),
       currentSession: this.totalNumberOfSessions - 1,
     };
   },
-
   methods: {
     submitCatch() {
       fetch(
         "https://fishlog-75884.firebaseio.com/sessions/" +
           this.currentSession +
           "/catches/" +
-          this.catch_id +
+          this.totalNumberOfCoughtFish +
           "/.json",
         {
           method: "PATCH",
@@ -133,7 +132,13 @@ export default {
           if (!response.ok) {
             throw new Error("Could not save data!");
           } else {
-            location.reload();
+            console.log(
+              "Saving catch no. " +
+                this.totalNumberOfCoughtFish +
+                " details for session no." +
+                this.currentSession
+            );
+            this.updateTotalNumberOfCoughtFish();
           }
         })
         .catch((error) => {
@@ -145,6 +150,70 @@ export default {
           }
         });
     },
+    updateTotalNumberOfCoughtFish() {
+      // We update the number of the cought fish during this session in the database
+      this.totalNumberOfCoughtFish = this.totalNumberOfCoughtFish + 1;
+      fetch(
+        "https://fishlog-75884.firebaseio.com/sessions/" +
+          this.currentSession +
+          ".json",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cought_fish: this.totalNumberOfCoughtFish,
+          }),
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Could not save data!");
+          } else {
+            console.log(
+              "Updating total catch number for session no." +
+                this.currentSession +
+                " to " +
+                this.totalNumberOfCoughtFish
+            );
+          }
+        })
+        .catch((error) => {
+          if (error.message === "Could not save data!") {
+            this.error = "Could not save data!";
+            console.log(error);
+          } else {
+            this.error = "Something went wrong. Pls try again later!";
+          }
+        });
+    },
+    getTotalNumberOfCoughtFish() {
+      fetch(
+        "https://fishlog-75884.firebaseio.com/sessions/" +
+          this.currentSession +
+          "/cought_fish.json"
+      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          if (data !== null) {
+            this.totalNumberOfCoughtFish = data;
+          } else {
+            this.totalNumberOfCoughtFish = 0;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = "Failed to fetch data - pls try again later!";
+        });
+    },
+  },
+  created() {
+    this.getTotalNumberOfCoughtFish();
   },
 };
 </script>

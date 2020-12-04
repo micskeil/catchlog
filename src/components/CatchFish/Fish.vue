@@ -21,15 +21,9 @@
     />
     <div class="card-body p-3 d-flex justify-content-between">
       <div class="fish-info d-flex">
-        <p class="card-text pr-3 font-weight-bold">
-          {{ fish.species }}
-        </p>
-        <p class="card-text pr-3">
-          {{ fish.weight }}
-        </p>
-        <p class="card-text pr-3">
-          {{ fish.lenght }}
-        </p>
+        <p class="card-text pr-3 font-weight-bold">{{ fish.species }}</p>
+        <p class="card-text pr-3">{{ fish.weight }} kg</p>
+        <p class="card-text pr-3">{{ fish.lenght }} cm</p>
       </div>
       <div class="location-info d-flex">
         <p class="card-text pr-3 font-weight-bold">
@@ -48,7 +42,9 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() {
+    console.log(this.fish);
+  },
 };
 </script>
 

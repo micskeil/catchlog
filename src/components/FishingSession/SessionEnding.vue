@@ -43,13 +43,15 @@ export default {
   data() {
     return {
       new_session_end_date: new Date(),
+      current_session: this.totalNumberOfSessions - 1,
     };
   },
   methods: {
     finishFishingSession() {
+      console.log("End fishing session no. " + this.current_session);
       fetch(
         "https://fishlog-75884.firebaseio.com/sessions/" +
-          (this.totalNumberOfSessions - 1) +
+          this.current_session +
           ".json",
         {
           method: "PATCH",
@@ -65,7 +67,7 @@ export default {
           if (!response.ok) {
             throw new Error("Could not save data!");
           } else {
-            this.$emit("finish-fishing-session");
+            console.log("End fishing session on " + this.new_session_end_date);
           }
         })
         .catch((error) => {
@@ -90,6 +92,7 @@ export default {
           if (!response.ok) {
             throw new Error("Could not save data!");
           } else {
+            console.log("Confirm fishing session end");
             this.$emit("finish-fishing-session");
           }
         })
