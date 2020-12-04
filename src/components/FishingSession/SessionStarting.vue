@@ -71,7 +71,10 @@ export default {
             throw new Error("Could not save data!");
           } else {
             console.log(
-              "Start fishing session on " + this.new_session_start_date
+              "Start fishing session no. " +
+                this.totalNumberOfSessions +
+                " on " +
+                this.new_session_start_date
             );
             this.$emit("start-fishing-session");
           }

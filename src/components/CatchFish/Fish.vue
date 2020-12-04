@@ -29,9 +29,7 @@
         <p class="card-text pr-3 font-weight-bold">
           {{ fish.location }}
         </p>
-        <p class="card-text pr-3 ">
-          {{ fish.catch_date }}
-        </p>
+        <p class="card-text pr-3 ">on {{ fish.catch_date }}</p>
       </div>
     </div>
   </div>
@@ -41,9 +39,6 @@ export default {
   props: ["fish"],
   data() {
     return {};
-  },
-  mounted() {
-    console.log(this.fish);
   },
 };
 </script>

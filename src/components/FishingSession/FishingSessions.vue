@@ -1,22 +1,23 @@
 <template>
-  <SessionStarting
-    v-if="isFishing === false"
-    v-on:start-fishing-session="startFishing"
-    v-bind:totalNumberOfSessions="totalNumberOfSessions"
-  />
-  <NewCatch
-    v-if="isFishing === true"
-    v-bind:totalNumberOfSessions="totalNumberOfSessions"
-  />
-  <SessionEnding
-    v-if="isFishing === true"
-    v-on:finish-fishing-session="finishFishing"
-    v-bind:totalNumberOfSessions="totalNumberOfSessions"
-  />
-
+  <div v-if="isSessionControlActive">
+    <SessionStarting
+      v-if="isFishing === false"
+      v-on:start-fishing-session="startFishing"
+      v-bind:totalNumberOfSessions="totalNumberOfSessions"
+    />
+    <NewCatch
+      v-if="isFishing === true"
+      v-bind:totalNumberOfSessions="totalNumberOfSessions"
+    />
+    <SessionEnding
+      v-if="isFishing === true"
+      v-on:finish-fishing-session="finishFishing"
+      v-bind:totalNumberOfSessions="totalNumberOfSessions"
+    />
+  </div>
   <div v-for="session in sessions.slice().reverse()" v-bind:key="session.id">
     <FishingSessionEnd v-bind:session="session" />
-    <!-- <Catches v-bind:session="session" /> -->
+    <Catches v-bind:session="session" />
     <FishingSessionStart v-bind:session="session" />
   </div>
 </template>
@@ -24,16 +25,17 @@
 <script>
 import FishingSessionStart from "./FishingSessionStart.vue";
 import FishingSessionEnd from "./FishingSessionEnd.vue";
-// import Catches from "../CatchFish/Catches.vue";
+import Catches from "../CatchFish/Catches.vue";
 import SessionStarting from "./SessionStarting";
 import SessionEnding from "./SessionEnding";
 import NewCatch from "../CatchFish/NewCatch.vue";
 
 export default {
+  props: ["isSessionControlActive"],
   components: {
     FishingSessionStart,
     FishingSessionEnd,
-    // Catches,
+    Catches,
     SessionStarting,
     SessionEnding,
     NewCatch,
@@ -42,8 +44,9 @@ export default {
   data() {
     return {
       sessions: [],
-      totalNumberOfSessions: this.getTotalNumberOfSessions(),
+      totalNumberOfSessions: null,
       isFishing: false,
+      showSessionControl: false,
     };
   },
   methods: {
@@ -172,6 +175,7 @@ export default {
   },
   beforeMount() {
     this.getIsFishing();
+    this.getTotalNumberOfSessions();
   },
 
   mounted() {
@@ -180,7 +184,6 @@ export default {
 
   updated() {
     this.loadSessions();
-
     this.getIsFishing();
   },
 };

@@ -17,8 +17,28 @@
         <div class="bottomNav bg-light ">
           <ul class="navbar-nav bottomList mr-3 mt-1 mt-lg-0">
             <li class="nav-item active">
+              <a class="nav-link" v-on:click="toggleSessionControl()"
+                ><img
+                  class="nav-icon"
+                  src="../../assets/start_fishing.png"
+                  alt="home"
+              /></a>
+            </li>
+            <li class="nav-item active">
               <a class="nav-link" href="./index.html"
-                ><img class="nav-icon" src="../../assets/home.png" alt="home"
+                ><img
+                  class="nav-icon"
+                  src="../../assets/stop_fishing.png"
+                  alt="home"
+              /></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html">
+                <img
+                  src="../../../src/assets/img/user_1.jpg"
+                  class="nav-icon user-img
+      rounded-circle"
+                  alt="user_img"
               /></a>
             </li>
           </ul>
@@ -27,6 +47,15 @@
     </nav>
   </header>
 </template>
+<script>
+export default {
+  methods: {
+    toggleSessionControl() {
+      this.$emit("toggle-session-control");
+    },
+  },
+};
+</script>
 
 <style scoped>
 @media screen and (max-width: 576px) {
@@ -59,6 +88,12 @@
 }
 .nav-icon {
   width: 2rem;
-  opacity: 0.4;
+  opacity: 0.6;
+}
+.user-img {
+  width: 2rem;
+  border: 1px solid #6969d18c;
+  padding: 1px;
+  opacity: 1;
 }
 </style>

@@ -21,7 +21,7 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+
   methods: {
     formatTime() {},
     showPosition(latlon) {

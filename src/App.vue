@@ -1,9 +1,11 @@
 <template>
   <div class="container-fluid d-flex flex-column align-items-center">
-    <StickyNav />
+    <StickyNav v-on:toggle-session-control="toggleSessionControl()" />
     <div class=" container  d-flex justify-content-between row">
       <main class="col-md-8 p-3 d-flex flex-column align-items-center">
-        <FishingSessions />
+        <FishingSessions
+          v-bind:isSessionControlActive="isSessionControlActive"
+        />
       </main>
       <div class=" col-md-4 p-3">
         <h5>Activity in your arrea</h5>
@@ -31,9 +33,14 @@ export default {
   data() {
     return {
       activeSession: "",
+      isSessionControlActive: false,
     };
   },
-  methods: {},
+  methods: {
+    toggleSessionControl() {
+      this.isSessionControlActive = !this.isSessionControlActive;
+    },
+  },
   created() {},
 };
 </script>

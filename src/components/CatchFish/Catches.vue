@@ -1,6 +1,6 @@
 <template>
   <div v-for="fish in catches.slice().reverse()" v-bind:key="fish.id">
-    <Fish v-bind:fish="fish" v-bind:numberOfCoughtFish="numberOfCoughtFish" />
+    <Fish v-bind:fish="fish" />
   </div>
 </template>
 
@@ -12,11 +12,11 @@ export default {
   data() {
     return {
       catches: [],
-      totalNumberOfCoughtFish: 0,
     };
   },
   methods: {
     loadCatches() {
+      console.log("Loading catch history for session no. " + this.session.id);
       fetch(
         "https://fishlog-75884.firebaseio.com/sessions/" +
           this.session.id +
@@ -47,7 +47,6 @@ export default {
   },
   mounted() {
     this.loadCatches();
-    this.loadCoughtFish();
   },
 };
 </script>

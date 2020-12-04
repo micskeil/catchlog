@@ -102,7 +102,7 @@ export default {
       species: "Pike",
       weight: "2.5",
       lenght: "75",
-      totalNumberOfCoughtFish: this.updateTotalNumberOfCoughtFish(),
+      totalNumberOfCoughtFish: this.getTotalNumberOfCoughtFish(),
       currentSession: this.totalNumberOfSessions - 1,
     };
   },
@@ -172,7 +172,7 @@ export default {
             throw new Error("Could not save data!");
           } else {
             console.log(
-              "Updating total catch number for session no." +
+              "Updating total catch number for session no. " +
                 this.currentSession +
                 " to " +
                 this.totalNumberOfCoughtFish
@@ -189,6 +189,9 @@ export default {
         });
     },
     getTotalNumberOfCoughtFish() {
+      console.log(
+        "Update catch history for session no. " + this.currentSession
+      );
       fetch(
         "https://fishlog-75884.firebaseio.com/sessions/" +
           this.currentSession +
@@ -203,6 +206,9 @@ export default {
           if (data !== null) {
             this.totalNumberOfCoughtFish = data;
           } else {
+            console.log(
+              "No catch history for session no. " + this.currentSession
+            );
             this.totalNumberOfCoughtFish = 0;
           }
         })
@@ -211,9 +217,6 @@ export default {
           this.error = "Failed to fetch data - pls try again later!";
         });
     },
-  },
-  created() {
-    this.getTotalNumberOfCoughtFish();
   },
 };
 </script>
