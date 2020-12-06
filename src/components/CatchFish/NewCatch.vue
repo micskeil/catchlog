@@ -1,17 +1,8 @@
 <template>
   <base-card>
     <template v-slot:card-img>
-      <div id="">
-        <div
-          class="image-upload d-flex flex-column align-items-center justify-content-center border pt-3 pb-3"
-        >
-          <label for="file-input">
-            <img src="../../assets/img_upload.png" />
-          </label>
-
-          <input id="file-input" type="file" />
-        </div></div
-    ></template>
+      <img v-bind:src="imageUrl" />
+    </template>
 
     <template v-slot:card-info>
       <div id="form" class="form-group row p-0 m-0">
@@ -19,19 +10,31 @@
           class="pb-3 mb-3 col-12 p-0 m-0"
           v-on:submit.prevent="submitCatch()"
         >
+          <label for="file-input"> </label>
+          <button class="btn btn-outline-dark" v-on:click="onPickFile()">
+            Upload Image
+          </button>
+          <input
+            id="fileInput"
+            type="file"
+            class="d-none"
+            ref="fileInput"
+            accept="image/*"
+            v-on:change="onFilePicked"
+          />
           <div class="form-group row">
             <label
               class="col-sm-4 col-form-label font-weight-bold mt-3"
-              for="catch_time"
+              for="catch_date"
               >Catch time:
             </label>
             <div class="col-sm-8 mt-3">
               <input
                 class="form-control"
-                id="catch_time"
-                name="catch_time"
+                id="catch_date"
+                name="catch_date"
                 type="datetime-local"
-                v-model="catch_time"
+                v-model="catch_date"
               />
             </div>
 
@@ -102,11 +105,33 @@ export default {
       species: "Pike",
       weight: "2.5",
       lenght: "75",
-      totalNumberOfCoughtFish: this.getTotalNumberOfCoughtFish(),
-      currentSession: this.totalNumberOfSessions - 1,
+      totalNumberOfCoughtFish: 0,
+      currentSession: this.totalNumberOfSessions,
+      imageUrl: "",
+      image: null,
     };
   },
   methods: {
+    onPickFile() {
+      console.log("Choose a picture to upload!");
+      this.$refs.fileInput.click();
+    },
+
+    onFilePicked(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      console.log("Uploaded image: " + filename);
+      if (filename.lastIndexOf(".") <= 0) {
+        return alert("Plase add a valid image file! ");
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
+    },
+
     submitCatch() {
       fetch(
         "https://fishlog-75884.firebaseio.com/sessions/" +
@@ -150,6 +175,7 @@ export default {
           }
         });
     },
+
     updateTotalNumberOfCoughtFish() {
       // We update the number of the cought fish during this session in the database
       this.totalNumberOfCoughtFish = this.totalNumberOfCoughtFish + 1;
@@ -188,6 +214,7 @@ export default {
           }
         });
     },
+
     getTotalNumberOfCoughtFish() {
       console.log(
         "Update catch history for session no. " + this.currentSession
@@ -218,10 +245,18 @@ export default {
         });
     },
   },
+
+  created() {
+    this.getTotalNumberOfCoughtFish();
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+img {
+  width: 100%;
+}
+
 #form {
   width: 100%;
 }

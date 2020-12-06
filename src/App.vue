@@ -1,10 +1,17 @@
 <template>
   <div class="container-fluid d-flex flex-column align-items-center">
-    <StickyNav v-on:toggle-session-control="toggleSessionControl()" />
+    <StickyNav
+      v-bind:isFishing="isFishing"
+      v-on:toggle-session-control="toggleSessionControl()"
+    />
     <div class=" container  d-flex justify-content-between row">
       <main class="col-md-8 p-3 d-flex flex-column align-items-center">
         <FishingSessions
           v-bind:isSessionControlActive="isSessionControlActive"
+          v-bind:isFishing="isFishing"
+          v-bind:key="isFishing"
+          v-on:start-fishing="startFishing"
+          v-on:finish-fishing="finishFishing"
         />
       </main>
       <div class=" col-md-4 p-3">
@@ -32,16 +39,50 @@ export default {
   },
   data() {
     return {
-      activeSession: "",
       isSessionControlActive: false,
+      isFishing: false,
     };
   },
   methods: {
     toggleSessionControl() {
+      console.log(
+        "Show session control set to " + !this.isSessionControlActive
+      );
       this.isSessionControlActive = !this.isSessionControlActive;
     },
+
+    startFishing() {
+      this.isFishing = true;
+      this.isSessionControlActive = false;
+    },
+
+    finishFishing() {
+      this.isFishing = false;
+      this.isSessionControlActive = false;
+    },
+
+    getIsFishing() {
+      fetch("https://fishlog-75884.firebaseio.com/app_data/isFishing.json")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          if (data !== null) {
+            this.isFishing = data;
+          }
+        })
+        .catch((error) => {
+          this.isFishing = false;
+          console.log(error);
+          this.error = "Failed to fetch data - pls try again later!";
+        });
+    },
   },
-  created() {},
+  mounted() {
+    this.getIsFishing();
+  },
 };
 </script>
 

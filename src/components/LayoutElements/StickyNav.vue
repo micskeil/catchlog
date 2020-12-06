@@ -16,7 +16,7 @@
       <div>
         <div class="bottomNav bg-light ">
           <ul class="navbar-nav bottomList mr-3 mt-1 mt-lg-0">
-            <li class="nav-item active">
+            <li v-if="!isFishing" class="nav-item active">
               <a class="nav-link" v-on:click="toggleSessionControl()"
                 ><img
                   class="nav-icon"
@@ -24,16 +24,24 @@
                   alt="home"
               /></a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html"
+            <li v-if="isFishing" class="nav-item active">
+              <a class="nav-link" v-on:click="toggleSessionControl()"
                 ><img
                   class="nav-icon"
                   src="../../assets/stop_fishing.png"
                   alt="home"
               /></a>
             </li>
+            <li v-if="isFishing" class="nav-item active">
+              <a class="nav-link" v-on:click="toggleSessionControl()"
+                ><img
+                  class="nav-icon"
+                  src="../../assets/add-catch.png"
+                  alt="home"
+              /></a>
+            </li>
             <li class="nav-item active">
-              <a class="nav-link" href="./index.html">
+              <a class="nav-link" href="">
                 <img
                   src="../../../src/assets/img/user_1.jpg"
                   class="nav-icon user-img
@@ -49,10 +57,23 @@
 </template>
 <script>
 export default {
+  emits: ["toggle-session-control"],
+  props: ["isFishing"],
+
   methods: {
     toggleSessionControl() {
+      console.log("Toggle session control!");
       this.$emit("toggle-session-control");
     },
+  },
+  mounted() {
+    let status = "";
+    if (this.isFishing) {
+      status = "for fishing.";
+    } else {
+      status = " to start fishing!";
+    }
+    console.log("Navigation set up " + status);
   },
 };
 </script>

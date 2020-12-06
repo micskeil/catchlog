@@ -39,11 +39,12 @@
 
 <script>
 export default {
+  emits: ["finish-fishing-session"],
   props: ["totalNumberOfSessions"],
   data() {
     return {
       new_session_end_date: new Date(),
-      current_session: this.totalNumberOfSessions - 1,
+      current_session: this.totalNumberOfSessions,
     };
   },
   methods: {

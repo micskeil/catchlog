@@ -39,7 +39,9 @@
 
 <script>
 export default {
+  emits: ["start-fishing-session"],
   props: ["totalNumberOfSessions"],
+
   data() {
     return {
       new_session_start_date: new Date(),
@@ -114,7 +116,6 @@ export default {
   beforeMount() {
     this.getLocation();
   },
-  mounted() {},
 };
 </script>
 

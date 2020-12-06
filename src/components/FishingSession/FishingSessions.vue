@@ -31,7 +31,8 @@ import SessionEnding from "./SessionEnding";
 import NewCatch from "../CatchFish/NewCatch.vue";
 
 export default {
-  props: ["isSessionControlActive"],
+  emits: ["startFishing", "finishFishing"],
+  props: ["isSessionControlActive", "isFishing"],
   components: {
     FishingSessionStart,
     FishingSessionEnd,
@@ -40,12 +41,11 @@ export default {
     SessionEnding,
     NewCatch,
   },
-  emits: ["start-fishing-session", "finish-fishing-session"],
+
   data() {
     return {
       sessions: [],
       totalNumberOfSessions: null,
-      isFishing: false,
       showSessionControl: false,
     };
   },
@@ -80,7 +80,7 @@ export default {
 
     startFishing() {
       if (this.isFishing === false) {
-        this.isFishing = true;
+        this.$emit("start-fishing");
         this.updateTotalNumberOfSessions();
         console.log("Fishing session started.");
         this.$forceUpdate();
@@ -91,7 +91,7 @@ export default {
 
     finishFishing() {
       if (this.isFishing === true) {
-        this.isFishing = false;
+        this.$emit("finish-fishing");
         console.log("Fishing session ended");
         this.$forceUpdate();
       }
@@ -153,38 +153,20 @@ export default {
           this.error = "Failed to fetch data - pls try again later!";
         });
     },
-
-    getIsFishing() {
-      fetch("https://fishlog-75884.firebaseio.com/app_data/isFishing.json")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          if (data !== null) {
-            this.isFishing = data;
-          }
-        })
-        .catch((error) => {
-          this.isFishing = false;
-          console.log(error);
-          this.error = "Failed to fetch data - pls try again later!";
-        });
-    },
   },
+
   beforeMount() {
-    this.getIsFishing();
     this.getTotalNumberOfSessions();
   },
 
   mounted() {
     this.loadSessions();
-  },
-
-  updated() {
-    this.loadSessions();
-    this.getIsFishing();
+    console.log(
+      "Session control is active: " +
+        this.isSessionControlActive +
+        "and set it up for isFishing" +
+        this.isFishing
+    );
   },
 };
 </script>
