@@ -15,7 +15,7 @@
       </div>
     </div>
     <img
-      src="../../../src/assets/img/user_1_img_1.jpg"
+      v-bind:src="fish.image_src"
       class="card-img-top border-top border-bottom"
       alt="user_img"
     />
@@ -39,6 +39,10 @@ export default {
   props: ["fish"],
   data() {
     return {};
+  },
+  mounted() {
+    console.log("Image Url betöltve: " + this.fish.downloadUrl);
+    console.log(this.fish);
   },
 };
 </script>

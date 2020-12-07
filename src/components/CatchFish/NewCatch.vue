@@ -5,23 +5,23 @@
     </template>
 
     <template v-slot:card-info>
+      <button class="btn btn-outline-dark" v-on:click="onPickFile()">
+        Upload Image
+      </button>
+      <label for="file-input"> </label>
+      <input
+        id="fileInput"
+        type="file"
+        class="d-none"
+        ref="fileInput"
+        accept="image/*"
+        v-on:change="onFilePicked"
+      />
       <div id="form" class="form-group row p-0 m-0">
         <form
           class="pb-3 mb-3 col-12 p-0 m-0"
           v-on:submit.prevent="submitCatch()"
         >
-          <label for="file-input"> </label>
-          <button class="btn btn-outline-dark" v-on:click="onPickFile()">
-            Upload Image
-          </button>
-          <input
-            id="fileInput"
-            type="file"
-            class="d-none"
-            ref="fileInput"
-            accept="image/*"
-            v-on:change="onFilePicked"
-          />
           <div class="form-group row">
             <label
               class="col-sm-4 col-form-label font-weight-bold mt-3"
@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   props: ["totalNumberOfSessions"],
   data() {
@@ -109,15 +111,18 @@ export default {
       currentSession: this.totalNumberOfSessions,
       imageUrl: "",
       image: null,
+      image_src: "",
     };
   },
   methods: {
     onPickFile() {
+      console.log("onPickfile is running");
       console.log("Choose a picture to upload!");
       this.$refs.fileInput.click();
     },
 
     onFilePicked(event) {
+      console.log("onFilePicked is running");
       const files = event.target.files;
       let filename = files[0].name;
       console.log("Uploaded image: " + filename);
@@ -130,6 +135,8 @@ export default {
       });
       fileReader.readAsDataURL(files[0]);
       this.image = files[0];
+      console.log(this.image);
+      this.uploadPicture();
     },
 
     submitCatch() {
@@ -150,6 +157,7 @@ export default {
             species: this.species,
             weight: this.weight,
             lenght: this.lenght,
+            image_src: this.image_src,
           }),
         }
       )
@@ -174,6 +182,78 @@ export default {
             this.error = "Something went wrong. Pls try again later!";
           }
         });
+    },
+
+    uploadPicture() {
+      let that = this;
+      console.log("Uploading " + this.image.name + " to Firebase Storage.");
+      // File to upload to Firebase Storage
+      const file = this.image;
+      const metadata = {
+        contentType: "image/*",
+      };
+
+      // Upload file and metadata
+      const storageRef = firebase.storage().ref();
+      console.log(storageRef);
+
+      let regex = new RegExp("[^.]+$");
+      let extension = this.image.name.match(regex);
+
+      const uploadTask = storageRef
+        .child(
+          "/" +
+            this.currentSession +
+            "/catches/" +
+            this.totalNumberOfCoughtFish +
+            "." +
+            extension
+        )
+        .put(file, metadata);
+
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        function(snapshot) {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+              console.log("Upload is paused");
+              break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+              console.log("Upload is running");
+              break;
+          }
+        },
+        function(error) {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              break;
+
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+
+            case "storage/unknown":
+              // Unknown error occurred, inspect error.serverResponse
+              break;
+          }
+        },
+        function() {
+          // Upload completed successfully, now we can get the download URL
+          uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+            // this.downloadURL = downloadURL;
+            that.image_src = downloadURL;
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
     },
 
     updateTotalNumberOfCoughtFish() {

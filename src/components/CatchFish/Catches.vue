@@ -28,6 +28,7 @@ export default {
           }
         })
         .then((data) => {
+          console.log("data: " + data[0].image_src);
           const results = [];
           for (const id in data) {
             results.push({
@@ -35,9 +36,11 @@ export default {
               species: data[id].species,
               lenght: data[id].lenght,
               weight: data[id].weight,
+              image_src: data[id].image_src,
             });
           }
           this.catches = results;
+          console.log(this.catches);
         })
         .catch((error) => {
           console.log(error);
