@@ -1,21 +1,23 @@
 <template>
   <header
-    class="header shadow p-0 m-0 container-fluid d-flex bg-light justify-content-center border sticky-top"
+    class="header container-fluid d-flex bg-light justify-content-center border sticky-top pt-1 pb-1
+    "
   >
     <nav
       class="container navbar navbar-expand-sm navbar-light bg-light d-flex justify-content-between  align-content-center"
     >
       <div
-        class="navbar-brand d-flex align-content-center p-0"
+        class="navbar-brand d-flex align-content-center justify-content-center p-0"
         href="./index.html"
       >
-        <img src="../../assets/logo.png" class="logo" alt="logo" />
-        <a class="brand-name nav-brandname pl-3">Fishing log</a>
+        <a href="/" class="brand-name align-self-center nav-brandname pl-3 "
+          >Fishinglog</a
+        >
       </div>
 
       <div>
         <div class="bottomNav bg-light ">
-          <ul class="navbar-nav bottomList mr-3 mt-1 mt-lg-0">
+          <ul class="navbar-nav bottomList mr-3  pt-3 pb-3 mt-l">
             <li v-if="!isFishing" class="nav-item active">
               <a class="nav-link" v-on:click="toggleSessionControl()"
                 ><img
@@ -79,6 +81,10 @@ export default {
 </script>
 
 <style scoped>
+.bg-light {
+  background-color: white !important;
+}
+
 @media screen and (max-width: 576px) {
   .bottomNav {
     position: fixed;
@@ -102,18 +108,21 @@ export default {
   height: 3rem;
 }
 .nav-brandname {
-  font-size: 1.75rem;
-  color: #3c3c3c;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #00243d;
   text-decoration: none;
-  opacity: 0.6;
+  opacity: 1;
 }
 .nav-icon {
+  margin-right: 1rem !important ;
+  cursor: pointer;
   width: 2rem;
   opacity: 0.6;
 }
 .user-img {
   width: 2rem;
-  border: 1px solid #6969d18c;
+  border: 1px solid #00243d;
   padding: 1px;
   opacity: 1;
 }

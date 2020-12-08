@@ -73,6 +73,5 @@ img {
 }
 .show {
   display: none;
-  top: -1500px;
 }
 </style>

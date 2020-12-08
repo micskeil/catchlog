@@ -1,19 +1,15 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import "bootstrap/dist/css/bootstrap.min.css";
+import BaseCard from "./components/BaseElements/BaseCard.vue";
 import router from "./router";
 import store from "./store";
 import firebase from "firebase";
 
-// Import styles
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@/styles/style.css";
-
-// This is the main themplate for content elements
-import BaseCard from "./components/BaseElements/BaseCard.vue";
-
 const app = createApp(App)
   .use(store)
   .use(router);
+
 app.component("base-card", BaseCard);
 
 app.mount("#app");

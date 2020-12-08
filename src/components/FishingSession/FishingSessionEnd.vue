@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow mt-5 rounded-0">
+  <div class="card shadow mt-3 rounded-0">
     <base-card>
       <template v-slot:card-info>
         <div class="session-end pb-3">

@@ -1,8 +1,5 @@
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+import firebase from "firebase";
 
-// Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyBMcAaU42QOoiUFcW_SidKxHg7JtbOQ-f8",
   authDomain: "fishlog-75884.firebaseapp.com",
@@ -12,24 +9,14 @@ var firebaseConfig = {
   messagingSenderId: "831395729631",
   appId: "1:831395729631:web:193cb736a420dfed0e996a",
 };
-firebase.initializeApp(firebaseConfig);
+
+// Initialize Firebase
+export function fb() {
+  firebase.initializeApp(firebaseConfig);
+}
 
 // utils
-const db = firebase.firestore();
+const db = firebase.database();
 const auth = firebase.auth();
 
-// collection references
-const usersCollection = db.collection("users");
-const postsCollection = db.collection("posts");
-const commentsCollection = db.collection("comments");
-const likesCollection = db.collection("likes");
-
-// export utils/refs
-export {
-  db,
-  auth,
-  usersCollection,
-  postsCollection,
-  commentsCollection,
-  likesCollection,
-};
+export { db, auth };

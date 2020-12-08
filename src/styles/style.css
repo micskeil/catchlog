@@ -1,1 +1,13 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+#app {
+  font-family: "Questrial", Sans-Serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  color: #2c3e50;
+}
+
+#app * {
+  padding: 0;
+  margin: 0;
+}
+/*# sourceMappingURL=style.css.map */
