@@ -3,6 +3,7 @@ import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BaseCard from "./components/BaseElements/BaseCard.vue";
 import firebase from "firebase";
+import router from './router'
 
 var firebaseConfig = {
   apiKey: "AIzaSyBMcAaU42QOoiUFcW_SidKxHg7JtbOQ-f8",
@@ -16,7 +17,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const app = createApp(App);
+const app = createApp(App).use(router);
 
 app.component("base-card", BaseCard);
 
