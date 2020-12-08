@@ -42,6 +42,18 @@
                   alt="home"
               /></a>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link pr-3" to="/login"
+                >Sign in</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link
+                class="btn btn-outline-primary pl-1 pr-1 mr-3"
+                to="/signup"
+                >Sign up</router-link
+              >
+            </li>
             <li class="nav-item active">
               <a class="nav-link" href="">
                 <img
