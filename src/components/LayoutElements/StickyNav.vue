@@ -42,16 +42,13 @@
                   alt="home"
               /></a>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link pr-3" to="/login"
-                >Sign in</router-link
-              >
-            </li>
+
             <li class="nav-item">
               <router-link
                 class="btn btn-outline-primary pl-1 pr-1 mr-3"
-                to="/signup"
-                >Sign up</router-link
+                to="/login"
+                v-on:click="logOut()"
+                >Log out</router-link
               >
             </li>
             <li class="nav-item active">
@@ -70,6 +67,8 @@
   </header>
 </template>
 <script>
+import firebase from "firebase";
+
 export default {
   emits: ["toggle-session-control"],
   props: ["isFishing"],
@@ -78,6 +77,20 @@ export default {
     toggleSessionControl() {
       console.log("Toggle session control!");
       this.$emit("toggle-session-control");
+    },
+    logOut() {
+      let that = this;
+      firebase
+        .auth()
+        .signOut()
+        .then(function() {
+          that.$store.isLoggedin = false;
+          console.log("Succesfull sign out!");
+          that.$router.push({ name: "Login" });
+        })
+        .catch(function(error) {
+          alert(error.message);
+        });
     },
   },
   mounted() {

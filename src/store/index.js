@@ -1,12 +1,19 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
-  state: {
+  state() {
+    return {
+      isLoggedin: false,
+    };
   },
   mutations: {
+    logInUser(state) {
+      state.isLoggedin = true;
+    },
+    logOutUser(state) {
+      state.isLoggedin = false;
+    },
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {},
+});

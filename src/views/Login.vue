@@ -1,7 +1,10 @@
 <template>
-  <div class="vue-tempalte">
-    <form @submit.prevent="userLogin">
-      <h3>Sign In</h3>
+  <div class="login p-0 ">
+    <form
+      class="form border d-flex flex-column shadow p-5"
+      @submit.prevent="userLogin"
+    >
+      <h3 class="brand-name pb-3 align-self-center">Fishlog</h3>
 
       <div class="form-group">
         <label>Email address</label>
@@ -21,9 +24,13 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-dark btn-lg btn-block">
+      <button type="submit" class="btn btn-dark btn-lg mt-3 btn-block">
         Sign In
       </button>
+      <p class="forgot-password text-right">
+        Not a member yet?
+        <router-link :to="{ name: 'Signup' }">Sign up now!</router-link>
+      </p>
 
       <p class="forgot-password text-right mt-2 mb-4">
         <router-link to="/forgot-password">Forgot password ?</router-link>
@@ -50,7 +57,11 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(() => {
-          this.$router.push("/");
+          this.$store.commit("logInUser");
+        })
+        .then(() => {
+          console.log("Logging in..." + this.$store.state.isLoggedin);
+          this.$router.push({ name: "Home" });
         })
         .catch((error) => {
           alert(error.message);
@@ -59,3 +70,19 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.login {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+  .form {
+    width: 450px;
+    max-width: 100vw;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}
+</style>

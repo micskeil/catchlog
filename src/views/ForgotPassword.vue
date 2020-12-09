@@ -1,6 +1,9 @@
 <template>
-  <div class="vue-tempalte">
-    <form @submit.prevent="forgetPassword">
+  <div class="login">
+    <form
+      class="form  border d-flex flex-column shadow p-5"
+      @submit.prevent="forgetPassword"
+    >
       <h3>Forgot Password</h3>
 
       <div class="form-group">
@@ -12,7 +15,7 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-dark btn-lg btn-block">
+      <button type="submit" class="btn btn-dark btn-lg mt-3 btn-block">
         Reset password
       </button>
     </form>

@@ -1,6 +1,9 @@
 <template>
-  <div class="vue-template">
-    <form @submit.prevent="userRegistration">
+  <div class="login p-0">
+    <form
+      class="form  border d-flex flex-column shadow p-5"
+      @submit.prevent="userRegistration"
+    >
       <h3>Sign Up</h3>
 
       <div class="form-group">
@@ -30,7 +33,7 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-dark btn-lg btn-block">
+      <button type="submit" class="btn btn-dark btn-lg mt-3 btn-block">
         Sign Up
       </button>
 

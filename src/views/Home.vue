@@ -13,5 +13,8 @@ export default {
   components: {
     UserSessions,
   },
+  mounted() {
+    console.log();
+  },
 };
 </script>
