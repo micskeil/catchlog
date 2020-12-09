@@ -10,4 +10,20 @@
   padding: 0;
   margin: 0;
 }
+
+#app .login {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+}
+
+#app .login .form {
+  width: 450px;
+  max-width: 100vw;
+  background-color: rgba(255, 255, 255, 0.9);
+}
 /*# sourceMappingURL=style.css.map */

@@ -2,7 +2,7 @@
   <div class="login p-0 ">
     <form
       class="form border d-flex flex-column shadow p-5"
-      @submit.prevent="userLogin"
+      @submit.prevent="login"
     >
       <h3 class="brand-name pb-3 align-self-center">Fishlog</h3>
 
@@ -40,8 +40,6 @@
 </template>
 
 <script>
-import firebase from "firebase";
-
 export default {
   data() {
     return {
@@ -52,20 +50,13 @@ export default {
     };
   },
   methods: {
-    userLogin() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.user.email, this.user.password)
-        .then(() => {
-          this.$store.commit("logInUser");
-        })
-        .then(() => {
-          console.log("Logging in..." + this.$store.state.isLoggedin);
-          this.$router.push({ name: "Home" });
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
+    async login() {
+      await this.$store.dispatch("login", {
+        email: this.user.email,
+        password: this.user.password,
+      });
+
+      this.$router.push({ name: "Home" });
     },
   },
 };

@@ -11,18 +11,18 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-}
 
-.login {
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-image: url("../../assets/bg.jpg");
-  background-size: cover;
-  .form {
-    width: 450px;
-    max-width: 100vw;
-    background-color: rgba(255, 255, 255, 0.9);
+  .login {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../assets/bg.jpg");
+    background-size: cover;
+    .form {
+      width: 450px;
+      max-width: 100vw;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
   }
 }

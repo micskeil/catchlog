@@ -47,7 +47,7 @@
               <router-link
                 class="btn btn-outline-primary pl-1 pr-1 mr-3"
                 to="/login"
-                v-on:click="logOut()"
+                v-on:click="logout()"
                 >Log out</router-link
               >
             </li>
@@ -67,8 +67,6 @@
   </header>
 </template>
 <script>
-import firebase from "firebase";
-
 export default {
   emits: ["toggle-session-control"],
   props: ["isFishing"],
@@ -78,19 +76,9 @@ export default {
       console.log("Toggle session control!");
       this.$emit("toggle-session-control");
     },
-    logOut() {
-      let that = this;
-      firebase
-        .auth()
-        .signOut()
-        .then(function() {
-          that.$store.isLoggedin = false;
-          console.log("Succesfull sign out!");
-          that.$router.push({ name: "Login" });
-        })
-        .catch(function(error) {
-          alert(error.message);
-        });
+    async logout() {
+      await this.$store.dispatch("logout");
+      this.$router.push({ name: "Login" });
     },
   },
   mounted() {

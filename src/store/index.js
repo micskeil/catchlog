@@ -1,19 +1,46 @@
 import { createStore } from "vuex";
+import firebase from "firebase";
 
 export default createStore({
   state() {
     return {
-      isLoggedin: false,
+      isLoggedIn: false,
+
+      isFishing: false,
+      isSessionControlActive: false,
     };
   },
   mutations: {
-    logInUser(state) {
-      state.isLoggedin = true;
-    },
-    logOutUser(state) {
-      state.isLoggedin = false;
+    setAuth(state, payload) {
+      state.isLoggedIn = payload;
     },
   },
-  actions: {},
+  getters: {
+    userIsAuthenticated(state) {
+      return state.isLoggedIn;
+    },
+  },
+  actions: {
+    async login(contex, user) {
+      await firebase
+        .auth()
+        .signInWithEmailAndPassword(user.email, user.password);
+
+      console.log("Logging in " + user.email);
+      contex.commit("setAuth", true);
+    },
+
+    logout(contex) {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          contex.commit("setAuth", false);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    },
+  },
   modules: {},
 });

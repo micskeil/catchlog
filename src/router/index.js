@@ -10,6 +10,13 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    beforeEnter: (to, from, next) => {
+      if (!store.state.isLoggedIn) {
+        console.log(store.state.isLoggedIn);
+        next({ name: "Login" });
+        console.log("Login before continue...");
+      } else next();
+    },
   },
   {
     path: "/login",
@@ -39,11 +46,12 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.name === "Home" && !store.state.isLoggedin) {
-    next({ name: "Login" });
-    console.log("Login failed, try again! " + !store.state.isLoggedin);
-  } else next();
-});
+// router.beforeEach((to, from, next) => {
+//   const isLoggedIn = store.state.isLoggedIn;
+//   if (to.name !== "Login" && isLoggedIn) {
+//     next({ name: "Login" });
+//     console.log("Login before continue...");
+//   } else next();
+// });
 
 export default router;
