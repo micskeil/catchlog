@@ -6,6 +6,8 @@
 
 <script>
 import Fish from "../CatchFish/Fish.vue";
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   components: { Fish },
   props: ["session"],
@@ -14,13 +16,26 @@ export default {
       catches: [],
     };
   },
+  computed: {
+    ...mapGetters("session", {
+      getTotalNumberOfSessions: "getTotalNumberOfSessions",
+    }),
+  },
   methods: {
+    ...mapActions("session", {
+      updateIsFishing: "updateIsFishing",
+      updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
+    }),
+
     loadCatches() {
-      console.log("Loading catch history for session no. " + this.session.id);
+      const userID = this.$store.getters.userID;
+
       fetch(
-        "https://fishlog-75884.firebaseio.com/sessions/" +
+        "https://fishlog-75884.firebaseio.com/catches/" +
+          userID +
+          "/" +
           this.session.id +
-          "/catches.json"
+          ".json"
       )
         .then((response) => {
           if (response.ok) {
@@ -28,7 +43,6 @@ export default {
           }
         })
         .then((data) => {
-          console.log("data: " + data[0].image_src);
           const results = [];
           for (const id in data) {
             results.push({
@@ -40,7 +54,6 @@ export default {
             });
           }
           this.catches = results;
-          console.log(this.catches);
         })
         .catch((error) => {
           console.log(error);

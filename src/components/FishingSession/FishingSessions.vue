@@ -45,11 +45,13 @@ export default {
   methods: {
     ...mapActions("session", {
       updateIsFishing: "updateIsFishing",
+      updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
     }),
 
     loadSessions() {
+      console.log("Loading seassions...");
       const userID = this.$store.getters.userID;
-      fetch("https://fishlog-75884.firebaseio.com/" + userID + ".json")
+      fetch("https://fishlog-75884.firebaseio.com/sessions/" + userID + ".json")
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -75,8 +77,10 @@ export default {
         });
     },
   },
-  create() {
+
+  beforeMount() {
     this.updateIsFishing();
+    this.updateTotalNumberOfSessions();
     this.loadSessions();
   },
 };

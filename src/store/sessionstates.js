@@ -32,7 +32,9 @@ const sessionstates = {
       console.log("updateIsFishing");
       const userID = contex.rootGetters.userID;
       fetch(
-        "https://fishlog-75884.firebaseio.com/" + userID + "/isFishing.json"
+        "https://fishlog-75884.firebaseio.com/users/" +
+          userID +
+          "/isFishing.json"
       )
         .then((response) => {
           if (response.ok) {
@@ -50,13 +52,11 @@ const sessionstates = {
         });
     },
 
-    // startFishing(contex) {},
-
     updateTotalNumberOfSessions(contex) {
       console.log("updateTotalNumberOfSessions");
       const userID = contex.rootGetters.userID;
       fetch(
-        "https://fishlog-75884.firebaseio.com/" +
+        "https://fishlog-75884.firebaseio.com/users/" +
           userID +
           "/totalNumberOfSessions.json"
       )

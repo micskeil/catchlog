@@ -67,7 +67,7 @@ export default {
       const userID = this.$store.getters.userID;
       const sessionID = this.getTotalNumberOfSessions;
       fetch(
-        "https://fishlog-75884.firebaseio.com/" +
+        "https://fishlog-75884.firebaseio.com/sessions/" +
           userID +
           "/" +
           sessionID +
@@ -78,10 +78,10 @@ export default {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            cought_fish: 0,
             start_date: new Date(),
             location: this.new_session_location,
             end_date: this.new_session_end_date,
+            cought_fish: 0,
           }),
         }
       )
@@ -103,7 +103,7 @@ export default {
     uploadUserID() {
       const userID = this.$store.getters.userID;
 
-      fetch("https://fishlog-75884.firebaseio.com/" + userID + ".json", {
+      fetch("https://fishlog-75884.firebaseio.com/users/" + userID + ".json", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

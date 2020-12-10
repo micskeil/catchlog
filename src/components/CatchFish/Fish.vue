@@ -40,10 +40,7 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    console.log("Image Url betöltve: " + this.fish.downloadUrl);
-    console.log(this.fish);
-  },
+  mounted() {},
 };
 </script>
 

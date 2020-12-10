@@ -98,6 +98,7 @@
 
 <script>
 import firebase from "firebase";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   props: ["totalNumberOfSessions"],
@@ -114,7 +115,17 @@ export default {
       image_src: "",
     };
   },
+  computed: {
+    ...mapGetters("session", {
+      getTotalNumberOfSessions: "getTotalNumberOfSessions",
+    }),
+  },
   methods: {
+    ...mapActions("session", {
+      updateIsFishing: "updateIsFishing",
+      updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
+    }),
+
     onPickFile() {
       console.log("onPickfile is running");
       console.log("Choose a picture to upload!");
@@ -140,10 +151,14 @@ export default {
     },
 
     submitCatch() {
+      const userID = this.$store.getters.userID;
+      const sessionID = this.getTotalNumberOfSessions;
       fetch(
-        "https://fishlog-75884.firebaseio.com/sessions/" +
-          this.currentSession +
-          "/catches/" +
+        "https://fishlog-75884.firebaseio.com/catches/" +
+          userID +
+          "/" +
+          sessionID +
+          "/" +
           this.totalNumberOfCoughtFish +
           "/.json",
         {
@@ -257,11 +272,15 @@ export default {
     },
 
     updateTotalNumberOfCoughtFish() {
-      // We update the number of the cought fish during this session in the database
+      const userID = this.$store.getters.userID;
+      const sessionID = this.getTotalNumberOfSessions;
+
       this.totalNumberOfCoughtFish = this.totalNumberOfCoughtFish + 1;
       fetch(
         "https://fishlog-75884.firebaseio.com/sessions/" +
-          this.currentSession +
+          userID +
+          "/" +
+          sessionID +
           ".json",
         {
           method: "PATCH",
