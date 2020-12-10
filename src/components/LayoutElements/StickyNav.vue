@@ -48,7 +48,7 @@
                 class="btn btn-outline-primary pl-1 pr-1 mr-3"
                 to="/login"
                 v-on:click="logout()"
-                >Log out</router-link
+                >{{ user_name }}</router-link
               >
             </li>
             <li class="nav-item active">
@@ -70,12 +70,23 @@
 export default {
   emits: ["toggle-session-control"],
   props: ["isFishing"],
+  data() {
+    return {
+      user_name: "null",
+    };
+  },
 
   methods: {
     toggleSessionControl() {
       console.log("Toggle session control!");
       this.$emit("toggle-session-control");
     },
+
+    getUser() {
+      console.log("The current user " + this.$store.getters.userName);
+      this.user_name = "Hello, " + this.$store.getters.userName + "!";
+    },
+
     async logout() {
       await this.$store.dispatch("logout");
       this.$router.push({ name: "Login" });
@@ -89,6 +100,7 @@ export default {
       status = " to start fishing!";
     }
     console.log("Navigation set up " + status);
+    this.getUser();
   },
 };
 </script>

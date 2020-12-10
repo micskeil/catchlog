@@ -1,23 +1,32 @@
 import { createStore } from "vuex";
 import firebase from "firebase";
+import { sessionstates } from "./sessionstates";
 
 export default createStore({
+  modules: { session: sessionstates },
   state() {
     return {
       isLoggedIn: false,
-
-      isFishing: false,
-      isSessionControlActive: false,
+      userData: null,
     };
   },
   mutations: {
     setAuth(state, payload) {
       state.isLoggedIn = payload;
     },
+    setUser(state, payload) {
+      state.userData = payload;
+    },
   },
   getters: {
     userIsAuthenticated(state) {
       return state.isLoggedIn;
+    },
+    userName(state) {
+      return state.userData.displayName;
+    },
+    userID(state) {
+      return state.userData.uid;
     },
   },
   actions: {
@@ -26,21 +35,14 @@ export default createStore({
         .auth()
         .signInWithEmailAndPassword(user.email, user.password);
 
-      console.log("Logging in " + user.email);
       contex.commit("setAuth", true);
+      let userData = await firebase.auth().currentUser;
+      contex.commit("setUser", userData);
     },
 
-    logout(contex) {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          contex.commit("setAuth", false);
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
+    async logout(contex) {
+      await firebase.auth().signOut();
+      contex.commit("setAuth", false);
     },
   },
-  modules: {},
 });

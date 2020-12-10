@@ -12,7 +12,6 @@ const routes = [
     component: Home,
     beforeEnter: (to, from, next) => {
       if (!store.state.isLoggedIn) {
-        console.log(store.state.isLoggedIn);
         next({ name: "Login" });
         console.log("Login before continue...");
       } else next();

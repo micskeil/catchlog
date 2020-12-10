@@ -23,7 +23,6 @@ export default {
   },
 
   methods: {
-    formatTime() {},
     showPosition(latlon) {
       var x = document.getElementById(this.session.id);
 

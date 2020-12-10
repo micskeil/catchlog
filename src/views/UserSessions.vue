@@ -1,20 +1,11 @@
 <template>
   <div class="container-fluid d-flex flex-column align-items-center">
-    <StickyNav
-      v-bind:isFishing="isFishing"
-      v-on:toggle-session-control="toggleSessionControl()"
-    />
+    <StickyNav />
     <div class=" container  d-flex justify-content-between row">
       <main
         class="content col-md-8 d-flex flex-column align-items-center m-0 pb-5"
       >
-        <FishingSessions
-          v-bind:isSessionControlActive="isSessionControlActive"
-          v-bind:isFishing="isFishing"
-          v-bind:key="isFishing"
-          v-on:start-fishing="startFishing"
-          v-on:finish-fishing="finishFishing"
-        />
+        <FishingSessions />
       </main>
       <div class="side-bar d-none d-md-block col-md-4 p-5">
         <div class="side-bar-content">
@@ -24,7 +15,7 @@
 
           <br />
           <footer class="footer pt-3">
-            ©2020 with ❤ from Lali Micskei
+            ©2020 with ❤ by Lali Micskei
           </footer>
         </div>
       </div>
@@ -41,59 +32,10 @@ export default {
     StickyNav,
     FishingSessions,
   },
-  data() {
-    return {
-      isSessionControlActive: false,
-      isFishing: false,
-    };
-  },
-  methods: {
-    toggleSessionControl() {
-      console.log(
-        "Show session control set to " + !this.isSessionControlActive
-      );
-      this.isSessionControlActive = !this.isSessionControlActive;
-    },
-
-    startFishing() {
-      this.isFishing = true;
-      this.isSessionControlActive = false;
-    },
-
-    finishFishing() {
-      this.isFishing = false;
-      this.isSessionControlActive = false;
-    },
-
-    getIsFishing() {
-      fetch("https://fishlog-75884.firebaseio.com/app_data/isFishing.json")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          if (data !== null) {
-            this.isFishing = data;
-          }
-        })
-        .catch((error) => {
-          this.isFishing = false;
-          console.log(error);
-          this.error = "Failed to fetch data - pls try again later!";
-        });
-    },
-  },
-  mounted() {
-    this.getIsFishing();
-  },
 };
 </script>
 
 <style lang="scss" scoped>
-.side-bar {
-}
-
 .side-bar-content {
   position: sticky;
   top: 90px;

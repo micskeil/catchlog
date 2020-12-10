@@ -6,7 +6,7 @@
       <div id="form" class="form-group row p-0 m-0">
         <form
           class="pb-3 mb-3 col-12 p-0 m-0"
-          v-on:submit.prevent="finishFishingSession"
+          v-on:submit.prevent="stopFishing"
         >
           <div class="form-group row">
             <label
@@ -38,21 +38,39 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
-  emits: ["finish-fishing-session"],
-  props: ["totalNumberOfSessions"],
   data() {
     return {
       new_session_end_date: new Date(),
-      current_session: this.totalNumberOfSessions,
     };
   },
+
+  computed: {
+    ...mapGetters("session", {
+      getTotalNumberOfSessions: "getTotalNumberOfSessions",
+    }),
+  },
+
   methods: {
-    finishFishingSession() {
-      console.log("End fishing session no. " + this.current_session);
+    ...mapActions("session", {
+      updateIsFishing: "updateIsFishing",
+    }),
+
+    stopFishing() {
+      this.uploadSession();
+      this.uploadUserID();
+    },
+
+    uploadSession() {
+      const userID = this.$store.getters.userID;
+      const sessionID = this.getTotalNumberOfSessions - 1;
       fetch(
-        "https://fishlog-75884.firebaseio.com/sessions/" +
-          this.current_session +
+        "https://fishlog-75884.firebaseio.com/" +
+          userID +
+          "/" +
+          sessionID +
           ".json",
         {
           method: "PATCH",
@@ -60,7 +78,7 @@ export default {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            end_date: this.new_session_end_date,
+            end_date: new Date(),
           }),
         }
       )
@@ -68,7 +86,7 @@ export default {
           if (!response.ok) {
             throw new Error("Could not save data!");
           } else {
-            console.log("End fishing session on " + this.new_session_end_date);
+            //
           }
         })
         .catch((error) => {
@@ -79,8 +97,11 @@ export default {
             this.error = "Something went wrong. Pls try again later!";
           }
         });
+    },
 
-      fetch("https://fishlog-75884.firebaseio.com/app_data.json", {
+    uploadUserID() {
+      const userID = this.$store.getters.userID;
+      fetch("https://fishlog-75884.firebaseio.com/" + userID + "/.json", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -93,8 +114,7 @@ export default {
           if (!response.ok) {
             throw new Error("Could not save data!");
           } else {
-            console.log("Confirm fishing session end");
-            this.$emit("finish-fishing-session");
+            this.updateIsFishing();
           }
         })
         .catch((error) => {

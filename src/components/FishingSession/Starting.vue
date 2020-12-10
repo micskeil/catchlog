@@ -1,7 +1,6 @@
 <template>
   <base-card>
     <template v-slot:card-img> <div id="location"></div></template>
-
     <template v-slot:card-info>
       <div id="form" class="form-group row p-0 m-0">
         <form
@@ -38,10 +37,9 @@
 </template>
 
 <script>
-export default {
-  emits: ["start-fishing-session"],
-  props: ["totalNumberOfSessions"],
+import { mapActions, mapGetters } from "vuex";
 
+export default {
   data() {
     return {
       new_session_start_date: new Date(),
@@ -49,11 +47,30 @@ export default {
       new_session_end_date: "",
     };
   },
+  computed: {
+    ...mapGetters("session", {
+      getTotalNumberOfSessions: "getTotalNumberOfSessions",
+    }),
+  },
   methods: {
+    ...mapActions("session", {
+      updateIsFishing: "updateIsFishing",
+      updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
+    }),
+
     startFishing() {
+      this.uploadSession();
+      this.uploadUserID();
+    },
+
+    uploadSession() {
+      const userID = this.$store.getters.userID;
+      const sessionID = this.getTotalNumberOfSessions;
       fetch(
-        "https://fishlog-75884.firebaseio.com/sessions/" +
-          this.totalNumberOfSessions +
+        "https://fishlog-75884.firebaseio.com/" +
+          userID +
+          "/" +
+          sessionID +
           ".json",
         {
           method: "PATCH",
@@ -62,7 +79,7 @@ export default {
           },
           body: JSON.stringify({
             cought_fish: 0,
-            start_date: this.new_session_start_date,
+            start_date: new Date(),
             location: this.new_session_location,
             end_date: this.new_session_end_date,
           }),
@@ -71,14 +88,6 @@ export default {
         .then((response) => {
           if (!response.ok) {
             throw new Error("Could not save data!");
-          } else {
-            console.log(
-              "Start fishing session no. " +
-                this.totalNumberOfSessions +
-                " on " +
-                this.new_session_start_date
-            );
-            this.$emit("start-fishing-session");
           }
         })
         .catch((error) => {
@@ -90,6 +99,38 @@ export default {
           }
         });
     },
+
+    uploadUserID() {
+      const userID = this.$store.getters.userID;
+
+      fetch("https://fishlog-75884.firebaseio.com/" + userID + ".json", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          totalNumberOfSessions: this.getTotalNumberOfSessions + 1,
+          isFishing: true,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Could not save data!");
+          } else {
+            this.updateIsFishing();
+            this.updateTotalNumberOfSessions();
+          }
+        })
+        .catch((error) => {
+          if (error.message === "Could not save data!") {
+            this.error = "Could not save data!";
+            console.log(error);
+          } else {
+            this.error = "Something went wrong. Pls try again later!";
+          }
+        });
+    },
+
     getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(this.showPosition);
