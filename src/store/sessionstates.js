@@ -1,8 +1,11 @@
+import firebase from "firebase";
+
 const sessionstates = {
   namespaced: true,
   state() {
     return {
       isFishing: false,
+      currentSession: "",
       isSessionControlActive: false,
       totalNumberOfSessions: 0,
     };
@@ -10,6 +13,9 @@ const sessionstates = {
   mutations: {
     setIsFishing(state, payload) {
       state.isFishing = payload;
+    },
+    setCurrentSession(state, payload) {
+      state.currentSession = payload;
     },
 
     setTotalNumberOfSessions(state, payload) {
@@ -22,6 +28,10 @@ const sessionstates = {
       return state.isFishing;
     },
 
+    getCurrentSession(state) {
+      return state.currentSession;
+    },
+
     getTotalNumberOfSessions(state) {
       return state.totalNumberOfSessions;
     },
@@ -29,26 +39,44 @@ const sessionstates = {
 
   actions: {
     updateIsFishing(contex) {
-      console.log("updateIsFishing");
       const userID = contex.rootGetters.userID;
-      fetch(
-        "https://fishlog-75884.firebaseio.com/users/" +
-          userID +
-          "/isFishing.json"
-      )
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(userID)
+        .get()
+        .then(function(doc) {
+          if (doc.exists) {
+            console.log("isFishing state: ", doc.data().is_fishing);
+            contex.commit("setIsFishing", doc.data().is_fishing);
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
           }
         })
-        .then((data) => {
-          if (data !== null) {
-            contex.commit("setIsFishing", data);
+        .catch(function(error) {
+          console.log("Error getting document:", error);
+        });
+    },
+
+    updateCurrentSession(contex) {
+      const userID = contex.rootGetters.userID;
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(userID)
+        .get()
+        .then(function(doc) {
+          if (doc.exists) {
+            console.log("Current session: ", doc.data().current_session);
+            contex.commit("setCurrentSession", doc.data().current_session);
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
           }
         })
-        .catch((error) => {
-          console.log(error);
-          this.error = "Failed to fetch data - pls try again later!";
+        .catch(function(error) {
+          console.log("Error getting document:", error);
         });
     },
 

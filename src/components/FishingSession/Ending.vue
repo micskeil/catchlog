@@ -6,7 +6,7 @@
       <div id="form" class="form-group row p-0 m-0">
         <form
           class="pb-3 mb-3 col-12 p-0 m-0"
-          v-on:submit.prevent="stopFishing"
+          v-on:submit.prevent="endFishing()"
         >
           <div class="form-group row">
             <label
@@ -38,18 +38,17 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
-    return {
-      new_session_end_date: new Date(),
-    };
+    return {};
   },
 
   computed: {
     ...mapGetters("session", {
-      getTotalNumberOfSessions: "getTotalNumberOfSessions",
+      getCurrentSession: "getCurrentSession",
     }),
   },
 
@@ -58,72 +57,47 @@ export default {
       updateIsFishing: "updateIsFishing",
     }),
 
-    stopFishing() {
-      this.uploadSession();
-      this.uploadUserID();
-    },
-
-    uploadSession() {
+    endFishing() {
       const userID = this.$store.getters.userID;
-      const sessionID = this.getTotalNumberOfSessions - 1;
-      fetch(
-        "https://fishlog-75884.firebaseio.com/sessions/" +
-          userID +
-          "/" +
-          sessionID +
-          ".json",
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            end_date: new Date(),
-          }),
-        }
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Could not save data!");
-          } else {
-            //
-          }
+      const current_session = this.getCurrentSession;
+      const that = this;
+
+      firebase
+        .firestore()
+        .collection("users/" + userID + "/sessions/")
+        .doc(current_session)
+        .update({
+          end_date: new Date(),
         })
-        .catch((error) => {
-          if (error.message === "Could not save data!") {
-            this.error = "Could not save data!";
-            console.log(error);
-          } else {
-            this.error = "Something went wrong. Pls try again later!";
-          }
+        .then(() => {
+          // Create the current session ID locally, and upload it to the store
+          that.updateUserStatus();
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
         });
     },
 
-    uploadUserID() {
+    updateUserStatus() {
       const userID = this.$store.getters.userID;
-      fetch("https://fishlog-75884.firebaseio.com/users/" + userID + "/.json", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          isFishing: false,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Could not save data!");
-          } else {
-            this.updateIsFishing();
-          }
+      const that = this;
+
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(userID)
+        .set({
+          is_fishing: false,
+          current_session: "",
         })
-        .catch((error) => {
-          if (error.message === "Could not save data!") {
-            this.error = "Could not save data!";
-            console.log(error);
-          } else {
-            this.error = "Something went wrong. Pls try again later!";
-          }
+        .then(function() {
+          console.log("Fishing session ended: ", that.getCurrentSession);
+          // Update the  session states
+          that.updateIsFishing();
+          that.updateCurrentSession();
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
         });
     },
   },
