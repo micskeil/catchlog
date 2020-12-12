@@ -65,7 +65,7 @@ export default {
           user_id: userID,
           start_date: new Date(),
           location: this.new_session_location,
-          end_date: "",
+          end_date: "undifined",
           cought_fish: 0,
         })
         .then(function(docRef) {

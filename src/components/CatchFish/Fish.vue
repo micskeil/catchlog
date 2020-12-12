@@ -37,9 +37,6 @@
 <script>
 export default {
   props: ["fish"],
-  data() {
-    return {};
-  },
   mounted() {},
 };
 </script>

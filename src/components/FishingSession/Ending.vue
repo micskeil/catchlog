@@ -55,11 +55,13 @@ export default {
   methods: {
     ...mapActions("session", {
       updateIsFishing: "updateIsFishing",
+      updateCurrentSession: "updateCurrentSession",
     }),
 
     endFishing() {
       const userID = this.$store.getters.userID;
       const current_session = this.getCurrentSession;
+      console.log("Ending session: " + current_session);
       const that = this;
 
       firebase

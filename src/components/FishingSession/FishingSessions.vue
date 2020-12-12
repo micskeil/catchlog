@@ -4,7 +4,7 @@
     <NewCatch v-if="getIsFishing === true" />
     <Ending v-if="getIsFishing === true" />
   </div>
-  <div v-for="session in sessions.slice().reverse()" v-bind:key="session.id">
+  <div v-for="session in sessions" v-bind:key="session.id">
     <FishingSessionEnd v-bind:session="session" />
     <Catches v-bind:session="session" />
     <FishingSessionStart v-bind:session="session" />
@@ -18,6 +18,7 @@ import Catches from "../CatchFish/Catches.vue";
 import Starting from "./Starting";
 import Ending from "./Ending";
 import NewCatch from "../CatchFish/NewCatch.vue";
+import firebase from "firebase";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -46,30 +47,30 @@ export default {
     ...mapActions("session", {
       updateIsFishing: "updateIsFishing",
       updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
+      updateCurrentSession: "updateCurrentSession",
     }),
 
     loadSessions() {
-      console.log("Loading seassions...");
       const userID = this.$store.getters.userID;
-      fetch("https://fishlog-75884.firebaseio.com/sessions/" + userID + ".json")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
+      const that = this;
+      firebase
+        .firestore()
+        .collection("users/" + userID + "/sessions")
+        .orderBy("start_date", "desc")
+        .get()
+        .then(function(querySnapshot) {
           const results = [];
-
-          for (const id in data) {
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
             results.push({
-              id: id,
-              start_date: data[id].start_date,
-              location: data[id].location,
-              end_date: data[id].end_date,
+              session_id: doc.id,
+              user_id: doc.data().user_id,
+              start_date: new Date(doc.data().start_date.seconds * 1000),
+              location: doc.data().location,
+              end_date: new Date(doc.data().end_date.seconds * 1000),
             });
-          }
-
-          this.sessions = results;
+            that.sessions = results;
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -80,7 +81,7 @@ export default {
 
   beforeMount() {
     this.updateIsFishing();
-    this.updateTotalNumberOfSessions();
+    this.updateCurrentSession();
     this.loadSessions();
   },
 };

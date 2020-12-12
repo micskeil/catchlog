@@ -1,12 +1,14 @@
 <template>
-  <div v-for="fish in catches.slice().reverse()" v-bind:key="fish.id">
-    <Fish v-bind:fish="fish" />
+  <div>
+    <div v-for="fish in loadedCatches" v-bind:key="fish.catch_id">
+      <Fish v-bind:fish="fish" />
+    </div>
   </div>
 </template>
 
 <script>
+import firebase from "firebase";
 import Fish from "../CatchFish/Fish.vue";
-import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: { Fish },
@@ -17,51 +19,49 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("session", {
-      getTotalNumberOfSessions: "getTotalNumberOfSessions",
-    }),
+    loadedCatches() {
+      return this.catches;
+    },
   },
+
   methods: {
-    ...mapActions("session", {
-      updateIsFishing: "updateIsFishing",
-      updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
-    }),
-
     loadCatches() {
+      const that = this;
       const userID = this.$store.getters.userID;
+      const session_id = this.session.session_id;
 
-      fetch(
-        "https://fishlog-75884.firebaseio.com/catches/" +
-          userID +
-          "/" +
-          this.session.id +
-          ".json"
-      )
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
+      firebase
+        .firestore()
+        .collection("catches/")
+        .where("user_id", "==", userID)
+        .where("session_id", "==", session_id)
+        .orderBy("catch_date", "desc")
+        .get()
+        .then(function(querySnapshot) {
+          console.log(querySnapshot);
           const results = [];
-          for (const id in data) {
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
             results.push({
-              catch_date: data[id].catch_date,
-              species: data[id].species,
-              lenght: data[id].lenght,
-              weight: data[id].weight,
-              image_src: data[id].image_src,
+              catch_id: doc.id,
+              catch_date: new Date(doc.data().catch_date.seconds * 1000),
+              species: doc.data().species,
+              lenght: doc.data().lenght,
+              weight: doc.data().weight,
+              image_src: doc.data().image_src,
             });
-          }
-          this.catches = results;
+            console.log(doc.id, " => ", doc.data());
+            that.catches = results;
+          });
         })
         .catch((error) => {
           console.log(error);
+          console.log("Error");
           this.error = "Failed to fetch data - pls try again later!";
         });
     },
   },
-  mounted() {
+  beforeMount() {
     this.loadCatches();
   },
 };

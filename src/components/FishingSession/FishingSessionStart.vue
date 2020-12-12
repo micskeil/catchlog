@@ -45,7 +45,7 @@ export default {
   // },
 
   mounted() {
-    this.showPosition(this.session.location);
+    // this.showPosition(this.session.location);
   },
 };
 </script>
