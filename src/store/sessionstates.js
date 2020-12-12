@@ -6,8 +6,8 @@ const sessionstates = {
     return {
       isFishing: false,
       currentSession: "",
+
       isSessionControlActive: false,
-      totalNumberOfSessions: 0,
     };
   },
   mutations: {
@@ -16,10 +16,6 @@ const sessionstates = {
     },
     setCurrentSession(state, payload) {
       state.currentSession = payload;
-    },
-
-    setTotalNumberOfSessions(state, payload) {
-      state.totalNumberOfSessions = payload;
     },
   },
 
@@ -30,10 +26,6 @@ const sessionstates = {
 
     getCurrentSession(state) {
       return state.currentSession;
-    },
-
-    getTotalNumberOfSessions(state) {
-      return state.totalNumberOfSessions;
     },
   },
 
@@ -47,7 +39,6 @@ const sessionstates = {
         .get()
         .then(function(doc) {
           if (doc.exists) {
-            console.log("isFishing state: ", doc.data().is_fishing);
             contex.commit("setIsFishing", doc.data().is_fishing);
           } else {
             // doc.data() will be undefined in this case
@@ -77,33 +68,6 @@ const sessionstates = {
         })
         .catch(function(error) {
           console.log("Error getting document:", error);
-        });
-    },
-
-    updateTotalNumberOfSessions(contex) {
-      console.log("updateTotalNumberOfSessions");
-      const userID = contex.rootGetters.userID;
-      fetch(
-        "https://fishlog-75884.firebaseio.com/users/" +
-          userID +
-          "/totalNumberOfSessions.json"
-      )
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          if (data !== null) {
-            contex.commit("setTotalNumberOfSessions", data);
-          } else {
-            this.totalNumberOfSessions = 0;
-            console.log("No fishing history found! ");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = "Failed to fetch data - pls try again later!";
         });
     },
   },
