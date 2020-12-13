@@ -37,7 +37,9 @@
 <script>
 export default {
   props: ["fish"],
-  mounted() {},
+  mounted() {
+    console.log(this.fish.image_src);
+  },
 };
 </script>
 

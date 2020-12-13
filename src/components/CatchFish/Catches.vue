@@ -38,7 +38,6 @@ export default {
         .orderBy("catch_date", "desc")
         .get()
         .then(function(querySnapshot) {
-          console.log(querySnapshot);
           const results = [];
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
@@ -50,7 +49,6 @@ export default {
               weight: doc.data().weight,
               image_src: doc.data().image_src,
             });
-            console.log(doc.id, " => ", doc.data());
             that.catches = results;
           });
         })

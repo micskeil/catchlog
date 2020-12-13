@@ -113,6 +113,7 @@ export default {
       image: null,
       image_src: "",
       location: "",
+      catchID: "",
     };
   },
   computed: {
@@ -147,28 +148,51 @@ export default {
       fileReader.readAsDataURL(files[0]);
       this.image = files[0];
       console.log(this.image);
-      this.uploadPicture();
     },
 
     submitCatch() {
       const userID = this.$store.getters.userID;
-      const current_session = this.getCurrentSession;
+      const currentSession = this.getCurrentSession;
+      const that = this;
 
       firebase
         .firestore()
         .collection("/catches")
         .add({
           user_id: userID,
-          session_id: current_session,
+          session_id: currentSession,
           location: this.location,
           catch_date: this.catch_date,
           species: this.species,
           weight: this.weight,
           lenght: this.lenght,
-          image_src: this.image_src,
+          // We don't have the src yet, we have to update later this field with the file upload
+          image_src: "",
         })
         .then(function(docRef) {
-          console.log("Catch registered: " + docRef);
+          that.catchID = docRef.id;
+          console.log("Catch registered: " + docRef.id);
+          that.uploadPicture();
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    },
+
+    updateImgSrc() {
+      const that = this;
+      console.log("update IMG Source in database");
+
+      firebase
+        .firestore()
+        .collection("catches/")
+        .doc(this.catchID)
+        .update({
+          // We don't have the src yet, we have to update later this field with the file upload
+          image_src: that.image_src,
+        })
+        .then(function(docRef) {
+          console.log("Image uploaded: " + docRef.id);
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
@@ -176,8 +200,12 @@ export default {
     },
 
     uploadPicture() {
+      const userID = this.$store.getters.userID;
+      const currentSession = this.getCurrentSession;
       let that = this;
+
       console.log("Uploading " + this.image.name + " to Firebase Storage.");
+
       // File to upload to Firebase Storage
       const file = this.image;
       const metadata = {
@@ -194,9 +222,11 @@ export default {
       const uploadTask = storageRef
         .child(
           "/" +
-            this.currentSession +
-            "/catches/" +
-            this.totalNumberOfCoughtFish +
+            userID +
+            "/" +
+            currentSession +
+            "/" +
+            this.catchID +
             "." +
             extension
         )
@@ -241,7 +271,9 @@ export default {
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             // this.downloadURL = downloadURL;
             that.image_src = downloadURL;
+
             console.log("File available at", downloadURL);
+            that.updateImgSrc();
           });
         }
       );
