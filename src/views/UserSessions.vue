@@ -5,17 +5,17 @@
       <main
         class="content col-md-8 d-flex flex-column align-items-center m-0 pb-5"
       >
-        <FishingSessions />
+        <FishingSessions v-bind:activeMenu="activeMenu" />
       </main>
       <div class="side-bar d-none d-md-block col-md-4 p-5">
         <div class="side-bar-content">
-          <h5>Activity in your area</h5>
+          <h5>Ez történt a környékeden</h5>
           <br />
-          <div>Other users' catches will be here</div>
+          <div>Itt lesz majd a barátok fogásai</div>
 
           <br />
           <footer class="footer pt-3">
-            ©2020 with ❤ by Lali Micskei
+            ©2020 from ❤ by <a href="mailto:micskeil@gmail.com">Lali Micskei</a>
           </footer>
         </div>
       </div>
@@ -31,6 +31,9 @@ export default {
   components: {
     StickyNav,
     FishingSessions,
+  },
+  data() {
+    return {};
   },
 };
 </script>

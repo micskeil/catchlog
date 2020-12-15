@@ -1,18 +1,16 @@
 <template>
-  <div class="card shadow mt-3 rounded-0">
-    <base-card>
-      <template v-slot:card-img>
-        <div v-bind:id="session.id"></div>
-      </template>
+  <base-card>
+    <template v-slot:card-img>
+      <div v-bind:id="session.id"></div>
+    </template>
 
-      <template v-slot:card-info>
-        <div class="session-start pb-3">
-          <strong>Started fishing </strong>on
-          {{ session.start_date }}
-        </div>
-      </template>
-    </base-card>
-  </div>
+    <template v-slot:card-info>
+      <div class="session-start pb-3">
+        <strong>Sikeresen elkezdted a horgászatot: &nbsp; </strong>
+        {{ getFormattedDate(session.start_date) }}
+      </div>
+    </template>
+  </base-card>
 </template>
 
 <script>
@@ -36,6 +34,22 @@ export default {
         latlon +
         ` allowfullscreen>
         </iframe>`;
+    },
+    getFormattedDate(date) {
+      var year = date.getFullYear();
+      var month = (1 + date.getMonth()).toString();
+      month = month.length > 1 ? month : "0" + month;
+
+      var day = date.getDate().toString();
+      day = day.length > 1 ? day : "0" + day;
+
+      var hour = date.getHours().toString();
+      hour = hour.length > 1 ? hour : "0" + hour;
+
+      var minute = date.getMinutes().toString();
+      minute = minute.length > 1 ? minute : "0" + minute;
+
+      return year + "/" + month + "/" + day + " " + hour + ":" + minute;
     },
   },
   // filters: {

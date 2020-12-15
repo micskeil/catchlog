@@ -1,9 +1,8 @@
 <template>
-  <div v-if="isSessionControlActive">
-    <Starting v-if="getIsFishing === false" />
-    <NewCatch v-if="getIsFishing === true" />
-    <Ending v-if="getIsFishing === true" />
-  </div>
+  <Starting v-if="getIsStart === true" />
+  <NewCatch v-if="getIsNewCatch === true" />
+  <Ending v-if="getIsEnd === true" />
+
   <div v-for="session in sessions" v-bind:key="session.id">
     <FishingSessionEnd v-bind:session="session" />
     <Catches v-bind:session="session" />
@@ -30,17 +29,19 @@ export default {
     Ending,
     NewCatch,
   },
+  props: ["activeMenu"],
 
   data() {
     return {
       sessions: [],
-      showSessionControl: true,
-      isSessionControlActive: true,
     };
   },
   computed: {
     ...mapGetters("session", {
       getIsFishing: "getIsFishing",
+      getIsStart: "getIsStart",
+      getIsEnd: "getIsEnd",
+      getIsNewCatch: "getIsNewCatch",
     }),
   },
   methods: {

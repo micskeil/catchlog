@@ -1,35 +1,38 @@
 <template>
-  <div class="card shadow mt-3 rounded-0">
+  <div class="card shadow mt-5 rounded-0">
     <div
-      class="user-info p-3
-     d-flex align-items-center"
+      class="user-bar p-3
+     d-flex align-items-center "
     >
       <img
-        src="../../../src/assets/img/user_1.jpg"
+        src="../../../src/assets/img/user_1.png"
         class="user-img
-      rounded-circle"
+      rounded-circle "
         alt="user_img"
       />
-      <div class="user-info-text pl-3 font-weight-bold ">
-        John Doe
+      <div class="user-info pl-3 d-flex flex-nowrap justify-content-between">
+        <div class="user-name font-weight-bold">
+          {{ getUser }}
+        </div>
+        <div class="catch-date pl-3 d-flex align-self-center align-content-end">
+          {{ getFormattedDate(fish.catch_date) }}
+        </div>
       </div>
     </div>
     <img
       v-bind:src="fish.image_src"
-      class="card-img-top border-top border-bottom"
-      alt="user_img"
+      class="card-img pb-3"
+      alt="img_uploaded_by_user"
     />
-    <div class="card-body p-3 d-flex justify-content-between">
-      <div class="fish-info d-flex">
-        <p class="card-text pr-3 font-weight-bold">{{ fish.species }}</p>
-        <p class="card-text pr-3">{{ fish.weight }} kg</p>
-        <p class="card-text pr-3">{{ fish.lenght }} cm</p>
+    <div class="fish-info d-flex justify-content-between">
+      <div class="species card-text pl-3 font-weight-bold">
+        {{ fish.species }}
       </div>
-      <div class="location-info d-flex">
-        <p class="card-text pr-3 font-weight-bold">
-          {{ fish.location }}
+
+      <div class="size d-flex justify-content-end mr-3  align-content-end">
+        <p class="measures align-self-center">
+          Méret: &nbsp; {{ fish.weight }} kg, {{ fish.lenght }} cm
         </p>
-        <p class="card-text pr-3 ">on {{ fish.catch_date }}</p>
       </div>
     </div>
   </div>
@@ -37,25 +40,69 @@
 <script>
 export default {
   props: ["fish"],
-  mounted() {
-    console.log(this.fish.image_src);
+  computed: {
+    getUser() {
+      return this.$store.getters.userName;
+    },
+  },
+  methods: {
+    getFormattedDate(date) {
+      var year = date.getFullYear();
+      var month = (1 + date.getMonth()).toString();
+      month = month.length > 1 ? month : "0" + month;
+
+      var day = date.getDate().toString();
+      day = day.length > 1 ? day : "0" + day;
+
+      var hour = date.getHours().toString();
+      hour = hour.length > 1 ? hour : "0" + hour;
+
+      var minute = date.getMinutes().toString();
+      minute = minute.length > 1 ? minute : "0" + minute;
+
+      return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+    },
   },
 };
 </script>
 
-<style scoped>
-div {
-  width: 100%;
+<style lang="scss" scoped>
+.user-bar {
+  .user-img {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #6969d1b7;
+  }
+  .user-info {
+    width: 100%;
+  }
+  .user-name {
+    white-space: nowrap;
+  }
+  .catch-date {
+    white-space: nowrap;
+  }
 }
 
-.session-start {
-  width: 100%;
+.card-img {
+  border-radius: 0;
 }
 
-.user-img {
-  width: 1.75rem;
-  height: 1.75rem;
-  border: 1px solid #6969d18c;
-  padding: 1px;
+.fish-info {
+  position: absolute;
+  left: -0.1rem;
+  right: -0.1rem;
+  bottom: -1.3rem;
+  color: white;
+  background-color: #2c3e50;
+
+  .species {
+    font-size: 1.5rem;
+    width: fit-content;
+  }
+  .measures {
+    font-size: 1rem;
+    width: fit-content;
+  }
 }
 </style>

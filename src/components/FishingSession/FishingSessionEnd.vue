@@ -1,13 +1,12 @@
 <template>
-  <div class="card shadow mt-3 rounded-0">
-    <base-card>
-      <template v-slot:card-info>
-        <div class="session-end pb-3">
-          <strong>Finished fishing </strong> on {{ session.end_date }}
-        </div>
-      </template>
-    </base-card>
-  </div>
+  <base-card>
+    <template v-slot:card-info>
+      <div class="session-end pb-3">
+        <strong>Befejezted a horgászatot:&nbsp; </strong>
+        {{ getFormattedDate(session.end_date) }}
+      </div>
+    </template>
+  </base-card>
 </template>
 
 <script>
@@ -15,6 +14,24 @@ export default {
   props: ["session"],
   data() {
     return {};
+  },
+  methods: {
+    getFormattedDate(date) {
+      var year = date.getFullYear();
+      var month = (1 + date.getMonth()).toString();
+      month = month.length > 1 ? month : "0" + month;
+
+      var day = date.getDate().toString();
+      day = day.length > 1 ? day : "0" + day;
+
+      var hour = date.getHours().toString();
+      hour = hour.length > 1 ? hour : "0" + hour;
+
+      var minute = date.getMinutes().toString();
+      minute = minute.length > 1 ? minute : "0" + minute;
+
+      return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+    },
   },
 };
 </script>

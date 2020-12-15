@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <base-card ref="new-catch">
     <template v-slot:card-img>
       <img v-bind:src="imageUrl" />
     </template>
@@ -103,7 +103,6 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      catch_date: new Date(),
       species: "Pike",
       weight: "2.5",
       lenght: "75",
@@ -154,6 +153,7 @@ export default {
       const userID = this.$store.getters.userID;
       const currentSession = this.getCurrentSession;
       const that = this;
+      console.log(this.catch_date);
 
       firebase
         .firestore()
@@ -162,7 +162,7 @@ export default {
           user_id: userID,
           session_id: currentSession,
           location: this.location,
-          catch_date: this.catch_date,
+          catch_date: new Date(),
           species: this.species,
           weight: this.weight,
           lenght: this.lenght,
@@ -278,6 +278,16 @@ export default {
         }
       );
     },
+
+    goto(refName) {
+      var element = this.$refs[refName];
+      console.log(element);
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+    },
+  },
+  mounted() {
+    this.goto("new-catch");
   },
 };
 </script>

@@ -10,36 +10,59 @@
         class="navbar-brand d-flex align-content-center justify-content-center p-0"
         href="./index.html"
       >
-        <a href="/" class="brand-name align-self-center nav-brandname pl-3 "
-          >Fishinglog</a
+        <img
+          class="brand-logo"
+          src="../../assets/logo.png"
+          width="32"
+          height="32"
+        />
+        <a href="/" class="brand-name align-self-center nav-brandname pl-3">
+          Pecázunk.hu</a
         >
       </div>
 
       <div>
         <div class="bottomNav bg-light ">
           <ul class="navbar-nav bottomList mr-3  pt-3 pb-3 mt-l">
-            <li v-if="!isFishing" class="nav-item active">
-              <a class="nav-link" v-on:click="toggleSessionControl()"
+            <li class="nav-item active" v-on:click="startFishing">
+              <a class="nav-link"
+                ><img class="nav-icon" src="../../assets/home.png" alt="home"
+              /></a>
+            </li>
+            <li
+              v-if="!getIsFishing"
+              class="nav-item "
+              v-on:click="startFishing"
+            >
+              <a class="nav-link"
                 ><img
                   class="nav-icon"
                   src="../../assets/start_fishing.png"
-                  alt="home"
+                  alt="start_fishing_icon"
               /></a>
             </li>
-            <li v-if="isFishing" class="nav-item active">
-              <a class="nav-link" v-on:click="toggleSessionControl()"
+            <li
+              v-if="getIsFishing"
+              class="nav-item active"
+              v-on:click="endFishing"
+            >
+              <a class="nav-link"
                 ><img
                   class="nav-icon"
                   src="../../assets/stop_fishing.png"
-                  alt="home"
+                  alt="stop_fishing"
               /></a>
             </li>
-            <li v-if="isFishing" class="nav-item active">
-              <a class="nav-link" v-on:click="toggleSessionControl()"
+            <li
+              v-if="getIsFishing"
+              class="nav-item active"
+              v-on:click="registerCatch"
+            >
+              <a class="nav-link"
                 ><img
                   class="nav-icon"
                   src="../../assets/add-catch.png"
-                  alt="home"
+                  alt="add_new_catch"
               /></a>
             </li>
 
@@ -67,20 +90,28 @@
   </header>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   emits: ["toggle-session-control"],
   props: ["isFishing"],
   data() {
     return {
-      user_name: "null",
+      user_name: "Guest",
     };
+  },
+  computed: {
+    ...mapGetters("session", {
+      getIsFishing: "getIsFishing",
+    }),
   },
 
   methods: {
-    toggleSessionControl() {
-      console.log("Toggle session control!");
-      this.$emit("toggle-session-control");
-    },
+    ...mapActions("session", {
+      startFishing: "startFishing",
+      endFishing: "endFishing",
+      registerCatch: "registerCatch",
+    }),
 
     getUser() {
       console.log("The current user " + this.$store.getters.userName);
@@ -93,13 +124,6 @@ export default {
     },
   },
   mounted() {
-    let status = "";
-    if (this.isFishing) {
-      status = "for fishing.";
-    } else {
-      status = " to start fishing!";
-    }
-    console.log("Navigation set up " + status);
     this.getUser();
   },
 };
@@ -142,7 +166,7 @@ export default {
 .nav-icon {
   margin-right: 1rem !important ;
   cursor: pointer;
-  width: 2rem;
+  width: 1.5rem;
   opacity: 0.6;
 }
 .user-img {

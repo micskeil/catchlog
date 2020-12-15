@@ -3,6 +3,8 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import ForgotPassword from "../views/ForgotPassword.vue";
+import Settings from "../views/Settings.vue";
+
 import store from "../store/index.js";
 
 const routes = [
@@ -35,8 +37,13 @@ const routes = [
   {
     path: "/settings",
     name: "Settings",
-    component: () =>
-      import(/* webpackChunkName: "settings" */ "../views/Settings.vue"),
+    beforeEnter: (to, from, next) => {
+      if (!store.state.isLoggedIn) {
+        next({ name: "Login" });
+        console.log("Login before continue...");
+      } else next();
+    },
+    component: Settings,
   },
 ];
 

@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <base-card ref="ending">
     <template v-slot:card-img> <div id=""></div></template>
 
     <template v-slot:card-info>
@@ -102,6 +102,16 @@ export default {
           console.error("Error adding document: ", error);
         });
     },
+
+    goto(refName) {
+      var element = this.$refs[refName];
+      console.log(element);
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+    },
+  },
+  mounted() {
+    this.goto("ending");
   },
 };
 </script>

@@ -7,7 +7,9 @@ const sessionstates = {
       isFishing: false,
       currentSession: "",
 
-      isSessionControlActive: false,
+      isStart: false,
+      isStop: true,
+      isNewCatch: false,
     };
   },
   mutations: {
@@ -16,6 +18,20 @@ const sessionstates = {
     },
     setCurrentSession(state, payload) {
       state.currentSession = payload;
+    },
+
+    setIsStart(state, payload) {
+      state.isStart = payload;
+    },
+
+    setIsEnd(state, payload) {
+      state.isEnd = payload;
+    },
+
+    setIsNewCatch(state, payload) {
+      console.log("Congratulations for your catch!");
+      state.isNewCatch = payload;
+      console.log(state.isNewCatch);
     },
   },
 
@@ -26,6 +42,18 @@ const sessionstates = {
 
     getCurrentSession(state) {
       return state.currentSession;
+    },
+
+    getIsStart(state) {
+      return state.isStart;
+    },
+
+    getIsEnd(state) {
+      return state.isEnd;
+    },
+
+    getIsNewCatch(state) {
+      return state.isNewCatch;
     },
   },
 
@@ -69,6 +97,21 @@ const sessionstates = {
         .catch(function(error) {
           console.log("Error getting document:", error);
         });
+    },
+
+    startFishing(contex) {
+      const newState = !contex.state.isStart;
+      contex.commit("setIsStart", newState);
+    },
+
+    endFishing(contex) {
+      const newState = !contex.state.isEnd;
+      contex.commit("setIsEnd", newState);
+    },
+
+    registerCatch(contex) {
+      const newState = !contex.state.isNewCatch;
+      contex.commit("setIsNewCatch", newState);
     },
   },
 };

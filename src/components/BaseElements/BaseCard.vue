@@ -1,17 +1,20 @@
 <template>
-  <div class="card shadow rounded-0">
+  <div
+    class="card shadow mt-5
+   rounded-0"
+  >
     <div
       class="user-info p-3
      d-flex align-items-center"
     >
       <img
-        src="../../../src/assets/img/user_1.jpg"
+        src="../../../src/assets/img/user_1.png"
         class="user-img
       rounded-circle"
         alt="user_img"
       />
       <div class="user-info-text pl-3 font-weight-bold ">
-        John Doe
+        {{ getUser }}
       </div>
     </div>
     <slot name="card-img"> </slot>
@@ -26,7 +29,11 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  computed: {
+    getUser() {
+      return this.$store.getters.userName;
+    },
+  },
 };
 </script>
 

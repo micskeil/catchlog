@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <base-card ref="starting">
     <template v-slot:card-img> <div id="location"></div></template>
     <template v-slot:card-info>
       <div id="form" class="form-group row p-0 m-0">
@@ -123,9 +123,19 @@ export default {
         ` allowfullscreen>
         </iframe>`;
     },
+
+    goto(refName) {
+      var element = this.$refs[refName];
+      console.log(element);
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
+    },
   },
   beforeMount() {
     this.getLocation();
+  },
+  mounted() {
+    this.goto("starting");
   },
 };
 </script>

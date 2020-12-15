@@ -16,6 +16,7 @@ const app = createApp(App)
   .use(router)
   .use(auth)
   .use(db);
+
 app.component("base-card", BaseCard);
 
 app.mount("#app");
