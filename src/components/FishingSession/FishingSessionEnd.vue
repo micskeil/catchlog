@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <base-card v-if="showSelf()">
     <template v-slot:card-info>
       <div class="session-end pb-3">
         <strong>Befejezted a horgászatot:&nbsp; </strong>
@@ -10,12 +10,37 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: ["session"],
   data() {
     return {};
   },
+
+  computed: {
+    ...mapGetters("session", {
+      getCurrentSession: "getCurrentSession",
+    }),
+  },
+
   methods: {
+    showEnd(data) {
+      if (data.toString !== "Invalid Date") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    showSelf() {
+      if (this.getCurrentSession === this.session.session_id) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+
     getFormattedDate(date) {
       var year = date.getFullYear();
       var month = (1 + date.getMonth()).toString();

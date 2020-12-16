@@ -2,35 +2,23 @@
   <div class="login p-0">
     <form
       class="form  border d-flex flex-column shadow p-5"
-      @submit.prevent="userRegistration"
+      @submit.prevent="signUp"
     >
-      <h3>Sign Up</h3>
+      <h3>Regisztráció!</h3>
 
-      <div class="form-group">
-        <label>Name</label>
-        <input
-          type="text"
-          class="form-control form-control-lg"
-          v-model="user.name"
-        />
+      <div class="form-group pt-3">
+        <label>Felhasználónév:</label>
+        <input type="text" class="form-control " v-model="user.name" />
       </div>
 
       <div class="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          class="form-control form-control-lg"
-          v-model="user.email"
-        />
+        <label>E-mail:</label>
+        <input type="email" class="form-control " v-model="user.email" />
       </div>
 
       <div class="form-group">
-        <label>Password</label>
-        <input
-          type="password"
-          class="form-control form-control-lg"
-          v-model="user.password"
-        />
+        <label>Jelszó (legalább 8 karakter):</label>
+        <input type="password" class="form-control " v-model="user.password" />
       </div>
 
       <button type="submit" class="btn btn-dark btn-lg mt-3 btn-block">
@@ -46,8 +34,6 @@
 </template>
 
 <script>
-import firebase from "firebase";
-
 export default {
   data() {
     return {
@@ -55,26 +41,26 @@ export default {
         name: "",
         email: "",
         password: "",
+        formIsValid: false,
       },
     };
   },
   methods: {
-    userRegistration() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.user.email, this.user.password)
-        .then((res) => {
-          res.user
-            .updateProfile({
-              displayName: this.user.name,
-            })
-            .then(() => {
-              this.$router.push("/login");
-            });
-        })
-        .catch((error) => {
-          alert(error.message);
+    signUp() {
+      // const that = this;
+      if (
+        this.user.email === "" ||
+        !this.user.email.includes("@") ||
+        this.user.password.lenght < 8
+      ) {
+        this.formIsValid = false;
+        return;
+      } else {
+        this.$store.dispatch("registerUser", {
+          email: this.user.email,
+          password: this.user.password,
         });
+      }
     },
   },
 };

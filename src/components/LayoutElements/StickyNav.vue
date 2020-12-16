@@ -66,15 +66,7 @@
               /></a>
             </li>
 
-            <li class="nav-item">
-              <router-link
-                class="btn btn-outline-primary pl-1 pr-1 mr-3"
-                to="/login"
-                v-on:click="logout()"
-                >{{ user_name }}</router-link
-              >
-            </li>
-            <li class="nav-item active">
+            <li class="nav-item" v-on:click="logout()">
               <a class="nav-link" href="">
                 <img
                   src="../../../src/assets/img/user_1.jpg"
@@ -114,7 +106,6 @@ export default {
     }),
 
     getUser() {
-      console.log("The current user " + this.$store.getters.userName);
       this.user_name = "Hello, " + this.$store.getters.userName + "!";
     },
 

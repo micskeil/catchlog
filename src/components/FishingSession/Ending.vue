@@ -6,7 +6,7 @@
       <div id="form" class="form-group row p-0 m-0">
         <form
           class="pb-3 mb-3 col-12 p-0 m-0"
-          v-on:submit.prevent="endFishing()"
+          v-on:submit.prevent="endFishingSession()"
         >
           <div class="form-group row">
             <label
@@ -43,7 +43,9 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
-    return {};
+    return {
+      end_date: "",
+    };
   },
 
   computed: {
@@ -56,24 +58,38 @@ export default {
     ...mapActions("session", {
       updateIsFishing: "updateIsFishing",
       updateCurrentSession: "updateCurrentSession",
+      endFishing: "endFishing",
     }),
 
-    endFishing() {
+    parseYMDHM(s) {
+      var b = s.split(/\D+/);
+      return new Date(b[0], b[1] - 1, b[2], b[3], b[4], 0 || 0, 0 || 0);
+    },
+
+    endFishingSession() {
       const userID = this.$store.getters.userID;
       const current_session = this.getCurrentSession;
-      console.log("Ending session: " + current_session);
       const that = this;
+
+      let endDate = "";
+
+      if (this.end_date === "") {
+        endDate = new Date();
+      } else {
+        endDate = this.parseYMDHM(this.start_date);
+      }
 
       firebase
         .firestore()
         .collection("users/" + userID + "/sessions/")
         .doc(current_session)
         .update({
-          end_date: new Date(),
+          end_date: endDate,
         })
         .then(() => {
           // Create the current session ID locally, and upload it to the store
           that.updateUserStatus();
+          that.endFishing();
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
@@ -105,7 +121,7 @@ export default {
 
     goto(refName) {
       var element = this.$refs[refName];
-      console.log(element);
+
       var top = element.offsetTop;
       window.scrollTo(0, top);
     },

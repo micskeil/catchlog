@@ -5,7 +5,7 @@
       <div id="form" class="form-group row p-0 m-0">
         <form
           class="pb-3 mb-3 col-12 p-0 m-0"
-          v-on:submit.prevent="startFishing()"
+          v-on:submit.prevent="startFishingSession()"
         >
           <div class="form-group row">
             <label
@@ -20,7 +20,7 @@
                 id="start-date"
                 name="start-date"
                 type="datetime-local"
-                v-model="new_session_start_date"
+                v-model="start_date"
               />
             </div>
           </div>
@@ -45,6 +45,7 @@ export default {
     return {
       new_session_location: "",
       current_session: "",
+      start_date: "",
     };
   },
 
@@ -52,18 +53,31 @@ export default {
     ...mapActions("session", {
       updateIsFishing: "updateIsFishing",
       updateCurrentSession: "updateCurrentSession",
+      startFishing: "startFishing",
     }),
 
-    startFishing() {
+    parseYMDHM(s) {
+      var b = s.split(/\D+/);
+      return new Date(b[0], b[1] - 1, b[2], b[3], b[4], 0 || 0, 0 || 0);
+    },
+
+    startFishingSession() {
       const userID = this.$store.getters.userID;
       const that = this;
+      let startDate = "";
+
+      if (this.start_date === "") {
+        startDate = new Date();
+      } else {
+        startDate = this.parseYMDHM(this.start_date);
+      }
 
       firebase
         .firestore()
         .collection("/users/" + userID + "/sessions")
         .add({
           user_id: userID,
-          start_date: new Date(),
+          start_date: startDate,
           location: this.new_session_location,
           end_date: "undifined",
           cought_fish: 0,
@@ -72,6 +86,7 @@ export default {
           // Create the current session ID locally, and upload it to the store
           that.current_session = docRef.id;
           that.updateUserStatus();
+          that.startFishing();
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
@@ -106,6 +121,7 @@ export default {
         navigator.geolocation.getCurrentPosition(this.showPosition);
       }
     },
+
     showPosition(position) {
       var x = document.getElementById("location");
 

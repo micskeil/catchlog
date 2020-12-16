@@ -4,19 +4,15 @@
       class="form  border d-flex flex-column shadow p-5"
       @submit.prevent="forgetPassword"
     >
-      <h3>Forgot Password</h3>
+      <h3>Elfelejtett jelszó?</h3>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          class="form-control form-control-lg"
-          v-model="user.email"
-        />
+      <div class="form-group pt-3">
+        <label>E-mail cím: </label>
+        <input type="email" class="form-control " v-model="user.email" />
       </div>
 
       <button type="submit" class="btn btn-dark btn-lg mt-3 btn-block">
-        Reset password
+        Küldés
       </button>
     </form>
   </div>
@@ -39,7 +35,9 @@ export default {
         .auth()
         .sendPasswordResetEmail(this.user.email)
         .then(() => {
-          alert("Check your registered email to reset the password!");
+          alert(
+            "A jelszó megváltoztatásához szükséges linket elküldtük az általad megadott címre! "
+          );
           this.user = {
             email: "",
           };
