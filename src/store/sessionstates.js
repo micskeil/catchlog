@@ -59,17 +59,17 @@ const sessionstates = {
 
   actions: {
     updateIsFishing(contex) {
-      const userID = contex.rootGetters.userID;
+      const userId = contex.rootGetters.userId;
+
       firebase
         .firestore()
         .collection("users")
-        .doc(userID)
+        .doc(userId)
         .get()
         .then(function(doc) {
           if (doc.exists) {
             contex.commit("setIsFishing", doc.data().is_fishing);
           } else {
-            // doc.data() will be undefined in this case
             console.log("No such document!");
           }
         })
@@ -79,11 +79,11 @@ const sessionstates = {
     },
 
     updateCurrentSession(contex) {
-      const userID = contex.rootGetters.userID;
+      const userId = contex.rootGetters.userId;
       firebase
         .firestore()
         .collection("users")
-        .doc(userID)
+        .doc(userId)
         .get()
         .then(function(doc) {
           if (doc.exists) {

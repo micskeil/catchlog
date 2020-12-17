@@ -1,7 +1,6 @@
 export default {
   setAuth(state, payload) {
     state.isLoggedIn = payload;
-    console.log(state.isLoggedIn);
   },
 
   setUser(state, payload) {

@@ -52,11 +52,12 @@ export default {
     }),
 
     loadSessions() {
-      const userID = this.$store.getters.userID;
+      const userId = this.$store.getters.userId;
       const that = this;
+
       firebase
         .firestore()
-        .collection("users/" + userID + "/sessions")
+        .collection("users/" + userId + "/sessions")
         .orderBy("start_date", "desc")
         .get()
         .then(function(querySnapshot) {

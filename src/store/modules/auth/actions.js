@@ -26,26 +26,24 @@ export default {
       });
   },
 
-  login(contex, user) {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(user.email, user.password)
-      .then((res) => {
-        console.log(res.user);
-        contex.commit("setAuth", true);
-        contex.commit("setUser", {
-          token: res.user.idToken,
-          userId: res.user.localId,
-          tokenExpiration: res.user.expiresIn,
-          displayName: res.user.displayName,
-        });
-        this.$router.push({ name: "Home" });
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode + ": " + errorMessage);
+  async login(contex, user) {
+    try {
+      const response = await firebase
+        .auth()
+        .signInWithEmailAndPassword(user.email, user.password);
+
+      contex.commit("setAuth", true);
+      contex.commit("setUser", {
+        token: response.user.idToken,
+        userId: response.user.uid,
+        tokenExpiration: response.user.expiresIn,
+        displayName: response.user.displayName,
       });
+    } catch (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode + ": " + errorMessage);
+    }
   },
 
   async logout(contex) {

@@ -43,7 +43,8 @@ export default {
   data() {
     return {
       formIsValid: true,
-      mode: "login",
+      isLoading: false,
+      error: null,
 
       user: {
         email: "",
@@ -61,10 +62,19 @@ export default {
         this.formIsValid = false;
         return;
       } else {
-        await this.$store.dispatch("login", {
-          email: this.user.email,
-          password: this.user.password,
-        });
+        try {
+          this.isLoading = true;
+          await this.$store.dispatch("login", {
+            email: this.user.email,
+            password: this.user.password,
+          });
+        } catch (error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorCode + ": " + errorMessage);
+        }
+
+        this.isLoading = false;
         this.$router.push({ name: "Home" });
       }
     },
