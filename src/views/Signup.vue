@@ -60,6 +60,9 @@ export default {
           email: this.user.email,
           password: this.user.password,
         });
+        alert("A regisztráció sikeres! Kérlek jelentkezz be.");
+
+        this.$router.push("/login");
       }
     },
   },

@@ -1,29 +1,22 @@
 import firebase from "firebase";
 
 export default {
-  registerUser(contex, payload) {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(payload.email, payload.password)
-      .then((res) => {
-        console.log(res);
-        res.user
-          .updateProfile({
-            displayName: payload.name,
-          })
-          .then(() => {
-            contex.commit("setUser", {
-              token: res.idToken,
-              userId: res.localId,
-              tokenExpiration: res.expiresIn,
-              displayName: res.displayName,
-            });
-            this.$router.push("/login");
-          });
-      })
-      .catch((error) => {
-        alert(error.message);
+  async registerUser(contex, payload) {
+    try {
+      const response = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(payload.email, payload.password);
+
+      console.log(response);
+      response.user.updateProfile({
+        displayName: payload.name,
       });
+      this.$router.push("/login");
+    } catch (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode + ": " + errorMessage);
+    }
   },
 
   async login(contex, user) {
