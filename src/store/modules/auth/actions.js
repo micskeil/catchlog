@@ -64,5 +64,8 @@ export default {
   async logout(contex) {
     await firebase.auth().signOut();
     contex.commit("clearUser");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    localStorage.removeItem("displayName");
   },
 };
