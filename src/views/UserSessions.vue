@@ -15,7 +15,8 @@
 
           <br />
           <footer class="footer pt-3">
-            ©2020 from ❤ by <a href="mailto:micskeil@gmail.com">Lali Micskei</a>
+            ©2020 ❤-el készítette
+            <a href="mailto:micskeil@gmail.com">Lali Micskei</a>
           </footer>
         </div>
       </div>

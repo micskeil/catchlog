@@ -11,7 +11,6 @@ export default {
       response.user.updateProfile({
         displayName: payload.name,
       });
-      this.$router.push("/login");
     } catch (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -25,8 +24,12 @@ export default {
         .auth()
         .signInWithEmailAndPassword(user.email, user.password);
 
-      contex.commit("setAuth", true);
+      localStorage.setItem("token", response.user.idToken);
+      localStorage.setItem("userId", response.user.uid);
+      localStorage.setItem("displayName", response.user.displayName);
+
       contex.commit("setUser", {
+        isLoggedIn: true,
         token: response.user.idToken,
         userId: response.user.uid,
         tokenExpiration: response.user.expiresIn,
@@ -39,8 +42,27 @@ export default {
     }
   },
 
+  autoLogin(contex) {
+    const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("token");
+    const displayName = localStorage.getItem("displayName");
+
+    console.log("Start auto login: " + userId);
+
+    if (userId && token) {
+      console.log("Welcome back!!");
+      contex.commit("setUser", {
+        isLoggedIn: true,
+        token: token,
+        userId: userId,
+        tokenExpiration: null,
+        displayName: displayName,
+      });
+    }
+  },
+
   async logout(contex) {
     await firebase.auth().signOut();
-    contex.commit("setAuth", false);
+    contex.commit("clearUser");
   },
 };

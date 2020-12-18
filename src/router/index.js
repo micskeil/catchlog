@@ -4,7 +4,6 @@ import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import ForgotPassword from "../views/ForgotPassword.vue";
 import Settings from "../views/Settings.vue";
-
 import store from "../store/index.js";
 
 const routes = [
@@ -12,12 +11,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    beforeEnter: (to, from, next) => {
-      if (!store.state.auth.isLoggedIn) {
-        next({ name: "Login" });
-        console.log("Login before continue...");
-      } else next();
-    },
+    meta: { requiresAuth: true },
   },
   {
     path: "/login",
@@ -37,13 +31,8 @@ const routes = [
   {
     path: "/settings",
     name: "Settings",
-    beforeEnter: (to, from, next) => {
-      if (!store.state.isLoggedIn) {
-        next({ name: "Login" });
-        console.log("Login before continue...");
-      } else next();
-    },
     component: Settings,
+    meta: { reuiresAuth: true },
   },
 ];
 
@@ -52,12 +41,12 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const isLoggedIn = store.state.isLoggedIn;
-//   if (to.name !== "Login" && isLoggedIn) {
-//     next({ name: "Login" });
-//     console.log("Login before continue...");
-//   } else next();
-// });
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !store.state.auth.isLoggedIn) {
+    next({ name: "Login" });
+  } else {
+    next();
+  }
+});
 
 export default router;
