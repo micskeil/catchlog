@@ -1,20 +1,32 @@
 <template>
   <base-card ref="starting">
-    <template v-slot:card-img> <div id="location"></div></template>
+    <template v-slot:card-img>
+      <div id="location" class="d-flex flex-column p-0 align-items-center">
+        <img v-if="!cordinates" src="../../assets/location.png" width="120" />
+      </div>
+
+      <div class="d-flex flex-column  p-3 align-items-center">
+        <div
+          class="warning pl-3 pr-3 p-1 text-center bg-info text-white rounded"
+        >
+          A pecahelyed pontos kordinátáit csak te láthatod. Mi nem osztjuk meg
+          senkivel!
+        </div>
+      </div>
+    </template>
     <template v-slot:card-info>
       <div id="form" class="form-group row p-0 m-0">
         <form
           class="pb-3 mb-3 col-12 p-0 m-0"
           v-on:submit.prevent="startFishingSession()"
         >
-          <div class="form-group row">
+          <div class="form-group row pt-3">
             <label
-              class="col-sm-3 col-form-label font-weight-bold"
-              v-on:click="getLocation;"
+              class="col-6 col-form-label font-weight-bold"
               for="start-date"
-              >Starting time:
+              >A horgászat kezdő időpontja:
             </label>
-            <div class="col-sm-9">
+            <div class="datetime col-6 text-right">
               <input
                 class="form-control"
                 id="start-date"
@@ -23,11 +35,43 @@
                 v-model="start_date"
               />
             </div>
+
+            <label
+              class="col-6 pt-3 col-form-label font-weight-bold"
+              for="start-date"
+              >Koordináták:
+            </label>
+            <div class="col-6 pt-3">
+              <input
+                class="form-control"
+                id="cordinates"
+                name="cordinates"
+                type="text"
+                v-model="coordinates"
+              />
+            </div>
+
+            <label
+              class="col-6 pt-3 col-form-label font-weight-bold"
+              for="start-date"
+              >Horgászhely neve:
+            </label>
+            <div class="col-6 pt-3">
+              <input
+                class="form-control"
+                id="session-location"
+                name="session-location"
+                type="text"
+                v-model="new_session_location"
+              />
+            </div>
           </div>
 
-          <div id="button" class="d-flex justify-content-center pt-3 ">
-            <button class="btn btn-dark rounded justify-self-center">
-              Start fishing!
+          <div id="button" class="d-flex justify-content-center pt-5 ">
+            <button
+              class="btn btn-dark container-fluid rounded p-2 justify-self-center"
+            >
+              Horgászat megkezdése!
             </button>
           </div>
         </form>
@@ -44,10 +88,13 @@ export default {
   data() {
     return {
       new_session_location: "",
+      coordinates: "",
       current_session: "",
       start_date: "",
     };
   },
+
+  computed: {},
 
   methods: {
     ...mapActions("session", {
@@ -62,7 +109,7 @@ export default {
     },
 
     startFishingSession() {
-      const userID = this.$store.getters.userID;
+      const userId = this.$store.getters.userId;
       const that = this;
       let startDate = "";
 
@@ -74,10 +121,11 @@ export default {
 
       firebase
         .firestore()
-        .collection("/users/" + userID + "/sessions")
+        .collection("/users/" + userId + "/sessions")
         .add({
-          user_id: userID,
+          user_id: userId,
           start_date: startDate,
+          cordinates: this.coordinates,
           location: this.new_session_location,
           end_date: "undifined",
           cought_fish: 0,
@@ -94,19 +142,18 @@ export default {
     },
 
     updateUserStatus() {
-      const userID = this.$store.getters.userID;
+      const userId = this.$store.getters.userId;
       const that = this;
 
       firebase
         .firestore()
         .collection("users")
-        .doc(userID)
+        .doc(userId)
         .set({
           is_fishing: true,
           current_session: that.current_session,
         })
         .then(function() {
-          console.log("Fishing session started: ", that.current_session);
           // Update the  session states
           that.updateIsFishing();
           that.updateCurrentSession();
@@ -125,8 +172,10 @@ export default {
     showPosition(position) {
       var x = document.getElementById("location");
 
-      let latlon = position.coords.latitude + "," + position.coords.longitude;
-      this.new_session_location = latlon;
+      let latlon = position.coords.latitude + " , " + position.coords.longitude;
+      this.coordinates = latlon;
+
+      console.log(latlon);
 
       x.innerHTML =
         `<iframe
@@ -142,16 +191,14 @@ export default {
 
     goto(refName) {
       var element = this.$refs[refName];
-      console.log(element);
       var top = element.offsetTop;
       window.scrollTo(0, top);
     },
   },
-  beforeMount() {
-    this.getLocation();
-  },
+
   mounted() {
     this.goto("starting");
+    this.getLocation();
   },
 };
 </script>
@@ -167,5 +214,9 @@ form {
 }
 .form-control {
   width: 100%;
+}
+
+.btn-dark {
+  background-color: #2c3e50;
 }
 </style>

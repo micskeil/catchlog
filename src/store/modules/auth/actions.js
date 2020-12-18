@@ -47,10 +47,7 @@ export default {
     const token = localStorage.getItem("token");
     const displayName = localStorage.getItem("displayName");
 
-    console.log("Start auto login: " + userId);
-
     if (userId && token) {
-      console.log("Welcome back!!");
       contex.commit("setUser", {
         isLoggedIn: true,
         token: token,

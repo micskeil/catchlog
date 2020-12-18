@@ -67,7 +67,7 @@ export default {
     },
 
     endFishingSession() {
-      const userID = this.$store.getters.userID;
+      const userID = this.$store.getters.userId;
       const current_session = this.getCurrentSession;
       const that = this;
 
@@ -97,7 +97,7 @@ export default {
     },
 
     updateUserStatus() {
-      const userID = this.$store.getters.userID;
+      const userID = this.$store.getters.userId;
       const that = this;
 
       firebase
