@@ -3,21 +3,28 @@
     class="card shadow mt-5
    rounded-0"
   >
-    <div
-      class="user-info p-3
+    <div class="card-img  d-flex flex-column justify-content-between">
+      <slot name="user-info">
+        <div
+          class="user-info p-3
      d-flex align-items-center"
-    >
-      <img
-        src="../../../src/assets/img/user_1.png"
-        class="user-img
+        >
+          <img
+            src="../../../src/assets/img/user_1.png"
+            class="user-img
       rounded-circle"
-        alt="user_img"
-      />
-      <div class="user-info-text pl-3 font-weight-bold ">
-        {{ getUser }}
-      </div>
+            alt="user_img"
+          />
+          <div class="user-info-text pl-3 font-weight-bold ">
+            {{ getUser }}
+          </div>
+        </div></slot
+      >
     </div>
-    <slot name="card-img"> </slot>
+    <div class="card-img p-0 d-flex flex-column justify-content-between">
+      <slot name="card-img"> </slot>
+    </div>
+
     <div class="card-body p-3 d-flex justify-content-between">
       <slot name="card-info"> </slot>
     </div>
@@ -37,7 +44,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 div {
   width: 100%;
 }

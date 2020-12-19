@@ -1,78 +1,87 @@
-<template> <div></div> </template>
+<template>
+  <base-card ref="settings">
+    <template v-slot:user-info><div></div></template>
+    <template v-slot:card-img>
+      <div
+        id="location"
+        class="d-flex flex-column pt-3 align-items-center"
+      ></div>
+
+      <div class="d-flex flex-column  p-3 align-items-center"></div>
+    </template>
+    <template v-slot:card-info>
+      <div id="form" class="form-group row p-0 m-0">
+        <form
+          class="pb-3 mb-3 col-12 p-0 m-0"
+          v-on:submit.prevent="updateUser()"
+        >
+          <div class="form-group form row pt-3">
+            <label class="col-6 col-form-label font-weight-bold" for="user-name"
+              >Felhasználónév:
+            </label>
+            <div class="datetime col-6 text-right">
+              <input
+                class="form-control"
+                id="user-name"
+                name="user-name"
+                type="text"
+                v-model.lazy="displayName"
+              />
+              {{ updatedDisplayName }}
+            </div>
+
+            <label
+              class="col-6 pt-3 col-form-label font-weight-bold"
+              for="start-date"
+              >E-mail cím:
+            </label>
+            <div class="col-6 pt-3">
+              <input
+                class="form-control"
+                id="coordinates"
+                name="coordinates"
+                type="text"
+                v-model="email"
+              />
+            </div>
+          </div>
+
+          <div id="button" class="d-flex justify-content-center pt-5 ">
+            <base-button
+              class="btn btn-dark container-fluid p-2 justify-self-center"
+            >
+              Adatok mentése
+            </base-button>
+          </div>
+        </form>
+      </div>
+    </template>
+  </base-card>
+</template>
 
 <script>
-import firebase from "firebase";
-import { mapActions, mapGetters } from "vuex";
-
 export default {
-  components: {},
-
   data() {
     return {
-      sessions: [],
+      userId: "",
+      displayName: "",
+      email: "",
     };
   },
-  computed: {
-    ...mapGetters("session", {
-      getIsFishing: "getIsFishing",
-      getIsStart: "getIsStart",
-      getIsEnd: "getIsEnd",
-      getIsNewCatch: "getIsNewCatch",
-    }),
-  },
-  methods: {
-    ...mapActions("session", {
-      updateIsFishing: "updateIsFishing",
-      updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
-      updateCurrentSession: "updateCurrentSession",
-    }),
-
-    loadSessions() {
-      const userID = this.$store.getters.userID;
-      const that = this;
-      firebase
-        .firestore()
-        .collection("users/" + userID + "/sessions")
-        .orderBy("start_date", "desc")
-        .get()
-        .then(function(querySnapshot) {
-          const results = [];
-          querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            results.push({
-              session_id: doc.id,
-              user_id: doc.data().user_id,
-              start_date: new Date(doc.data().start_date.seconds * 1000),
-              location: doc.data().location,
-              end_date: new Date(doc.data().end_date.seconds * 1000),
-            });
-            that.sessions = results;
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = "Failed to fetch data - pls try again later!";
-        });
+  watch: {
+    updatedDisplayName() {
+      return this.displayName;
     },
   },
 
-  beforeMount() {},
+  methods: {
+    getUser() {
+      this.displayName = this.$store.getters.userName;
+      this.email = this.$store.getters.email;
+    },
+  },
+  created() {
+    this.getUser();
+  },
 };
 </script>
-
-<style scoped>
-div {
-  width: 100%;
-}
-
-.session-start {
-  width: 100%;
-}
-
-.user-img {
-  width: 1.75rem;
-  height: 1.75rem;
-  border: 1px solid #6969d18c;
-  padding: 1px;
-}
-</style>

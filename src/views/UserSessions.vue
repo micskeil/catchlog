@@ -5,7 +5,7 @@
       <main
         class="content col-md-8 d-flex flex-column align-items-center m-0 pb-5"
       >
-        <FishingSessions v-bind:activeMenu="activeMenu" />
+        <Settings /> <FishingSessions v-bind:activeMenu="activeMenu" />
       </main>
       <div class="side-bar d-none d-md-block col-md-4 p-5">
         <div class="side-bar-content">
@@ -27,11 +27,13 @@
 <script>
 import StickyNav from "../components/LayoutElements/StickyNav";
 import FishingSessions from "../components/FishingSession/FishingSessions";
+import Settings from "./Settings.vue";
 
 export default {
   components: {
     StickyNav,
     FishingSessions,
+    Settings,
   },
   data() {
     return {};

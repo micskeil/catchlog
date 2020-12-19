@@ -1,38 +1,43 @@
 <template>
-  <div class="login p-0 ">
-    <form
-      class="form border d-flex flex-column shadow p-4"
-      @submit.prevent="login"
-    >
-      <h3 class="brand-name pb-3 align-self-center">Pecázunk.hu</h3>
-
+  <div class="login p-0 m-0">
+    <form class="form d-flex shadow flex-column p-5" @submit.prevent="login">
+      <div
+        class="brand d-flex pb-5 justify-content-around
+      align-items-center "
+      >
+        <h3 class="brand-name ">Pecázunk.hu</h3>
+      </div>
       <div class="form-group">
-        <label>E-mail cím:</label>
-        <input type="email" class="form-control" v-model.trim="user.email" />
+        <input
+          type="email"
+          class="form-control"
+          placeholder="E-mail address"
+          v-model.trim="user.email"
+        />
       </div>
 
-      <div class="form-group">
-        <label>Jelszó: </label>
+      <div class="form-group pt-3">
         <input
           type="password"
           class="form-control "
+          placeholder="Password"
           v-model.trim="user.password"
         />
       </div>
-      <p v-if="!formIsValid" class="warning">
+      <p v-if="!formIsValid" class="text-warning">
         Valami baj van a beírt e-maillel vagy jelszóval!
       </p>
 
-      <button type="submit" class="btn btn-dark  mt-3 p-1 btn-block">
-        Belépés
-      </button>
-      <p class="forgot-password text-right">
+      <base-button type="submit" class="">
+        BELÉPÉS
+      </base-button>
+      <p class="forgot-password text-right pt-3">
         Még nem vagy tag?
         <router-link :to="{ name: 'Signup' }">Regisztráj! </router-link>
       </p>
 
       <p class="forgot-password text-right mt-3 ">
-        <router-link to="/forgot-password">Elfelejtett jelszó</router-link>
+        <router-link to="/forgot-password">Elfelejtett jelszó!</router-link>
       </p>
     </form>
   </div>
@@ -54,11 +59,8 @@ export default {
   },
   methods: {
     async login() {
-      if (
-        this.user.email === "" ||
-        !this.user.email.includes("@") ||
-        this.user.password.lenght < 6
-      ) {
+      const that = this;
+      if (this.user.email === "" || !this.user.email.includes("@")) {
         this.formIsValid = false;
         return;
       } else {
@@ -69,9 +71,11 @@ export default {
             password: this.user.password,
           });
         } catch (error) {
+          this.formIsValid = false;
           var errorCode = error.code;
           var errorMessage = error.message;
           console.log(errorCode + ": " + errorMessage);
+          that.formIsValid = false;
         }
 
         this.isLoading = false;
@@ -82,4 +86,38 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+$color: #2c3e50;
+
+$breakpoint-tablet: 768px;
+
+.login {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+
+  @media (max-width: $breakpoint-tablet) {
+    background-image: none;
+    height: 90vh;
+  }
+
+  .form {
+    input {
+      border: none;
+      border-bottom: 1px solid $color;
+      border-radius: 0;
+    }
+    font-size: 1rem;
+    width: 400px;
+    max-width: 100vw;
+    background-color: rgb(255, 255, 255);
+    @media (max-width: $breakpoint-tablet) {
+      box-shadow: none !important;
+      max-width: 100vw;
+    }
+  }
+}
+</style>

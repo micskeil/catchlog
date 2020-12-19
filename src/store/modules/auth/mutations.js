@@ -5,6 +5,7 @@ export default {
     state.userId = payload.userId;
     state.tokenExpiration = payload.tokenExpiration;
     state.displayName = payload.displayName;
+    state.email = payload.email;
   },
 
   clearUser(state) {
@@ -14,5 +15,6 @@ export default {
     state.displayName = null;
     state.token = null;
     state.tokenExpiration = null;
+    state.email = null;
   },
 };

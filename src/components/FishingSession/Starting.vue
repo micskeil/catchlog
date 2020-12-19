@@ -1,8 +1,9 @@
 <template>
   <base-card ref="starting">
+    <template v-slot:user-info><div></div></template>
     <template v-slot:card-img>
-      <div id="location" class="d-flex flex-column p-0 align-items-center">
-        <img v-if="!cordinates" src="../../assets/location.png" width="120" />
+      <div id="location" class="d-flex flex-column pt-3 align-items-center">
+        <img v-if="!coordinates" src="../../assets/location.png" width="120" />
       </div>
 
       <div class="d-flex flex-column  p-3 align-items-center">
@@ -15,7 +16,7 @@
       </div>
     </template>
     <template v-slot:card-info>
-      <div id="form" class="form-group row p-0 m-0">
+      <div id="form" class="form form-group  row p-0 m-0">
         <form
           class="pb-3 mb-3 col-12 p-0 m-0"
           v-on:submit.prevent="startFishingSession()"
@@ -44,8 +45,8 @@
             <div class="col-6 pt-3">
               <input
                 class="form-control"
-                id="cordinates"
-                name="cordinates"
+                id="coordinates"
+                name="coordinates"
                 type="text"
                 v-model="coordinates"
               />
@@ -68,11 +69,9 @@
           </div>
 
           <div id="button" class="d-flex justify-content-center pt-5 ">
-            <button
-              class="btn btn-dark container-fluid rounded p-2 justify-self-center"
-            >
+            <base-button>
               Horgászat megkezdése!
-            </button>
+            </base-button>
           </div>
         </form>
       </div>
@@ -125,7 +124,7 @@ export default {
         .add({
           user_id: userId,
           start_date: startDate,
-          cordinates: this.coordinates,
+          coordinates: this.coordinates,
           location: this.new_session_location,
           end_date: "undifined",
           cought_fish: 0,
@@ -172,20 +171,17 @@ export default {
     showPosition(position) {
       var x = document.getElementById("location");
 
-      let latlon = position.coords.latitude + " , " + position.coords.longitude;
+      let latlon = position.coords.latitude + "," + position.coords.longitude;
       this.coordinates = latlon;
 
       console.log(latlon);
 
-      x.innerHTML =
-        `<iframe
+      x.innerHTML = `<iframe
           width="100%"
-           height="250"
+           height="300"
             frameborder="0" style="border:0"
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC-I8MZCRc1JQgZeC7SdhTt-PjqHuBn5J8
-                &q=location="` +
-        latlon +
-        ` allowfullscreen>
+                &q=location=${latlon}">
         </iframe>`;
     },
 

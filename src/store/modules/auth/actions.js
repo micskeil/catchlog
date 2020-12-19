@@ -7,10 +7,11 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(payload.email, payload.password);
 
-      console.log(response);
       response.user.updateProfile({
         displayName: payload.name,
       });
+
+      console.log(response);
     } catch (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -27,6 +28,7 @@ export default {
       localStorage.setItem("token", response.user.idToken);
       localStorage.setItem("userId", response.user.uid);
       localStorage.setItem("displayName", response.user.displayName);
+      localStorage.setItem("email", response.user.email);
 
       contex.commit("setUser", {
         isLoggedIn: true,
@@ -34,6 +36,7 @@ export default {
         userId: response.user.uid,
         tokenExpiration: response.user.expiresIn,
         displayName: response.user.displayName,
+        email: response.user.email,
       });
     } catch (error) {
       var errorCode = error.code;
@@ -46,6 +49,7 @@ export default {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
     const displayName = localStorage.getItem("displayName");
+    const email = localStorage.getItem("email");
 
     if (userId && token) {
       contex.commit("setUser", {
@@ -54,6 +58,7 @@ export default {
         userId: userId,
         tokenExpiration: null,
         displayName: displayName,
+        email: email,
       });
     }
   },

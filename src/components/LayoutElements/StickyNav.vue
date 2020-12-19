@@ -66,8 +66,8 @@
               /></a>
             </li>
 
-            <li class="nav-item" v-on:click="logout()">
-              <a class="nav-link" href="">
+            <li class="nav-item" @click="logout">
+              <a class="nav-link" href="#/settings">
                 <img
                   src="../../../src/assets/img/user_1.jpg"
                   class="nav-icon user-img

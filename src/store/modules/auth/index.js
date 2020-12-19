@@ -12,6 +12,7 @@ export default {
       displayName: null,
       token: null,
       tokenExpiration: null,
+      email: null,
     };
   },
   mutations,
