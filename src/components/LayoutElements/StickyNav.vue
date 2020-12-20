@@ -66,7 +66,7 @@
               /></a>
             </li>
 
-            <li class="nav-item" @click="logout">
+            <li class="nav-item">
               <a class="nav-link" href="#/settings">
                 <img
                   src="../../../src/assets/img/user_1.jpg"

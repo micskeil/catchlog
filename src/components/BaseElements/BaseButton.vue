@@ -1,5 +1,5 @@
 <template>
-  <button class="p-2 mt-3 mb-3 button ">
+  <button class="p-2 mt-3 button ">
     <slot> </slot>
   </button>
 </template>

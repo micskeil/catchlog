@@ -18,7 +18,7 @@
     <template v-slot:card-info>
       <div id="form" class="form form-group  row p-0 m-0">
         <form
-          class="pb-3 mb-3 col-12 p-0 m-0"
+          class="pb-3  col-12 p-0 m-0"
           v-on:submit.prevent="startFishingSession()"
         >
           <div class="form-group row pt-3">
@@ -36,22 +36,23 @@
                 v-model="start_date"
               />
             </div>
-
-            <label
-              class="col-6 pt-3 col-form-label font-weight-bold"
-              for="start-date"
-              >Koordináták:
-            </label>
-            <div class="col-6 pt-3">
-              <input
-                class="form-control"
-                id="coordinates"
-                name="coordinates"
-                type="text"
-                v-model="coordinates"
-              />
+            <div v-if="coordinates">
+              >
+              <label
+                class="col-6 pt-3 col-form-label font-weight-bold"
+                for="start-date"
+                >Koordináták:
+              </label>
+              <div class="col-6 pt-3">
+                <input
+                  class="form-control"
+                  id="coordinates"
+                  name="coordinates"
+                  type="text"
+                  v-model="coordinates"
+                />
+              </div>
             </div>
-
             <label
               class="col-6 pt-3 col-form-label font-weight-bold"
               for="start-date"
