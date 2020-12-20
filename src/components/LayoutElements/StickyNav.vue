@@ -69,7 +69,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#/settings">
                 <img
-                  src="../../../src/assets/img/user_1.jpg"
+                  src="../../../src/assets/img/user_1.png"
                   class="nav-icon user-img
       rounded-circle"
                   alt="user_img"

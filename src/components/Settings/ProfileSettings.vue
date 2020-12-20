@@ -3,7 +3,19 @@
     <template v-slot:user-info><div></div></template>
     <template v-slot:card-img> <div></div></template>
     <template v-slot:card-info>
-      <form class="form pb-3 p-0 m-0" v-on:submit.prevent="updateUser()">
+      <form class="form row pb-3 p-0 m-0" v-on:submit.prevent="updateUser()">
+        <div class="form-group row form pt-5 pb-5">
+          <div class="col-6 font-weight-bold d-flex justify-content-center">
+            <img
+              class="rounded-circle border"
+              src="../../assets/img/user_1.png"
+              width="120"
+            />
+          </div>
+          <div class="col-6 text-right">
+            <base-button> KÉP CSERÉJE </base-button>
+          </div>
+        </div>
         <div class="form-group row form pt-3">
           <label class="col-6 col-form-label font-weight-bold" for="user-name"
             >Felhasználónév:
@@ -35,11 +47,11 @@
         </div>
 
         <base-button class="">
-          Adatok mentése
+          MENTÉS
         </base-button>
 
         <base-button class="warning" @click="logout()">
-          Kilépés
+          KILÉPÉS
         </base-button>
       </form>
     </template>
@@ -47,7 +59,9 @@
 </template>
 
 <script>
+import BaseButton from "../BaseElements/BaseButton.vue";
 export default {
+  components: { BaseButton },
   data() {
     return {
       userId: "",

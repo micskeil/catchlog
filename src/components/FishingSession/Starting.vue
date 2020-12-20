@@ -2,7 +2,15 @@
   <base-card ref="starting">
     <template v-slot:user-info><div></div></template>
     <template v-slot:card-img>
-      <div id="location" class="d-flex flex-column pt-3 align-items-center">
+      <div id="location" class="d-flex flex-column pt-0 align-items-center">
+        <iframe
+          width="100%"
+          height="300"
+          frameborder="0"
+          style="border:0"
+          :src="locationURL"
+        >
+        </iframe>
         <img v-if="!coordinates" src="../../assets/location.png" width="120" />
       </div>
 
@@ -25,7 +33,7 @@
             <label
               class="col-6 col-form-label font-weight-bold"
               for="start-date"
-              >A horgászat kezdő időpontja:
+              >Kezdés:
             </label>
             <div class="datetime col-6 text-right">
               <input
@@ -36,23 +44,22 @@
                 v-model="start_date"
               />
             </div>
-            <div v-if="coordinates">
-              >
-              <label
-                class="col-6 pt-3 col-form-label font-weight-bold"
-                for="start-date"
-                >Koordináták:
-              </label>
-              <div class="col-6 pt-3">
-                <input
-                  class="form-control"
-                  id="coordinates"
-                  name="coordinates"
-                  type="text"
-                  v-model="coordinates"
-                />
-              </div>
+
+            <label
+              class="col-6 pt-3 col-form-label font-weight-bold"
+              for="coordinates"
+              >Koordináták:
+            </label>
+            <div class="col-6 pt-3">
+              <input
+                class="form-control"
+                id="coordinates"
+                name="coordinates"
+                type="text"
+                v-model="coordinates"
+              />
             </div>
+
             <label
               class="col-6 pt-3 col-form-label font-weight-bold"
               for="start-date"
@@ -94,7 +101,14 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {
+    locationURL() {
+      return (
+        `https://www.google.com/maps/embed/v1/place?key=AIzaSyC-I8MZCRc1JQgZeC7SdhTt-PjqHuBn5J8&q=` +
+        this.coordinates
+      );
+    },
+  },
 
   methods: {
     ...mapActions("session", {
@@ -170,20 +184,9 @@ export default {
     },
 
     showPosition(position) {
-      var x = document.getElementById("location");
-
       let latlon = position.coords.latitude + "," + position.coords.longitude;
       this.coordinates = latlon;
-
-      console.log(latlon);
-
-      x.innerHTML = `<iframe
-          width="100%"
-           height="300"
-            frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC-I8MZCRc1JQgZeC7SdhTt-PjqHuBn5J8
-                &q=location=${latlon}">
-        </iframe>`;
+      console.log(this.coordinates);
     },
 
     goto(refName) {
