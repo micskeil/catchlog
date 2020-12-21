@@ -128,7 +128,7 @@ export default {
     },
 
     startFishingSession() {
-      const userId = this.$store.getters.userId;
+      const user = this.$store.getters.user;
       const that = this;
       let startDate = "";
 
@@ -140,9 +140,9 @@ export default {
 
       firebase
         .firestore()
-        .collection("/users/" + userId + "/sessions")
+        .collection("/users/" + user.uid + "/sessions")
         .add({
-          user_id: userId,
+          user_id: user.uid,
           start_date: startDate,
           coordinates: this.coordinates,
           location: this.new_session_location,
@@ -161,13 +161,13 @@ export default {
     },
 
     updateUserStatus() {
-      const userId = this.$store.getters.userId;
+      const user = this.$store.getters.user;
       const that = this;
 
       firebase
         .firestore()
         .collection("users")
-        .doc(userId)
+        .doc(user.uid)
         .set({
           is_fishing: true,
           current_session: that.current_session,

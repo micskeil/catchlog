@@ -25,18 +25,9 @@ export default {
         .auth()
         .signInWithEmailAndPassword(user.email, user.password);
 
-      localStorage.setItem("token", response.user.idToken);
-      localStorage.setItem("userId", response.user.uid);
-      localStorage.setItem("displayName", response.user.displayName);
-      localStorage.setItem("email", response.user.email);
-
       contex.commit("setUser", {
         isLoggedIn: true,
-        token: response.user.idToken,
-        userId: response.user.uid,
-        tokenExpiration: response.user.expiresIn,
-        displayName: response.user.displayName,
-        email: response.user.email,
+        user: response.user,
       });
     } catch (error) {
       var errorCode = error.code;
@@ -46,19 +37,13 @@ export default {
   },
 
   autoLogin(contex) {
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("token");
-    const displayName = localStorage.getItem("displayName");
-    const email = localStorage.getItem("email");
+    const user = JSON.parse(localStorage.getItem("user"));
 
-    if (userId && token) {
+    if (user) {
+      console.log(user);
       contex.commit("setUser", {
         isLoggedIn: true,
-        token: token,
-        userId: userId,
-        tokenExpiration: null,
-        displayName: displayName,
-        email: email,
+        user: user,
       });
     }
   },
@@ -66,8 +51,6 @@ export default {
   async logout(contex) {
     await firebase.auth().signOut();
     contex.commit("clearUser");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("token");
-    localStorage.removeItem("displayName");
+    localStorage.removeItem("user");
   },
 };

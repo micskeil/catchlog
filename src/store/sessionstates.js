@@ -59,12 +59,12 @@ const sessionstates = {
 
   actions: {
     updateIsFishing(contex) {
-      const userId = contex.rootGetters.userId;
+      const user = contex.rootGetters.user;
 
       firebase
         .firestore()
         .collection("users")
-        .doc(userId)
+        .doc(user.uid)
         .get()
         .then(function(doc) {
           if (doc.exists) {
@@ -79,11 +79,12 @@ const sessionstates = {
     },
 
     updateCurrentSession(contex) {
-      const userId = contex.rootGetters.userId;
+      const user = contex.rootGetters.user;
+
       firebase
         .firestore()
         .collection("users")
-        .doc(userId)
+        .doc(user.uid)
         .get()
         .then(function(doc) {
           if (doc.exists) {

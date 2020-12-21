@@ -6,13 +6,7 @@ export default {
   state() {
     return {
       isLoggedIn: false,
-      userData: null,
-
-      userId: null,
-      displayName: null,
-      token: null,
-      tokenExpiration: null,
-      email: null,
+      user: null,
     };
   },
   mutations,

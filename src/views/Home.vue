@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <UserSessions />
+    <ContentPage />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import UserSessions from "./UserSessions.vue";
+import ContentPage from "./ContentPage.vue";
 
 export default {
   name: "Home",
   components: {
-    UserSessions,
+    ContentPage,
   },
   mounted() {
     console.log();

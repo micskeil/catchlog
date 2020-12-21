@@ -27,13 +27,13 @@ export default {
   methods: {
     loadCatches() {
       const that = this;
-      const userId = this.$store.getters.userId;
+      const user = this.$store.getters.user;
       const session_id = this.session.session_id;
 
       firebase
         .firestore()
         .collection("catches/")
-        .where("user_id", "==", userId)
+        .where("user_id", "==", user.uid)
         .where("session_id", "==", session_id)
         .orderBy("catch_date", "desc")
         .get()

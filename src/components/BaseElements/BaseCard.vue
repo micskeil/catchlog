@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card  shadow mt-5
+    class="card border-0 shadow border border-light mt-3 mb-3
    rounded-0"
   >
     <div class="card-img  d-flex flex-column justify-content-between">
@@ -38,16 +38,14 @@ export default {
   },
   computed: {
     getUser() {
-      return this.$store.getters.userName;
+      const user = this.$store.getters.user;
+      return user.displayName;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-div {
-}
-
 .card {
   height: fit-content;
 }

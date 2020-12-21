@@ -67,7 +67,7 @@ export default {
     },
 
     endFishingSession() {
-      const userID = this.$store.getters.userId;
+      const user = this.$store.getters.user;
       const current_session = this.getCurrentSession;
       const that = this;
 
@@ -81,7 +81,7 @@ export default {
 
       firebase
         .firestore()
-        .collection("users/" + userID + "/sessions/")
+        .collection("users/" + user.uid + "/sessions/")
         .doc(current_session)
         .update({
           end_date: endDate,
@@ -97,13 +97,13 @@ export default {
     },
 
     updateUserStatus() {
-      const userID = this.$store.getters.userId;
+      const user = this.$store.getters.user;
       const that = this;
 
       firebase
         .firestore()
         .collection("users")
-        .doc(userID)
+        .doc(user.uid)
         .set({
           is_fishing: false,
           current_session: "",

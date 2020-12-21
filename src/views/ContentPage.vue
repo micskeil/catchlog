@@ -3,11 +3,11 @@
     <StickyNav />
     <div class=" container  d-flex justify-content-between row">
       <main
-        class="content col-md-8 d-flex flex-column align-items-center m-0 pr-1 pl-1 pb-5"
+        class="content col-md-8 d-flex flex-column align-items-center m-0 pr-2 pl-2"
       >
         <FishingSessions v-bind:activeMenu="activeMenu" />
       </main>
-      <div class="side-bar d-none d-md-block col-md-4 p-5">
+      <div class="side-bar d-none d-md-block col-md-4 p-3 pl-3">
         <div class="side-bar-content">
           <h5>Ez történt a környékeden</h5>
           <br />
@@ -42,7 +42,7 @@ export default {
 <style lang="scss" scoped>
 .side-bar-content {
   position: sticky;
-  top: 90px;
+  top: 2rem;
 }
 
 .footer {

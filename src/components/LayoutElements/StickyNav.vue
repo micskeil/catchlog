@@ -1,6 +1,6 @@
 <template>
   <header
-    class="header container-fluid d-flex bg-light justify-content-center sticky-top pt-1 pb-1
+    class="header container-fluid d-flex bg-light justify-content-center pt-1 pb-1
     "
   >
     <nav
@@ -128,6 +128,7 @@ export default {
 
 @media screen and (max-width: 576px) {
   .bottomNav {
+    z-index: 1200;
     position: fixed;
     display: flex;
     justify-content: center;

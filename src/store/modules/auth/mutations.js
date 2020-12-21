@@ -1,20 +1,13 @@
 export default {
   setUser(state, payload) {
-    state.isLoggedIn = payload;
-    state.token = payload.token;
-    state.userId = payload.userId;
-    state.tokenExpiration = payload.tokenExpiration;
-    state.displayName = payload.displayName;
-    state.email = payload.email;
+    state.isLoggedIn = payload.isLoggedIn;
+    state.user = payload.user;
+    localStorage.setItem("user", JSON.stringify(payload.user));
+    console.log("User saved: " + state.user.displayName);
   },
 
   clearUser(state) {
     state.isLoggedIn = false;
-    state.userData = null;
-    state.userId = null;
-    state.displayName = null;
-    state.token = null;
-    state.tokenExpiration = null;
-    state.email = null;
+    state.user = null;
   },
 };

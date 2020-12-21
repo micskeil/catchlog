@@ -3,18 +3,20 @@
     <template v-slot:user-info><div></div></template>
     <template v-slot:card-img> <div></div></template>
     <template v-slot:card-info>
-      <form class="form row pb-3 p-0 m-0" v-on:submit.prevent="updateUser()">
+      <form class="form row pb-3 p-0 m-0" v-on:submit.prevent="">
         <div class="form-group row form pt-5 pb-5">
           <div class="col-6 font-weight-bold d-flex justify-content-center">
             <img
               class="rounded-circle border"
-              :src="imageUrl"
+              v-bind:src="avatar"
               width="120"
               height="120"
             />
           </div>
           <div class="col-6 text-right">
-            <base-button v-on:click="onPickFile()"> KÉP CSERÉJE </base-button>
+            <base-button v-on:click.prevent="onPickFile()">
+              KÉP CSERÉJE
+            </base-button>
           </div>
           <input
             id="fileInput"
@@ -35,7 +37,7 @@
               id="user-name"
               name="user-name"
               type="text"
-              v-model.lazy="displayName"
+              v-model.lazy="user.displayName"
             />
           </div>
 
@@ -50,16 +52,16 @@
               id="coordinates"
               name="coordinates"
               type="text"
-              v-model="email"
+              v-model="user.email"
             />
           </div>
         </div>
 
-        <base-button class="">
+        <base-button class="" @click.prevent="saveUser()">
           MENTÉS
         </base-button>
 
-        <base-button class="warning" @click="logout()">
+        <base-button class="warning" @click.prevent="logout()">
           KILÉPÉS
         </base-button>
       </form>
@@ -74,25 +76,67 @@ export default {
   components: { BaseButton },
   data() {
     return {
-      userId: "",
-      displayName: "",
-      email: "",
-      imageUrl: "",
-      image: null,
+      user: "",
+      storedPhotoURL: null,
 
+      newPhotoURL: null,
+      image: null,
       image_src: "",
     };
   },
+  computed: {
+    avatar() {
+      if (this.image_src !== "") {
+        return this.image_src;
+      } else {
+        return this.storedPhotoURL;
+      }
+    },
+  },
   watch: {
     updatedDisplayName() {
-      return this.displayName;
+      return this.user.displayName;
+    },
+
+    updatedPhotoURL() {
+      return this.storedPhotoURL;
     },
   },
 
   methods: {
     getUser() {
-      this.displayName = this.$store.getters.userName;
-      this.email = this.$store.getters.email;
+      this.user = this.$store.getters.user;
+
+      if (this.user.photoURL === undefined) {
+        console.log("/img/user_1.c159038c.png");
+        this.storedPhotoURL = "/img/user_1.c159038c.png";
+        return "/img/user_1.c159038c.png";
+      } else {
+        this.storedPhotoURL = this.user.photoURL;
+        return this.storedPhotoURL;
+      }
+    },
+
+    async saveUser() {
+      const that = this;
+      var user = await firebase.auth().currentUser;
+
+      user
+        .updateProfile({
+          email: this.user.email,
+          displayName: this.user.displayName,
+          photoURL: this.newPhotoURL,
+        })
+        .then(function() {
+          that.$store.commit("setUser", {
+            isLoggedIn: true,
+            user: that.user,
+          });
+        })
+        .catch(function(error) {
+          // An error happened.
+          console.log(error);
+        });
     },
 
     async logout() {
@@ -105,21 +149,22 @@ export default {
     },
 
     onFilePicked(event) {
-      console.log("onFilePicked is running");
       const files = event.target.files;
       let filename = files[0].name;
-      console.log("Choosed image: " + filename);
+
       if (filename.lastIndexOf(".") <= 0) {
         return alert("Plase add a valid image file! ");
       }
+
       const fileReader = new FileReader();
       fileReader.addEventListener("load", () => {
-        this.imageUrl = fileReader.result;
+        this.storedPhotoURL = fileReader.result;
       });
+
       fileReader.readAsDataURL(files[0]);
       this.image = files[0];
 
-      console.log(this.image);
+      this.uploadPicture();
     },
 
     uploadPicture() {
@@ -182,9 +227,10 @@ export default {
           // Upload completed successfully, now we can get the download URL
           uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             // this.downloadURL = downloadURL;
-            that.image_src = downloadURL;
-
-            console.log("File available at", downloadURL);
+            that.newPhotoURL = downloadURL;
+            that.user.photoURL = that.newPhotoURL;
+            console.log("File available at", that.newPhotoURL);
+            that.saveUser();
           });
         }
       );
