@@ -1,9 +1,9 @@
 <template>
-  <div class="container-fluid d-flex flex-column align-items-center">
+  <div class="container-fluid d-flex flex-column align-items-center ">
     <StickyNav />
     <div class=" container  d-flex justify-content-between row">
       <main
-        class="content col-md-8 d-flex flex-column align-items-center m-0 pb-5"
+        class="content col-md-8 d-flex flex-column align-items-center m-0 pr-1 pl-1 pb-5"
       >
         <FishingSessions v-bind:activeMenu="activeMenu" />
       </main>

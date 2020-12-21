@@ -2,7 +2,11 @@
   <base-card ref="starting">
     <template v-slot:user-info><div></div></template>
     <template v-slot:card-img>
-      <div id="location" class="d-flex flex-column pt-0 align-items-center">
+      <div
+        id="location"
+        v-if="coordinates"
+        class="d-flex flex-column pt-0 align-items-center"
+      >
         <iframe
           width="100%"
           height="300"
@@ -16,6 +20,7 @@
 
       <div class="d-flex flex-column  p-3 align-items-center">
         <div
+          v-if="coordinates"
           class="warning pl-3 pr-3 p-1 text-center bg-info text-white rounded"
         >
           A pecahelyed pontos kordinátáit csak te láthatod. Mi nem osztjuk meg

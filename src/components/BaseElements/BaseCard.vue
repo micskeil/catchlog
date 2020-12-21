@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card shadow mt-5
+    class="card  shadow mt-5
    rounded-0"
   >
     <div class="card-img  d-flex flex-column justify-content-between">
@@ -46,7 +46,6 @@ export default {
 
 <style lang="scss" scoped>
 div {
-  width: 100%;
 }
 
 .card {

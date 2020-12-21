@@ -2,16 +2,17 @@
   <div class="login p-0 m-0">
     <form class="form d-flex shadow flex-column p-5" @submit.prevent="login">
       <div
-        class="brand d-flex pb-5 justify-content-around
+        class="brand d-flex flex-column pb-5 justify-content-around
       align-items-center "
       >
-        <h3 class="brand-name ">Pecázunk.hu</h3>
+        <img class="" src="../assets/logo.png" width="64" height="64" />
+        <h3 class="brand-name pt-3 ">Pecázunk.hu</h3>
       </div>
       <div class="form-group">
         <input
           type="email"
           class="form-control"
-          placeholder="E-mail address"
+          placeholder="E-mail"
           v-model.trim="user.email"
         />
       </div>

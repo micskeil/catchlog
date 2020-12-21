@@ -14,6 +14,7 @@ export default {
 
 <style lang="scss">
 $color: #2c3e50;
+$color2: #c79136;
 
 .button {
   width: 100%;
@@ -23,7 +24,7 @@ $color: #2c3e50;
   border: none;
 
   &:hover {
-    background-color: $color;
+    background-color: $color2;
     opacity: 0.8;
   }
 }

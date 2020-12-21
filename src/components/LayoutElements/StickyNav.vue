@@ -1,6 +1,6 @@
 <template>
   <header
-    class="header container-fluid d-flex bg-light justify-content-center border sticky-top pt-1 pb-1
+    class="header container-fluid d-flex bg-light justify-content-center sticky-top pt-1 pb-1
     "
   >
     <nav
@@ -11,12 +11,13 @@
         href="./index.html"
       >
         <img
-          class="brand-logo"
+          class="ml-1 
+          brand-logo"
           src="../../assets/logo.png"
-          width="32"
-          height="32"
+          width="48 "
+          height="48"
         />
-        <a href="/" class="brand-name align-self-center nav-brandname pl-3">
+        <a href="/" class="brand-name  align-self-center nav-brandname pl-3">
           Pecázunk.hu</a
         >
       </div>
