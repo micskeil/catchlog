@@ -24,8 +24,8 @@
 
       <div>
         <div class="bottomNav bg-light ">
-          <ul class="navbar-nav bottomList mr-3  pt-3 pb-3 mt-l">
-            <li class="nav-item active" v-on:click="startFishing">
+          <ul class="navbar-nav bottomList   pt-3 pb-3 mt-l">
+            <li class="nav-item active" v-on:click="goTimeline">
               <a class="nav-link"
                 ><img class="nav-icon" src="../../assets/home.png" alt="home"
               /></a>
@@ -70,7 +70,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#/settings">
                 <img
-                  src="../../../src/assets/img/user_1.png"
+                  :src="photoURL"
                   class="nav-icon user-img
       rounded-circle"
                   alt="user_img"
@@ -89,14 +89,16 @@ export default {
   emits: ["toggle-session-control"],
   props: ["isFishing"],
   data() {
-    return {
-      user_name: "Guest",
-    };
+    return {};
   },
   computed: {
     ...mapGetters("session", {
       getIsFishing: "getIsFishing",
     }),
+    photoURL() {
+      const user = this.$store.getters.user;
+      return user.photoURL;
+    },
   },
 
   methods: {
@@ -106,18 +108,15 @@ export default {
       registerCatch: "registerCatch",
     }),
 
-    getUser() {
-      this.user_name = "Hello, " + this.$store.getters.userName + "!";
-    },
-
     async logout() {
       await this.$store.dispatch("logout");
       this.$router.push({ name: "Login" });
     },
+    goTimeline() {
+      this.$router.push({ name: "Timeline" });
+    },
   },
-  mounted() {
-    this.getUser();
-  },
+  mounted() {},
 };
 </script>
 
@@ -157,15 +156,14 @@ export default {
   opacity: 1;
 }
 .nav-icon {
-  margin-right: 1rem !important ;
+  margin-left: 1rem !important ;
   cursor: pointer;
   width: 1.5rem;
   opacity: 0.6;
 }
 .user-img {
-  width: 2rem;
-  border: 1px solid #00243d;
-  padding: 1px;
+  width: 2.5rem;
+  border: 1px solid white;
   opacity: 1;
 }
 </style>

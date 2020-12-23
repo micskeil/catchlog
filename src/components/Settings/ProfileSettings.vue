@@ -3,17 +3,17 @@
     <template v-slot:user-info><div></div></template>
     <template v-slot:card-img> <div></div></template>
     <template v-slot:card-info>
-      <form class="form row pb-3 p-0 m-0" v-on:submit.prevent="">
+      <form class="form row pb-3 p-0 m-0" v-on:submit.prevent="saveUser">
         <div class="form-group row form pt-5 pb-5">
-          <div class="col-6 font-weight-bold d-flex justify-content-center">
+          <div class="col-6  d-flex justify-content-center">
             <img
-              class="rounded-circle border"
+              class="rounded-circle"
               v-bind:src="avatar"
               width="120"
               height="120"
             />
           </div>
-          <div class="col-6 text-right">
+          <div class="col-6">
             <base-button v-on:click.prevent="onPickFile()">
               KÉP CSERÉJE
             </base-button>
@@ -72,13 +72,14 @@
 <script>
 import firebase from "firebase";
 import BaseButton from "../BaseElements/BaseButton.vue";
+
 export default {
   components: { BaseButton },
   data() {
     return {
       user: "",
-      storedPhotoURL: null,
 
+      storedPhotoURL: null,
       newPhotoURL: null,
       image: null,
       image_src: "",
@@ -93,27 +94,16 @@ export default {
       }
     },
   },
-  watch: {
-    updatedDisplayName() {
-      return this.user.displayName;
-    },
-
-    updatedPhotoURL() {
-      return this.storedPhotoURL;
-    },
-  },
+  watch: {},
 
   methods: {
     getUser() {
       this.user = this.$store.getters.user;
 
-      if (this.user.photoURL === undefined) {
-        console.log("/img/user_1.c159038c.png");
+      if (this.user.photoURL === null) {
         this.storedPhotoURL = "/img/user_1.c159038c.png";
-        return "/img/user_1.c159038c.png";
       } else {
         this.storedPhotoURL = this.user.photoURL;
-        return this.storedPhotoURL;
       }
     },
 
@@ -186,7 +176,7 @@ export default {
       let extension = this.image.name.match(regex);
 
       const uploadTask = storageRef
-        .child("/" + this.userId + "/avatar" + "." + extension)
+        .child("/avatars/" + this.user.uid + "." + extension)
         .put(file, metadata);
 
       // Listen for state changes, errors, and completion of the upload.

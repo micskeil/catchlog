@@ -40,7 +40,6 @@ export default {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (user) {
-      console.log(user);
       contex.commit("setUser", {
         isLoggedIn: true,
         user: user,

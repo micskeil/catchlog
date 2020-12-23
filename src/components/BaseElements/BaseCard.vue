@@ -1,25 +1,24 @@
 <template>
   <div
-    class="card border-0 shadow border border-light mt-3 mb-3
+    class="card border-0 shadow border border-light mt-4 mb-4
    rounded-0"
   >
-    <div class="card-img  d-flex flex-column justify-content-between">
-      <slot name="user-info">
-        <div
-          class="user-info p-3
+    <div class="card-img d-flex flex-row justify-content-between">
+      <div
+        class="user-info p-3
      d-flex align-items-center"
-        >
-          <img
-            src="../../../src/assets/img/user_1.png"
-            class="user-img
-      rounded-circle"
-            alt="user_img"
-          />
-          <div class="user-info-text pl-3 font-weight-bold ">
-            {{ getUser }}
-          </div>
-        </div></slot
       >
+        <img
+          :src="photoURL"
+          class="user-img
+      rounded-circle"
+          alt="user_img"
+        />
+        <div class="user-info-text pl-3 font-weight-bold ">
+          {{ getUser }}
+        </div>
+      </div>
+      <slot name="user-info"></slot>
     </div>
     <div class="card-img p-0 d-flex flex-column justify-content-between">
       <slot name="card-img"> </slot>
@@ -41,6 +40,10 @@ export default {
       const user = this.$store.getters.user;
       return user.displayName;
     },
+    photoURL() {
+      const user = this.$store.getters.user;
+      return user.photoURL;
+    },
   },
 };
 </script>
@@ -51,10 +54,8 @@ export default {
 }
 
 .user-img {
-  width: 1.75rem;
-  height: 1.75rem;
-  border: 1px solid #6969d18c;
-  padding: 1px;
+  width: 2rem;
+  height: 2rem;
 }
 
 .card-info {

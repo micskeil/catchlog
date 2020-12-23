@@ -7,6 +7,7 @@
     <FishingSessionEnd v-bind:session="session" />
     <Catches v-bind:session="session" />
     <FishingSessionStart v-bind:session="session" />
+    <div></div>
   </div>
 </template>
 
@@ -29,7 +30,6 @@ export default {
     Ending,
     NewCatch,
   },
-  props: ["activeMenu"],
 
   data() {
     return {

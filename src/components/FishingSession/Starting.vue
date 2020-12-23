@@ -147,7 +147,6 @@ export default {
           coordinates: this.coordinates,
           location: this.new_session_location,
           end_date: "undifined",
-          cought_fish: 0,
         })
         .then(function(docRef) {
           // Create the current session ID locally, and upload it to the store
@@ -173,7 +172,7 @@ export default {
           current_session: that.current_session,
         })
         .then(function() {
-          // Update the  session states
+          // Update the session states
           that.updateIsFishing();
           that.updateCurrentSession();
         })

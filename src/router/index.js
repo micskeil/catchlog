@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Timeline from "../views/Timeline.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import ForgotPassword from "../views/ForgotPassword.vue";
@@ -11,6 +12,12 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/timeline",
+    name: "Timeline",
+    component: Timeline,
     meta: { requiresAuth: true },
   },
   {

@@ -7,7 +7,7 @@
       >
         <Settings />
       </main>
-      <div class="side-bar d-none d-md-block col-md-4 p-5">
+      <div class="side-bar d-none d-md-block col-md-4 p-3">
         <div class="side-bar-content">
           <h5>Ez történt a környékeden</h5>
           <br />

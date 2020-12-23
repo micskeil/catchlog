@@ -1,13 +1,13 @@
 <template>
   <base-card ref="new-catch">
     <template v-slot:card-img>
+      <base-button v-if="!imageUrl" class="upload" v-on:click="onPickFile()">
+        KÉP FELTÖLTÉSE!
+      </base-button>
       <img v-bind:src="imageUrl" />
     </template>
 
     <template v-slot:card-info>
-      <button class="btn btn-outline-dark" v-on:click="onPickFile()">
-        Upload Image
-      </button>
       <label for="file-input"> </label>
       <input
         id="fileInput"
@@ -17,18 +17,19 @@
         accept="image/*"
         v-on:change="onFilePicked"
       />
-      <div id="form" class="form-group row p-0 m-0">
+      <div v-if="imageUrl" id="form" class="form-group row p-0 m-0">
         <form
-          class="pb-3 mb-3 col-12 p-0 m-0"
+          autocomplete="off"
+          class="form pb-3 mb-3 col-12 p-0 m-0"
           v-on:submit.prevent="submitCatch()"
         >
           <div class="form-group row">
             <label
-              class="col-sm-4 col-form-label font-weight-bold mt-3"
+              class="col-6 col-form-label font-weight-bold mt-3"
               for="catch_date"
-              >Catch time:
+              >Időpont:
             </label>
-            <div class="col-sm-8 mt-3">
+            <div class="col-6  mt-3">
               <input
                 class="form-control"
                 id="catch_date"
@@ -39,56 +40,64 @@
             </div>
 
             <label
-              class="col-sm-4 col-form-label font-weight-bold mt-3"
+              class="col-6 col-form-label font-weight-bold mt-3"
               for="species"
-              >Species:
+              >Halfaj:
             </label>
-            <div class="col-sm-8 mt-3">
-              <input
-                class="form-control"
-                id="species"
-                name="species"
-                type="text"
-                v-model="species"
-              />
+            <div class="col-6 mt-3 d-flex flex-column ">
+              <input class="" type="text" v-model="species" />
+
+              <div v-if="species && showSuggestions === true" class="">
+                <div
+                  class=""
+                  v-for="suggestion in matches.slice(0, 5)"
+                  v-bind:key="suggestion"
+                >
+                  <div class="btn btn-outline" v-on:click="chooseSpecies">
+                    {{ suggestion }}
+                  </div>
+                </div>
+              </div>
             </div>
 
             <label
-              class="col-sm-4 col-form-label font-weight-bold mt-3"
+              class="col-6 col-form-label font-weight-bold mt-3"
               for="species"
-              >Weight (kg):
+              >Súly (kg):
             </label>
-            <div class="col-sm-8 mt-3">
+            <div class="col-6 mt-3 d-flex">
               <input
                 class="form-control"
                 id="weight"
                 name="weight"
                 type="text"
+                placeholder="6.5"
                 v-model="weight"
               />
             </div>
 
             <label
-              class="col-sm-4 col-form-label font-weight-bold mt-3"
+              class="col-6 col-form-label font-weight-bold mt-3"
               v-on:click="getLocation;"
               for="length"
-              >Length (cm):
+              >Hossz (cm):
             </label>
-            <div class="col-sm-8 mt-3">
+            <div class="col-6 mt-3 d-flex">
               <input
                 class="form-control"
                 id="length"
                 name="length"
                 type="text"
+                placeholder="120"
                 v-model="lenght"
               />
             </div>
           </div>
 
           <div id="button" class="d-flex justify-content-center pt-3 ">
-            <button class="btn btn-dark rounded justify-self-center">
-              Register catch
-            </button>
+            <base-button class="">
+              ELKÜLD
+            </base-button>
           </div>
         </form>
       </div>
@@ -99,13 +108,15 @@
 <script>
 import firebase from "firebase";
 import { mapActions, mapGetters } from "vuex";
+import BaseButton from "../BaseElements/BaseButton.vue";
 
 export default {
+  components: { BaseButton },
   data() {
     return {
-      species: "Pike",
-      weight: "2.5",
-      lenght: "75",
+      species: null,
+      weight: "",
+      lenght: "",
       totalNumberOfCoughtFish: 0,
       currentSession: this.getCurrentSession,
       imageUrl: "",
@@ -113,12 +124,109 @@ export default {
       image_src: "",
       location: "",
       catchID: "",
+
+      showSuggestions: true,
+      fish: [
+        "tiszai ingola ",
+        "dunai ingola ",
+        "vágó tok ",
+        "sima tok ",
+        "kecsege ",
+        "sőregtok ",
+        "viza ",
+        "szibériai tok ",
+        "angolna ",
+        "dunai hering ",
+        "kövi csík ",
+        "vágó csík ",
+        "réti csík ",
+        "kőfúró csík ",
+        "lapos keszeg ",
+        "dévérkeszeg ",
+        "bagolykeszeg ",
+        "karikakeszeg ",
+        "sujtásos küsz ",
+        "szélhajtó küsz ",
+        "állas küsz ",
+        "balin ",
+        "márna ",
+        "petényi-márna ",
+        "ezüstkárász ",
+        "aranykárász ",
+        "paduc ",
+        "amur ",
+        "ponty ",
+        "fenékjáró küllő ",
+        "homoki küllő ",
+        "felpillantó küllő ",
+        "halványfoltú küllő ",
+        "fehér busa ",
+        "pettyes busa ",
+        "kurta baing ",
+        "fejes domolykó ",
+        "jászkeszeg ",
+        "nyúldomolykó ",
+        "vaskos csabak ",
+        "fekete amur ",
+        "garda ",
+        "fürge cselle ",
+        "kínai razbóra ",
+        "szivárványos ökle ",
+        "gyöngyös koncér ",
+        "leánykoncér ",
+        "bodorka ",
+        "vörösszárnyú keszeg ",
+        "compó ",
+        "szilvaorrú keszeg ",
+        "európai harcsa ",
+        "afrikai harcsa ",
+        "fekete törpeharcsa ",
+        "törpeharcsa ",
+        "pettyes harcsa ",
+        "törpemaréna ",
+        "nagy maréna ",
+        "dunai galóca ",
+        "szivárványos pisztráng ",
+        "sebes pisztráng ",
+        "pataki szajbling ",
+        "pénzes pér ",
+        "csuka ",
+        "lápi póc ",
+        "menyhal ",
+        "szúnyogirtó fogasponty ",
+        "Szivárványos guppi ",
+        "tüskés pikó ",
+        "szivárványsügér ",
+        "folyami géb ",
+        "csupasztorkú géb ",
+        "kessler géb ",
+        "feketeszájú géb ",
+        "szirman géb ",
+        "tarka géb ",
+        "amurgéb ",
+        "széles durbincs ",
+        "vágó durbincs ",
+        "selymes durbincs ",
+        "csapósügér ",
+        "süllő ",
+        "kősüllő ",
+        "német bucó ",
+        "magyar bucó ",
+        "naphal ",
+        "pisztrángsügér ",
+        "botos kölönte ",
+        "cifra kölönte ",
+      ],
     };
   },
   computed: {
     ...mapGetters("session", {
       getCurrentSession: "getCurrentSession",
     }),
+
+    matches() {
+      return this.fish.filter((string) => string.match(this.species));
+    },
   },
   methods: {
     ...mapActions("session", {
@@ -150,33 +258,35 @@ export default {
     },
 
     submitCatch() {
-      const userID = this.$store.getters.userID;
-      const currentSession = this.getCurrentSession;
-      const that = this;
-      console.log(this.catch_date);
+      if (this.species !== "" && this.weight !== "" && this.lenght !== "") {
+        const user = this.$store.getters.user;
+        const currentSession = this.getCurrentSession;
+        const that = this;
+        console.log(this.catch_date);
 
-      firebase
-        .firestore()
-        .collection("/catches")
-        .add({
-          user_id: userID,
-          session_id: currentSession,
-          location: this.location,
-          catch_date: new Date(),
-          species: this.species,
-          weight: this.weight,
-          lenght: this.lenght,
-          // We don't have the src yet, we have to update later this field with the file upload
-          image_src: "",
-        })
-        .then(function(docRef) {
-          that.catchID = docRef.id;
-          console.log("Catch registered: " + docRef.id);
-          that.uploadPicture();
-        })
-        .catch(function(error) {
-          console.error("Error adding document: ", error);
-        });
+        firebase
+          .firestore()
+          .collection("/catches")
+          .add({
+            user_id: user.uid,
+            session_id: currentSession,
+            location: this.location,
+            catch_date: new Date(),
+            species: this.species,
+            weight: this.weight,
+            lenght: this.lenght,
+            // We don't have the src yet, we have to update later this field with the file upload
+            image_src: "",
+          })
+          .then(function(docRef) {
+            that.catchID = docRef.id;
+            console.log("Catch registered: " + docRef.id);
+            that.uploadPicture();
+          })
+          .catch(function(error) {
+            console.error("Error adding document: ", error);
+          });
+      }
     },
 
     updateImgSrc() {
@@ -191,9 +301,7 @@ export default {
           // We don't have the src yet, we have to update later this field with the file upload
           image_src: that.image_src,
         })
-        .then(function(docRef) {
-          console.log("Image uploaded: " + docRef.id);
-        })
+        .then(function() {})
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
@@ -279,6 +387,15 @@ export default {
       );
     },
 
+    chooseSpecies(event) {
+      this.species = event.target.firstChild.data;
+      this.toggleSuggestions();
+    },
+
+    toggleSuggestions() {
+      this.showSuggestions = !this.showSuggestions;
+    },
+
     goto(refName) {
       var element = this.$refs[refName];
       console.log(element);
@@ -297,6 +414,21 @@ img {
   width: 100%;
 }
 
+.upload {
+  height: 300px;
+  font-weight: bold;
+  color: #2c3e50;
+  border: 1px solid #2c3e50;
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+
 #form {
   width: 100%;
 }
@@ -306,6 +438,12 @@ img {
 form {
   height: 100%;
   width: 100%;
+}
+
+select {
+  border: none;
+  border-bottom: 1px solid #2c3e50;
+  border-radius: 0;
 }
 .form-control {
   width: 100%;

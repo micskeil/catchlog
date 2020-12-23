@@ -111,6 +111,11 @@ $breakpoint-tablet: 768px;
       border-bottom: 1px solid $color;
       border-radius: 0;
     }
+    select {
+      border: none;
+      border-bottom: 1px solid $color;
+      border-radius: 0;
+    }
     font-size: 1rem;
     width: 400px;
     max-width: 100vw;

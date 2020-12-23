@@ -1,50 +1,35 @@
 <template>
-  <div class="card shadow mt-5 rounded-0">
-    <div
-      class="user-bar p-3
-     d-flex align-items-center "
-    >
+  <base-card>
+    <template v-slot:user-info>
+      <div class="catch-date pr-3 d-flex align-self-center align-content-end">
+        {{ getFormattedDate(fish.catch_date) }}
+      </div>
+    </template>
+    <template v-slot:card-img>
       <img
-        src="../../../src/assets/img/user_1.png"
-        class="user-img
-      rounded-circle "
-        alt="user_img"
+        v-bind:src="fish.image_src"
+        class="card-img"
+        alt="img_uploaded_by_user"
       />
-      <div class="user-info pl-3 d-flex flex-nowrap justify-content-between">
-        <div class="user-name font-weight-bold">
-          {{ getUser }}
+      <div class="fish-info d-flex justify-content-between">
+        <div class="species card-text pl-3 font-weight-bold">
+          {{ fish.species }}
         </div>
-        <div class="catch-date pl-3 d-flex align-self-center align-content-end">
-          {{ getFormattedDate(fish.catch_date) }}
-        </div>
-      </div>
-    </div>
-    <img
-      v-bind:src="fish.image_src"
-      class="card-img pb-3"
-      alt="img_uploaded_by_user"
-    />
-    <div class="fish-info d-flex justify-content-between">
-      <div class="species card-text pl-3 font-weight-bold">
-        {{ fish.species }}
-      </div>
 
-      <div class="size d-flex justify-content-end mr-3  align-content-end">
-        <p class="measures align-self-center">
-          Méret: &nbsp; {{ fish.weight }} kg, {{ fish.lenght }} cm
-        </p>
+        <div class="size d-flex justify-content-end mr-3  align-content-end">
+          <p class="measures align-self-center">
+            Méret: &nbsp; {{ fish.weight }} kg, {{ fish.lenght }} cm
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
+    </template>
+    <template v-slot:card-info> </template>
+  </base-card>
 </template>
 <script>
 export default {
   props: ["fish"],
-  computed: {
-    getUser() {
-      return this.$store.getters.userName;
-    },
-  },
+  computed: {},
   methods: {
     getFormattedDate(date) {
       var year = date.getFullYear();
@@ -89,10 +74,7 @@ export default {
 }
 
 .fish-info {
-  position: absolute;
-  left: -0.1rem;
-  right: -0.1rem;
-  bottom: -1.3rem;
+  border-top: 1px solid white;
   color: white;
   background-color: #2c3e50;
 

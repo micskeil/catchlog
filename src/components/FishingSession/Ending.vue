@@ -3,36 +3,34 @@
     <template v-slot:card-img> <div id=""></div></template>
 
     <template v-slot:card-info>
-      <div id="form" class="form-group row p-0 m-0">
-        <form
-          class="pb-3 mb-3 col-12 p-0 m-0"
-          v-on:submit.prevent="endFishingSession()"
-        >
-          <div class="form-group row">
-            <label
-              class="col-sm-3 col-form-label font-weight-bold"
-              v-on:click="getLocation;"
-              for="end-date"
-              >Ending time:
-            </label>
-            <div class="col-sm-9">
-              <input
-                class="form-control"
-                id="end-date"
-                name="end-date"
-                type="datetime-local"
-                v-model="new_session_end_date"
-              />
-            </div>
+      <form
+        class=" form pb-3 mb-3 col-12 p-0 m-0"
+        v-on:submit.prevent="endFishingSession()"
+      >
+        <div class="form-group row">
+          <label
+            class="col-6 col-form-label font-weight-bold"
+            v-on:click="getLocation;"
+            for="end-date"
+            >Befejezés:
+          </label>
+          <div class="col-6">
+            <input
+              class="form-control"
+              id="end-date"
+              name="end-date"
+              type="datetime-local"
+              v-model="new_session_end_date"
+            />
           </div>
+        </div>
 
-          <div id="button" class="d-flex justify-content-center pt-3 ">
-            <button class="btn btn-dark rounded justify-self-center">
-              End
-            </button>
-          </div>
-        </form>
-      </div>
+        <div id="button" class="d-flex justify-content-center pt-3 ">
+          <base-button class="">
+            End
+          </base-button>
+        </div>
+      </form>
     </template>
   </base-card>
 </template>
@@ -40,8 +38,10 @@
 <script>
 import firebase from "firebase";
 import { mapActions, mapGetters } from "vuex";
+import BaseButton from "../BaseElements/BaseButton.vue";
 
 export default {
+  components: { BaseButton },
   data() {
     return {
       end_date: "",
