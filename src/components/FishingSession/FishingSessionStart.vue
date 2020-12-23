@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <base-card v-bind:uid="uid">
     <template v-slot:card-img>
       <div v-bind:id="session.id"></div>
     </template>
@@ -18,6 +18,12 @@ export default {
   props: ["session"],
   data() {
     return {};
+  },
+
+  computed: {
+    uid() {
+      return this.$store.getters.user.uid;
+    },
   },
 
   methods: {
@@ -52,14 +58,9 @@ export default {
       return year + "/" + month + "/" + day + " " + hour + ":" + minute;
     },
   },
-  // filters: {
-  //   moment: function(date) {
-  //     return moment(date).format("MMMM Do YYYY, h:mm:ss a");
-  //   },
-  // },
 
   mounted() {
-    // this.showPosition(this.session.location);
+    //  this.showPosition(this.session.location);
   },
 };
 </script>

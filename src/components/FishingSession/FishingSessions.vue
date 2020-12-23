@@ -2,6 +2,7 @@
   <Starting v-if="getIsStart === true" />
   <NewCatch v-if="getIsNewCatch === true" />
   <Ending v-if="getIsEnd === true" />
+  <loader v-if="isLoading"></loader>
 
   <div v-for="session in sessions" v-bind:key="session.id">
     <FishingSessionEnd v-bind:session="session" />
@@ -34,6 +35,7 @@ export default {
   data() {
     return {
       sessions: [],
+      isLoading: true,
     };
   },
   computed: {
@@ -72,6 +74,7 @@ export default {
               end_date: new Date(doc.data().end_date.seconds * 1000),
             });
             that.sessions = results;
+            that.isLoading = false;
           });
         })
         .catch((error) => {

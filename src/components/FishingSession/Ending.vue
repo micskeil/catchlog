@@ -1,5 +1,5 @@
 <template>
-  <base-card ref="ending">
+  <base-card v-bind:uid="uid" ref="ending">
     <template v-slot:card-img> <div id=""></div></template>
 
     <template v-slot:card-info>
@@ -52,6 +52,9 @@ export default {
     ...mapGetters("session", {
       getCurrentSession: "getCurrentSession",
     }),
+    uid() {
+      return this.$store.getters.user.uid;
+    },
   },
 
   methods: {
@@ -104,7 +107,7 @@ export default {
         .firestore()
         .collection("users")
         .doc(user.uid)
-        .set({
+        .update({
           is_fishing: false,
           current_session: "",
         })

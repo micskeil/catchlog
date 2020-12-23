@@ -1,5 +1,5 @@
 <template>
-  <base-card ref="starting">
+  <base-card v-bind:uid="uid" ref="starting">
     <template v-slot:user-info><div></div></template>
     <template v-slot:card-img>
       <div
@@ -113,6 +113,10 @@ export default {
         this.coordinates
       );
     },
+
+    uid() {
+      return this.$store.getters.user.uid;
+    },
   },
 
   methods: {
@@ -167,7 +171,7 @@ export default {
         .firestore()
         .collection("users")
         .doc(user.uid)
-        .set({
+        .update({
           is_fishing: true,
           current_session: that.current_session,
         })

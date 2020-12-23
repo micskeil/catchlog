@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <base-card v-bind:uid="uid">
     <template v-slot:user-info>
       <div class="catch-date pr-3 d-flex align-self-center align-content-end">
         {{ getFormattedDate(fish.catch_date) }}
@@ -29,7 +29,11 @@
 <script>
 export default {
   props: ["fish"],
-  computed: {},
+  computed: {
+    uid() {
+      return this.fish.user_id;
+    },
+  },
   methods: {
     getFormattedDate(date) {
       var year = date.getFullYear();
@@ -74,6 +78,7 @@ export default {
 }
 
 .fish-info {
+  width: 100%;
   border-top: 1px solid white;
   color: white;
   background-color: #2c3e50;

@@ -30,6 +30,11 @@
                 ><img class="nav-icon" src="../../assets/home.png" alt="home"
               /></a>
             </li>
+            <li class="nav-item active" v-on:click="goHome">
+              <a class="nav-link"
+                ><img class="nav-icon" src="../../assets/fishing.png" alt="home"
+              /></a>
+            </li>
             <li
               v-if="!getIsFishing"
               class="nav-item "
@@ -69,12 +74,13 @@
 
             <li class="nav-item">
               <a class="nav-link" href="#/settings">
-                <img
-                  :src="photoURL"
+                <div
                   class="nav-icon user-img
       rounded-circle"
-                  alt="user_img"
-              /></a>
+                >
+                  <user-photo v-bind:uid="uid"></user-photo>
+                </div>
+              </a>
             </li>
           </ul>
         </div>
@@ -84,8 +90,10 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import UserPhoto from "./UserPhoto.vue";
 
 export default {
+  components: { UserPhoto },
   emits: ["toggle-session-control"],
   props: ["isFishing"],
   data() {
@@ -95,9 +103,9 @@ export default {
     ...mapGetters("session", {
       getIsFishing: "getIsFishing",
     }),
-    photoURL() {
+    uid() {
       const user = this.$store.getters.user;
-      return user.photoURL;
+      return user.uid;
     },
   },
 
@@ -114,6 +122,9 @@ export default {
     },
     goTimeline() {
       this.$router.push({ name: "Timeline" });
+    },
+    goHome() {
+      this.$router.push({ name: "Home" });
     },
   },
   mounted() {},

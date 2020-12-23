@@ -1,5 +1,5 @@
 <template>
-  <base-card ref="settings">
+  <base-card v-bind:uid="uid" ref="settings">
     <template v-slot:user-info><div></div></template>
     <template v-slot:card-img> <div></div></template>
     <template v-slot:card-info>
@@ -93,6 +93,9 @@ export default {
         return this.storedPhotoURL;
       }
     },
+    uid() {
+      return this.$store.getters.user.uid;
+    },
   },
   watch: {},
 
@@ -126,6 +129,21 @@ export default {
         .catch(function(error) {
           // An error happened.
           console.log(error);
+        });
+
+      firebase
+        .firestore()
+        .collection("/users/")
+        .doc(user.uid)
+        .update({
+          displayName: this.user.displayName,
+          photoURL: this.newPhotoURL,
+        })
+        .then
+        // Create the current session ID locally, and upload it to the store
+        ()
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
         });
     },
 

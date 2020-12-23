@@ -8,14 +8,9 @@
         class="user-info p-3
      d-flex align-items-center"
       >
-        <img
-          :src="photoURL"
-          class="user-img
-      rounded-circle"
-          alt="user_img"
-        />
+        <user-photo class="user-photo" v-bind:uid="uid"></user-photo>
         <div class="user-info-text pl-3 font-weight-bold ">
-          {{ getUser }}
+          <user-name v-bind:uid="uid"></user-name>
         </div>
       </div>
       <slot name="user-info"></slot>
@@ -31,25 +26,31 @@
 </template>
 
 <script>
+import UserName from "../LayoutElements/UserName.vue";
+import UserPhoto from "../LayoutElements/UserPhoto.vue";
 export default {
+  props: {
+    uid: {
+      type: String,
+      required: true,
+    },
+  },
+  components: { UserPhoto, UserName },
   data() {
     return {};
   },
-  computed: {
-    getUser() {
-      const user = this.$store.getters.user;
-      return user.displayName;
-    },
-    photoURL() {
-      const user = this.$store.getters.user;
-      return user.photoURL;
-    },
-  },
+  computed: {},
 };
 </script>
 
 <style lang="scss" scoped>
+.user-photo {
+  width: 2rem;
+  height: 2rem;
+}
+
 .card {
+  width: 100%;
   height: fit-content;
 }
 

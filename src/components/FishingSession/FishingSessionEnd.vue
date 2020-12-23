@@ -1,5 +1,5 @@
 <template>
-  <base-card v-if="showSelf()">
+  <base-card v-bind:uid="uid" v-if="showSelf()">
     <template v-slot:card-info>
       <div class="session-end pb-3">
         <strong>Befejezted a horgászatot:&nbsp; </strong>
@@ -22,6 +22,10 @@ export default {
     ...mapGetters("session", {
       getCurrentSession: "getCurrentSession",
     }),
+
+    uid() {
+      return this.$store.getters.user.uid;
+    },
   },
 
   methods: {

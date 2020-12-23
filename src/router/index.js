@@ -10,14 +10,14 @@ import store from "../store/index.js";
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Timeline",
+    component: Timeline,
     meta: { requiresAuth: true },
   },
   {
-    path: "/timeline",
-    name: "Timeline",
-    component: Timeline,
+    path: "/home",
+    name: "Home",
+    component: Home,
     meta: { requiresAuth: true },
   },
   {

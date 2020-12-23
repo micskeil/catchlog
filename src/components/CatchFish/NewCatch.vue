@@ -1,5 +1,5 @@
 <template>
-  <base-card ref="new-catch">
+  <base-card v-bind:uid="uid" ref="new-catch">
     <template v-slot:card-img>
       <base-button v-if="!imageUrl" class="upload" v-on:click="onPickFile()">
         KÉP FELTÖLTÉSE!
@@ -71,7 +71,6 @@
                 id="weight"
                 name="weight"
                 type="text"
-                placeholder="6.5"
                 v-model="weight"
               />
             </div>
@@ -88,8 +87,23 @@
                 id="length"
                 name="length"
                 type="text"
-                placeholder="120"
                 v-model="lenght"
+              />
+            </div>
+
+            <label
+              class="col-12 col-form-label font-weight-bold mt-3"
+              v-on:click="getLocation;"
+              for="length"
+              >Történet:
+            </label>
+            <div class="col-12 mt-3 d-flex">
+              <input
+                class="form-control"
+                id="comment"
+                name="comment"
+                type="text"
+                v-model="comment"
               />
             </div>
           </div>
@@ -117,7 +131,8 @@ export default {
       species: null,
       weight: "",
       lenght: "",
-      totalNumberOfCoughtFish: 0,
+      comment: "",
+
       currentSession: this.getCurrentSession,
       imageUrl: "",
       image: null,
@@ -224,6 +239,10 @@ export default {
       getCurrentSession: "getCurrentSession",
     }),
 
+    uid() {
+      return this.$store.getters.user.uid;
+    },
+
     matches() {
       return this.fish.filter((string) => string.match(this.species));
     },
@@ -264,6 +283,14 @@ export default {
         const that = this;
         console.log(this.catch_date);
 
+        let catchDate = "";
+
+        if (this.catch_date === "") {
+          catchDate = new Date();
+        } else {
+          catchDate = this.parseYMDHM(this.catch_date);
+        }
+
         firebase
           .firestore()
           .collection("/catches")
@@ -271,10 +298,11 @@ export default {
             user_id: user.uid,
             session_id: currentSession,
             location: this.location,
-            catch_date: new Date(),
+            catch_date: catchDate,
             species: this.species,
             weight: this.weight,
             lenght: this.lenght,
+            comment: this.comment,
             // We don't have the src yet, we have to update later this field with the file upload
             image_src: "",
           })

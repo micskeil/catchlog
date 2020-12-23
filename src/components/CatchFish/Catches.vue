@@ -46,6 +46,7 @@ export default {
               catch_date: new Date(doc.data().catch_date.seconds * 1000),
               species: doc.data().species,
               lenght: doc.data().lenght,
+              user_id: doc.data().user_id,
               weight: doc.data().weight,
               image_src: doc.data().image_src,
             });

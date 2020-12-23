@@ -6,6 +6,8 @@
 
     <template v-slot:main>
       <div>
+        <loader v-if="isLoading"></loader>
+
         <div v-for="fish in loadedCatches" v-bind:key="fish.catch_id">
           <Fish v-bind:fish="fish" />
         </div>
@@ -23,6 +25,7 @@ import Fish from "../components/CatchFish/Fish.vue";
 import { db } from "../firebase";
 
 export default {
+  name: "Timeline",
   components: { StickyNav, Fish },
   data() {
     return {
@@ -56,15 +59,14 @@ export default {
               catch_date: new Date(doc.data().catch_date.seconds * 1000),
               species: doc.data().species,
               lenght: doc.data().lenght,
+              user_id: doc.data().user_id,
               weight: doc.data().weight,
               image_src: doc.data().image_src,
             });
           });
 
           that.catches = results;
-          console.log(that.catches);
           that.isLoading = false;
-          console.log(that.isLoading);
         });
     },
   },
