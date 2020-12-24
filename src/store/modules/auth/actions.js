@@ -10,6 +10,24 @@ export default {
       response.user.updateProfile({
         displayName: payload.name,
       });
+      // We have to save the user in the Database too
+      firebase
+        .firestore()
+        .collection("/users/")
+        .doc(response.user.uid)
+        .set(
+          {
+            displayName: this.user.displayName,
+            photoURL: this.newPhotoURL,
+          },
+          { merge: true }
+        )
+        .then
+        // Create the current session ID locally, and upload it to the store
+        ()
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
 
       console.log(response);
     } catch (error) {

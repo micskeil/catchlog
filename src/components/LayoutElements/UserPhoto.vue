@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="" v-bind:src="updatedPhotoURL" />
+    <img class="" :src="updatedPhotoURL" alt="user-avatar" />
   </div>
 </template>
 
@@ -16,12 +16,16 @@ export default {
   },
   data() {
     return {
-      photoURL: null,
+      photoURL: "",
     };
   },
   computed: {
     updatedPhotoURL() {
-      return this.photoURL;
+      if (this.photoURL === "") {
+        return require("../../assets/img/user_1.png");
+      } else {
+        return this.photoURL;
+      }
     },
   },
   methods: {

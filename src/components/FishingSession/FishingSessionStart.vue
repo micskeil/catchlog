@@ -5,7 +5,7 @@
     </template>
 
     <template v-slot:card-info>
-      <div class="session-start pb-3">
+      <div class="session-start">
         <strong>Sikeresen elkezdted a horgászatot: &nbsp; </strong>
         {{ getFormattedDate(session.start_date) }}
       </div>

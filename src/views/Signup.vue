@@ -8,7 +8,7 @@
           type="text"
           class="form-control "
           placeholder="Felhasználónév"
-          v-model="user.name"
+          v-model="name"
         />
       </div>
 
@@ -17,7 +17,7 @@
           type="email"
           class="form-control"
           placeholder="E-mail-cím"
-          v-model="user.email"
+          v-model="email"
         />
       </div>
 
@@ -26,15 +26,15 @@
           type="password"
           class="form-control"
           placeholder="Jelszó"
-          v-model="user.password"
+          v-model="password"
         />
       </div>
       <p v-if="!formIsValid" class="text-warning">
-        Valami baj van a beírt e-maillel vagy jelszóval!
+        Kérlek adj meg érvényes e-mail címet és jelszót!
       </p>
 
       <base-button type="submit" class="">
-        ELKÜLD
+        REGISZTRÁL
       </base-button>
 
       <p class="forgot-password text-right">
@@ -50,11 +50,9 @@ export default {
   data() {
     return {
       formIsValid: true,
-      user: {
-        name: "",
-        email: "",
-        password: "",
-      },
+      name: "",
+      email: "",
+      password: "",
     };
   },
 
@@ -62,20 +60,21 @@ export default {
     signUp() {
       // const that = this;
       if (
-        this.user.name === "" ||
-        this.user.email === "" ||
-        !this.user.email.includes("@")
+        this.name === "" ||
+        this.email === "" ||
+        !this.email.includes("@") ||
+        this.password < 6
       ) {
         this.formIsValid = false;
         return;
       } else {
         this.$store.dispatch("registerUser", {
-          email: this.user.email,
-          password: this.user.password,
-          name: this.user.neme,
+          email: this.email,
+          password: this.password,
+          name: this.name,
         });
 
-        alert("A regisztráció sikeres! Kérlek jelentkezz be.");
+        alert("A regisztráció sikeres! Már be is jelentkezhetsz.");
 
         this.$router.push("/login");
       }

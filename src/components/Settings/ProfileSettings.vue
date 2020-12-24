@@ -3,7 +3,7 @@
     <template v-slot:user-info><div></div></template>
     <template v-slot:card-img> <div></div></template>
     <template v-slot:card-info>
-      <form class="form row pb-3 p-0 m-0" v-on:submit.prevent="saveUser">
+      <form class="form row p-0 m-0" v-on:submit.prevent="saveUser">
         <div class="form-group row form pt-5 pb-5">
           <div class="col-6  d-flex justify-content-center">
             <img
@@ -135,10 +135,13 @@ export default {
         .firestore()
         .collection("/users/")
         .doc(user.uid)
-        .update({
-          displayName: this.user.displayName,
-          photoURL: this.newPhotoURL,
-        })
+        .set(
+          {
+            displayName: this.user.displayName,
+            photoURL: this.newPhotoURL,
+          },
+          { merge: true }
+        )
         .then
         // Create the current session ID locally, and upload it to the store
         ()

@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      displayName: null,
+      displayName: "Guest",
     };
   },
   computed: {

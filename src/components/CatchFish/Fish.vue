@@ -22,12 +22,24 @@
           </p>
         </div>
       </div>
+      <div v-if="fish.comment" class="comment row pt-3">
+        <user-name
+          class="font-weight-bold col-lg-2 pb-0 ml-3"
+          :uid="uid"
+        ></user-name>
+
+        <p class="align-self-center col-lg-8  ml-3 mr-3">
+          {{ fish.comment }}
+        </p>
+      </div>
     </template>
     <template v-slot:card-info> </template>
   </base-card>
 </template>
 <script>
+import UserName from "../LayoutElements/UserName.vue";
 export default {
+  components: { UserName },
   props: ["fish"],
   computed: {
     uid() {

@@ -128,6 +128,7 @@ export default {
   components: { BaseButton },
   data() {
     return {
+      catch_date: "",
       species: null,
       weight: "",
       lenght: "",
@@ -253,6 +254,11 @@ export default {
       updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
     }),
 
+    parseYMDHM(s) {
+      var b = s.split(/\D+/);
+      return new Date(b[0], b[1] - 1, b[2], b[3], b[4], 0 || 0, 0 || 0);
+    },
+
     onPickFile() {
       console.log("onPickfile is running");
       console.log("Choose a picture to upload!");
@@ -326,7 +332,7 @@ export default {
         .collection("catches/")
         .doc(this.catchID)
         .update({
-          // We don't have the src yet, we have to update later this field with the file upload
+          // Update the src after upload
           image_src: that.image_src,
         })
         .then(function() {})

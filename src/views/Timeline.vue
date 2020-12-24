@@ -57,6 +57,7 @@ export default {
             results.push({
               catch_id: doc.id,
               catch_date: new Date(doc.data().catch_date.seconds * 1000),
+              comment: doc.data().comment,
               species: doc.data().species,
               lenght: doc.data().lenght,
               user_id: doc.data().user_id,

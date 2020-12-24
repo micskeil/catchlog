@@ -1,7 +1,7 @@
 <template>
   <base-card v-bind:uid="uid" v-if="showSelf()">
     <template v-slot:card-info>
-      <div class="session-end pb-3">
+      <div class="session-end">
         <strong>Befejezted a horgászatot:&nbsp; </strong>
         {{ getFormattedDate(session.end_date) }}
       </div>

@@ -80,7 +80,7 @@ export default {
         }
 
         this.isLoading = false;
-        this.$router.push({ name: "Home" });
+        this.$router.push({ name: "Timeline" });
       }
     },
   },
