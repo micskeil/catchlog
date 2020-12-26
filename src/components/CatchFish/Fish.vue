@@ -22,13 +22,29 @@
           </p>
         </div>
       </div>
+      <div class="social d-flex pt-1 justify-content-between ml-3 mr-3">
+        <div class="d-flex">
+          <like-button v-bind:catchId="catchId"></like-button>
+          <img
+            class="ml-3"
+            src="../../assets/message.png"
+            width="24"
+            height="24"
+            alt="message"
+          />
+        </div>
+        <div>
+          <img
+            class="ml-3"
+            src="../../assets/bookmark.png"
+            width="24"
+            height="24"
+            alt="bookmark"
+          />
+        </div>
+      </div>
       <div v-if="fish.comment" class="comment row pt-3">
-        <user-name
-          class="font-weight-bold col-lg-2 pb-0 ml-3"
-          :uid="uid"
-        ></user-name>
-
-        <p class="align-self-center col-lg-8  ml-3 mr-3">
+        <p class="align-self-center col-12  pl-3 pr-3 ">
           {{ fish.comment }}
         </p>
       </div>
@@ -37,15 +53,18 @@
   </base-card>
 </template>
 <script>
-import UserName from "../LayoutElements/UserName.vue";
 export default {
-  components: { UserName },
+  components: {},
   props: ["fish"],
   computed: {
     uid() {
       return this.fish.user_id;
     },
+    catchId() {
+      return this.fish.catch_id;
+    },
   },
+
   methods: {
     getFormattedDate(date) {
       var year = date.getFullYear();

@@ -17,6 +17,7 @@ import StickyNav from "./components/LayoutElements/StickyNav.vue";
 import Loader from "./components/BaseElements/Loader.vue";
 import UserPhoto from "./components/LayoutElements/UserPhoto.vue";
 import UserName from "./components/LayoutElements/UserName.vue";
+import LikeButton from "./components/Social/LikeButton.vue";
 
 const app = createApp(App)
   .use(store)
@@ -32,5 +33,6 @@ app.component("sticky-nav", StickyNav);
 app.component("loader", Loader);
 app.component("user-photo", UserPhoto);
 app.component("user-name", UserName);
+app.component("like-button", LikeButton);
 
 app.mount("#app");

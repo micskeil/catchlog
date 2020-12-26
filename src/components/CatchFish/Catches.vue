@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import db from "../../firebase";
 import Fish from "../CatchFish/Fish.vue";
 
 export default {
@@ -30,9 +30,7 @@ export default {
       const user = this.$store.getters.user;
       const session_id = this.session.session_id;
 
-      firebase
-        .firestore()
-        .collection("catches/")
+      db.collection("catches/")
         .where("user_id", "==", user.uid)
         .where("session_id", "==", session_id)
         .orderBy("catch_date", "desc")
