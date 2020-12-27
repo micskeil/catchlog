@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex">
     <img
-      @click="toggleLike"
+      @click="likePost()"
       class=""
       :src="imgURL"
       width="24"
@@ -14,6 +14,7 @@
 
 <script>
 import { db } from "../../firebase.js";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   props: {
@@ -25,16 +26,19 @@ export default {
   data() {
     return {
       counter: 0,
-      allLikes: [],
-
-      userLikes: [],
-      isAlreadyLiked: false,
+      postLikes: [],
+      userNewLikes: [],
     };
   },
   computed: {
     uid() {
       return this.$store.getters.user.uid;
     },
+
+    isAlreadyLiked() {
+      return this.userLikes.includes(this.catchId);
+    },
+
     imgURL() {
       if (this.isAlreadyLiked) {
         return require("../../assets/heart_red.png");
@@ -42,99 +46,89 @@ export default {
         return require("../../assets/heart.png");
       }
     },
+
+    ...mapGetters("social", {
+      userLikes: "userLikes",
+    }),
+
     totalLikes() {
       return this.counter;
     },
   },
+
   methods: {
-    getLikes() {
-      console.log("Getting Likes");
+    ...mapActions("social", {
+      getUserLikes: "getUserLikes",
+      updateUserLikes: "updateUserLikes",
+    }),
+
+    getPostLikes() {
       const that = this;
-
-      db.collection("users")
-        .doc(this.uid)
+      db.collection("catches/" + this.catchId + "/likedBy/")
         .get()
-        .then(function(doc) {
-          if (doc.data().likes) {
-            that.userLikes = doc.data().likes;
-            that.isAlreadyLiked = that.userLikes.includes(that.catchId);
-          }
-        })
-        .catch(function(error) {
-          console.log("Error getting document:", error);
-        });
-
-      db.collection("catches")
-        .doc(that.catchId)
-        .get()
-        .then(function(doc) {
-          if (doc.data().likes) {
-            that.allLikes = doc.data().likes;
-            that.counter = that.allLikes.length;
-          } else {
-            that.counter = 0;
-          }
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            that.postLikes.push(doc.id);
+          });
+          that.counter = that.postLikes.length;
         })
         .catch(function(error) {
           console.log("Error getting document:", error);
         });
     },
 
-    async toggleLike() {
-      await this.getLikes();
-
-      console.log("All likes: " + this.userLikes);
-
+    toggleLike() {
       if (this.isAlreadyLiked) {
         this.counter = this.counter - 1;
-        this.userLikes.splice(this.userLikes.indexOf(this.catchId), 1);
-        this.allLikes.splice(this.allLikes.indexOf(this.uid), 1);
-        this.updateLikes();
-        this.isAlreadyLiked = false;
+        this.userNewLikes = this.userLikes;
+        this.userNewLikes.splice(this.userLikes.indexOf(this.catchId), 1);
+        this.postLikes.splice(this.postLikes.indexOf(this.uid), 1);
+        this.deletePostLikes();
       } else {
         this.counter = this.counter + 1;
-        this.userLikes.push(this.catchId);
-        this.allLikes.push(this.uid);
-        this.updateLikes();
-        this.isAlreadyLiked = true;
+        this.userNewLikes = this.userLikes;
+        this.userNewLikes.push(this.catchId);
+        this.postLikes.push(this.uid);
+        this.updatePostLikes();
       }
     },
 
-    updateLikes() {
+    updatePostLikes() {
       const that = this;
-
-      db.collection("users")
-        .doc(this.uid)
+      db.collection("catches/" + this.catchId + "/likedBy/")
+        .doc(that.uid)
         .set(
           {
-            likes: that.userLikes,
+            like_date: new Date(),
           },
           { merge: true }
         )
-        .then()
-        .catch(function(error) {
-          console.error("Error adding document: ", error);
-        });
-
-      db.collection("catches")
-        .doc(that.catchId)
-        .set(
-          {
-            likes: that.allLikes,
-          },
-          { merge: true }
-        )
-        .then()
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
     },
+
+    deletePostLikes() {
+      const that = this;
+      db.collection("catches/" + this.catchId + "/likedBy/")
+        .doc(that.uid)
+        .delete()
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    },
+
+    likePost() {
+      this.updatePostLikes();
+      this.toggleLike();
+      this.updateUserLikes(this.userNewLikes);
+    },
   },
+
   beforeMount() {
-    this.getLikes();
-  },
-  updated() {
-    this.getLikes();
+    this.getUserLikes();
+    this.getPostLikes();
   },
 };
 </script>

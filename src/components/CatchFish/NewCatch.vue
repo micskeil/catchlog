@@ -121,7 +121,7 @@
 
 <script>
 import firebase from "firebase";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import BaseButton from "../BaseElements/BaseButton.vue";
 
 export default {
@@ -249,11 +249,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions("session", {
-      updateIsFishing: "updateIsFishing",
-      updateTotalNumberOfSessions: "updateTotalNumberOfSessions",
-    }),
-
     parseYMDHM(s) {
       var b = s.split(/\D+/);
       return new Date(b[0], b[1] - 1, b[2], b[3], b[4], 0 || 0, 0 || 0);
