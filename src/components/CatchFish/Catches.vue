@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import db from "../../firebase";
+import { db } from "../../firebase";
 import Fish from "../CatchFish/Fish.vue";
 
 export default {
