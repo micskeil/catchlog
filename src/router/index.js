@@ -38,7 +38,7 @@ const routes = [
     path: "/settings",
     name: "Settings",
     component: Settings,
-    meta: { reuiresAuth: true },
+    meta: { requiresAuth: true },
   },
 ];
 

@@ -61,8 +61,9 @@ export default {
 img {
   width: 100%;
   height: 100%;
-  border: 1px solid #c79136;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #c79136;
-  border-radius: 100%;
+  padding: 3px;
+  border: 1px solid #c7913655;
+  box-shadow: 0 0 0 1px #fff, 0 0 0 2px #c7913655;
+  border-radius: 50%;
 }
 </style>
