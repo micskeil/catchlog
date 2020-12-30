@@ -2,21 +2,23 @@ import { db } from "../../../firebase";
 
 export default {
   getUserLikes(contex) {
-    const uid = contex.rootGetters.user.uid;
+    if (contex.rootGetters.user !== null) {
+      const uid = contex.rootGetters.user.uid;
 
-    db.collection("users")
-      .doc(uid)
-      .get()
-      .then(function(doc) {
-        if (doc.data().likes) {
-          contex.commit("setUserLikes", {
-            userLikes: doc.data().likes,
-          });
-        }
-      })
-      .catch(function(error) {
-        console.log("Error getting document:", error);
-      });
+      db.collection("users")
+        .doc(uid)
+        .get()
+        .then(function(doc) {
+          if (doc.data().likes) {
+            contex.commit("setUserLikes", {
+              userLikes: doc.data().likes,
+            });
+          }
+        })
+        .catch(function(error) {
+          console.log("Error getting document:", error);
+        });
+    }
   },
 
   updateUserLikes(contex, payload) {

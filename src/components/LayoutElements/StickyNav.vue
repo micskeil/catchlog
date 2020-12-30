@@ -103,9 +103,12 @@ export default {
     ...mapGetters("session", {
       getIsFishing: "getIsFishing",
     }),
+
     uid() {
       const user = this.$store.getters.user;
-      return user.uid;
+      if (user) {
+        return user.uid;
+      } else return "Guest";
     },
   },
 

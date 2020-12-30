@@ -12,7 +12,7 @@ const routes = [
     path: "/",
     name: "Timeline",
     component: Timeline,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
   },
   {
     path: "/home",

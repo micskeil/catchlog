@@ -54,7 +54,6 @@
 </template>
 <script>
 export default {
-  components: {},
   props: ["fish"],
   computed: {
     uid() {
