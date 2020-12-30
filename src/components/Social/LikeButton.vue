@@ -127,7 +127,10 @@ export default {
   },
 
   beforeMount() {
-    this.getUserLikes();
+    if (this.$store.getters.user !== null) {
+      this.getUserLikes();
+    }
+
     this.getPostLikes();
   },
 };

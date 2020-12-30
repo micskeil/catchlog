@@ -12,7 +12,6 @@ const routes = [
     path: "/",
     name: "Timeline",
     component: Timeline,
-    meta: { requiresAuth: false },
   },
   {
     path: "/home",
@@ -39,7 +38,7 @@ const routes = [
     path: "/settings",
     name: "Settings",
     component: Settings,
-    meta: { reuiresAuth: true },
+    meta: { requiresAuth: true },
   },
 ];
 

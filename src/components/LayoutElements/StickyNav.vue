@@ -8,7 +8,7 @@
     >
       <div
         class="navbar-brand d-flex align-content-center justify-content-center p-0"
-        href="./index.html"
+        href="/timeline"
       >
         <img
           class="ml-1 
@@ -90,10 +90,8 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import UserPhoto from "./UserPhoto.vue";
 
 export default {
-  components: { UserPhoto },
   emits: ["toggle-session-control"],
   props: ["isFishing"],
   data() {
@@ -105,10 +103,11 @@ export default {
     }),
 
     uid() {
-      const user = this.$store.getters.user;
-      if (user) {
-        return user.uid;
-      } else return "Guest";
+      if (this.$store.getters.user == null) {
+        return "Guest";
+      } else {
+        return this.$store.getters.user.uid;
+      }
     },
   },
 
