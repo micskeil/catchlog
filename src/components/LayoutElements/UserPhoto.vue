@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="" :src="updatedPhotoURL" alt="user-avatar" />
+    <img class="nav-avatar" :src="updatedPhotoURL" alt="user-avatar" />
   </div>
 </template>
 
@@ -48,7 +48,11 @@ export default {
     },
   },
   mounted() {
-    this.getPhotoUrl();
+    if (this.uid === "Guest") {
+      console.log("Hello Guest!");
+    } else {
+      this.getPhotoUrl();
+    }
   },
 };
 </script>
@@ -57,6 +61,8 @@ export default {
 img {
   width: 100%;
   height: 100%;
+  padding: 2px;
   border-radius: 100%;
+  border: 1px solid grey;
 }
 </style>
