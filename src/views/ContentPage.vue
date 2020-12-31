@@ -25,12 +25,10 @@
 </template>
 
 <script>
-import StickyNav from "../components/LayoutElements/StickyNav";
 import FishingSessions from "../components/FishingSession/FishingSessions";
 
 export default {
   components: {
-    StickyNav,
     FishingSessions,
   },
   data() {
