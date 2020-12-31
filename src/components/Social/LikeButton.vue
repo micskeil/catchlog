@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex">
     <img
-      @click="likePost()"
+      @click="toggleLike()"
       class=""
       :src="imgURL"
       width="24"
@@ -14,7 +14,6 @@
 
 <script>
 import { db } from "../../firebase.js";
-import { mapActions, mapGetters } from "vuex";
 
 export default {
   props: {
@@ -27,16 +26,12 @@ export default {
     return {
       counter: 0,
       postLikes: [],
-      userNewLikes: [],
+      isUserLiked: null,
     };
   },
   computed: {
-    uid() {
-      return this.$store.getters.user.uid;
-    },
-
     isAlreadyLiked() {
-      return this.userLikes.includes(this.catchId);
+      return this.isUserLiked;
     },
 
     imgURL() {
@@ -47,23 +42,15 @@ export default {
       }
     },
 
-    ...mapGetters("social", {
-      userLikes: "userLikes",
-    }),
-
     totalLikes() {
       return this.counter;
     },
   },
 
   methods: {
-    ...mapActions("social", {
-      getUserLikes: "getUserLikes",
-      updateUserLikes: "updateUserLikes",
-    }),
-
     getPostLikes() {
       const that = this;
+
       db.collection("catches/" + this.catchId + "/likedBy/")
         .get()
         .then(function(querySnapshot) {
@@ -78,26 +65,46 @@ export default {
         });
     },
 
+    getIsUserLiked() {
+      const that = this;
+      const uid = this.$store.getters.user.uid;
+
+      db.collection("users/" + uid + "/likedPosts")
+        .doc(this.catchId)
+        .get()
+        .then(function(doc) {
+          if (doc.data()) {
+            that.isUserLiked = true;
+          }
+        })
+        .catch(function(error) {
+          console.log("Error getting document:", error);
+        });
+    },
+
     toggleLike() {
-      if (this.isAlreadyLiked) {
-        this.counter = this.counter - 1;
-        this.userNewLikes = this.userLikes;
-        this.userNewLikes.splice(this.userLikes.indexOf(this.catchId), 1);
-        this.postLikes.splice(this.postLikes.indexOf(this.uid), 1);
-        this.deletePostLikes();
+      if (this.$store.getters.user) {
+        if (this.isAlreadyLiked) {
+          this.counter = this.counter - 1;
+          this.isUserLiked = false;
+          this.deleteUserLike();
+          this.deletePostLike();
+        } else {
+          this.counter = this.counter + 1;
+          this.isUserLiked = true;
+          this.updateUserLike();
+          this.updatePostLikes();
+        }
       } else {
-        this.counter = this.counter + 1;
-        this.userNewLikes = this.userLikes;
-        this.userNewLikes.push(this.catchId);
-        this.postLikes.push(this.uid);
-        this.updatePostLikes();
+        console.log("Log in, or sign up if you still not a member! ");
       }
     },
 
     updatePostLikes() {
-      const that = this;
+      const uid = this.$store.getters.user.uid;
+
       db.collection("catches/" + this.catchId + "/likedBy/")
-        .doc(that.uid)
+        .doc(uid)
         .set(
           {
             like_date: new Date(),
@@ -109,26 +116,48 @@ export default {
         });
     },
 
-    deletePostLikes() {
-      const that = this;
-      db.collection("catches/" + this.catchId + "/likedBy/")
-        .doc(that.uid)
-        .delete()
+    updateUserLike() {
+      const uid = this.$store.getters.user.uid;
+
+      db.collection("users/" + uid + "/likedPosts")
+        .doc(this.catchId)
+        .set(
+          {
+            like_date: new Date(),
+          },
+          { merge: true }
+        )
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
     },
 
-    likePost() {
-      this.updatePostLikes();
-      this.toggleLike();
-      this.updateUserLikes(this.userNewLikes);
+    deletePostLike() {
+      const uid = this.$store.getters.user.uid;
+
+      db.collection("catches/" + this.catchId + "/likedBy/")
+        .doc(uid)
+        .delete()
+        .catch(function(error) {
+          console.error("Can't delete the document: ", error);
+        });
+    },
+
+    deleteUserLike() {
+      const uid = this.$store.getters.user.uid;
+
+      db.collection("users/" + uid + "/likedPosts/")
+        .doc(this.catchId)
+        .delete()
+        .catch(function(error) {
+          console.error("Can't delete the document: ", error);
+        });
     },
   },
 
   beforeMount() {
     if (this.$store.getters.user !== null) {
-      this.getUserLikes();
+      this.getIsUserLiked();
     }
 
     this.getPostLikes();
