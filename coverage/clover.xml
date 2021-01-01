@@ -1,0 +1,1443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1609450562928" clover="3.2.0">
+  <project timestamp="1609450562928" name="All files">
+    <metrics statements="1050" coveredstatements="0" conditionals="20107" coveredconditionals="0" methods="8885" coveredmethods="0" elements="30042" coveredelements="0" complexity="0" loc="1050" ncloc="1050" packages="21" files="108" classes="108"/>
+    <package name="catchlog">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="babel.config.js" path="/mnt/d/OneDrive/Projects/catchlog/babel.config.js">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.coverage.lcov-report">
+      <metrics statements="106" coveredstatements="0" conditionals="323" coveredconditionals="0" methods="52" coveredmethods="0"/>
+      <file name="block-navigation.js" path="/mnt/d/OneDrive/Projects/catchlog/coverage/lcov-report/block-navigation.js">
+        <metrics statements="28" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+      </file>
+      <file name="prettify.js" path="/mnt/d/OneDrive/Projects/catchlog/coverage/lcov-report/prettify.js">
+        <metrics statements="1" coveredstatements="0" conditionals="286" coveredconditionals="0" methods="29" coveredmethods="0"/>
+        <line num="2" count="0" type="cond" truecount="0" falsecount="286"/>
+      </file>
+      <file name="sorter.js" path="/mnt/d/OneDrive/Projects/catchlog/coverage/lcov-report/sorter.js">
+        <metrics statements="77" coveredstatements="0" conditionals="22" coveredconditionals="0" methods="17" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="86" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="94" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="121" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
+        <line num="135" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="145" count="0" type="stmt"/>
+        <line num="146" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="150" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="159" count="0" type="stmt"/>
+        <line num="160" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="163" count="0" type="stmt"/>
+        <line num="164" count="0" type="stmt"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="166" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js">
+      <metrics statements="184" coveredstatements="0" conditionals="19515" coveredconditionals="0" methods="8538" coveredmethods="0"/>
+      <file name="chunk-vendors.22d30cc7.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/chunk-vendors.22d30cc7.js">
+        <metrics statements="184" coveredstatements="0" conditionals="19515" coveredconditionals="0" methods="8538" coveredmethods="0"/>
+        <line num="1" count="0" type="cond" truecount="0" falsecount="261"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="37"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="38"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="66" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="82" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="98" count="0" type="cond" truecount="0" falsecount="9"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="146" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="162" count="0" type="stmt"/>
+        <line num="178" count="0" type="cond" truecount="0" falsecount="22"/>
+        <line num="194" count="0" type="cond" truecount="0" falsecount="29"/>
+        <line num="210" count="0" type="cond" truecount="0" falsecount="46"/>
+        <line num="226" count="0" type="cond" truecount="0" falsecount="9"/>
+        <line num="242" count="0" type="cond" truecount="0" falsecount="55"/>
+        <line num="258" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="274" count="0" type="cond" truecount="0" falsecount="11"/>
+        <line num="290" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="306" count="0" type="cond" truecount="0" falsecount="19"/>
+        <line num="322" count="0" type="stmt"/>
+        <line num="338" count="0" type="cond" truecount="0" falsecount="14"/>
+        <line num="354" count="0" type="stmt"/>
+        <line num="371" count="0" type="stmt"/>
+        <line num="387" count="0" type="cond" truecount="0" falsecount="58"/>
+        <line num="403" count="0" type="cond" truecount="0" falsecount="22"/>
+        <line num="419" count="0" type="cond" truecount="0" falsecount="35"/>
+        <line num="435" count="0" type="cond" truecount="0" falsecount="45"/>
+        <line num="451" count="0" type="cond" truecount="0" falsecount="16"/>
+        <line num="467" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="483" count="0" type="stmt"/>
+        <line num="499" count="0" type="cond" truecount="0" falsecount="137"/>
+        <line num="515" count="0" type="cond" truecount="0" falsecount="80"/>
+        <line num="531" count="0" type="cond" truecount="0" falsecount="14"/>
+        <line num="547" count="0" type="cond" truecount="0" falsecount="25"/>
+        <line num="563" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="579" count="0" type="cond" truecount="0" falsecount="44"/>
+        <line num="595" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="611" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="628" count="0" type="cond" truecount="0" falsecount="18"/>
+        <line num="661" count="0" type="cond" truecount="0" falsecount="10"/>
+        <line num="677" count="0" type="cond" truecount="0" falsecount="14"/>
+        <line num="693" count="0" type="cond" truecount="0" falsecount="30"/>
+        <line num="726" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="742" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="758" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="774" count="0" type="cond" truecount="0" falsecount="22"/>
+        <line num="790" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="806" count="0" type="cond" truecount="0" falsecount="50"/>
+        <line num="822" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="839" count="0" type="stmt"/>
+        <line num="855" count="0" type="cond" truecount="0" falsecount="86"/>
+        <line num="871" count="0" type="cond" truecount="0" falsecount="30"/>
+        <line num="887" count="0" type="cond" truecount="0" falsecount="24"/>
+        <line num="920" count="0" type="cond" truecount="0" falsecount="24"/>
+        <line num="936" count="0" type="cond" truecount="0" falsecount="46"/>
+        <line num="952" count="0" type="cond" truecount="0" falsecount="37"/>
+        <line num="968" count="0" type="cond" truecount="0" falsecount="37"/>
+        <line num="984" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="1000" count="0" type="cond" truecount="0" falsecount="17"/>
+        <line num="1016" count="0" type="stmt"/>
+        <line num="1032" count="0" type="cond" truecount="0" falsecount="24"/>
+        <line num="1048" count="0" type="cond" truecount="0" falsecount="31"/>
+        <line num="1064" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="1080" count="0" type="cond" truecount="0" falsecount="18"/>
+        <line num="1096" count="0" type="cond" truecount="0" falsecount="32"/>
+        <line num="1112" count="0" type="cond" truecount="0" falsecount="9"/>
+        <line num="1128" count="0" type="cond" truecount="0" falsecount="62"/>
+        <line num="1144" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="1160" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="1176" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="1192" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="1209" count="0" type="stmt"/>
+        <line num="1226" count="0" type="cond" truecount="0" falsecount="34"/>
+        <line num="1242" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="1258" count="0" type="cond" truecount="0" falsecount="56"/>
+        <line num="1274" count="0" type="cond" truecount="0" falsecount="59"/>
+        <line num="1290" count="0" type="cond" truecount="0" falsecount="16"/>
+        <line num="1306" count="0" type="cond" truecount="0" falsecount="35"/>
+        <line num="1322" count="0" type="cond" truecount="0" falsecount="14"/>
+        <line num="1338" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1354" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="1370" count="0" type="cond" truecount="0" falsecount="80"/>
+        <line num="1386" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="1402" count="0" type="cond" truecount="0" falsecount="31"/>
+        <line num="1435" count="0" type="cond" truecount="0" falsecount="22"/>
+        <line num="1452" count="0" type="cond" truecount="0" falsecount="10"/>
+        <line num="1469" count="0" type="stmt"/>
+        <line num="1486" count="0" type="cond" truecount="0" falsecount="232"/>
+        <line num="1491" count="0" type="cond" truecount="0" falsecount="326"/>
+        <line num="1496" count="0" type="cond" truecount="0" falsecount="3344"/>
+        <line num="1511" count="0" type="cond" truecount="0" falsecount="331"/>
+        <line num="1544" count="0" type="cond" truecount="0" falsecount="11"/>
+        <line num="1560" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="1576" count="0" type="cond" truecount="0" falsecount="36"/>
+        <line num="1592" count="0" type="cond" truecount="0" falsecount="10"/>
+        <line num="1608" count="0" type="stmt"/>
+        <line num="1624" count="0" type="cond" truecount="0" falsecount="11"/>
+        <line num="1641" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="1657" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="1674" count="0" type="cond" truecount="0" falsecount="68"/>
+        <line num="1690" count="0" type="cond" truecount="0" falsecount="34"/>
+        <line num="1706" count="0" type="cond" truecount="0" falsecount="22"/>
+        <line num="1722" count="0" type="stmt"/>
+        <line num="1737" count="0" type="stmt"/>
+        <line num="1753" count="0" type="cond" truecount="0" falsecount="4237"/>
+        <line num="1770" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="1802" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="1818" count="0" type="cond" truecount="0" falsecount="24"/>
+        <line num="1834" count="0" type="cond" truecount="0" falsecount="7"/>
+        <line num="1850" count="0" type="cond" truecount="0" falsecount="9"/>
+        <line num="1866" count="0" type="cond" truecount="0" falsecount="75"/>
+        <line num="1898" count="0" type="cond" truecount="0" falsecount="7"/>
+        <line num="1914" count="0" type="cond" truecount="0" falsecount="54"/>
+        <line num="1946" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="1962" count="0" type="cond" truecount="0" falsecount="40"/>
+        <line num="1979" count="0" type="cond" truecount="0" falsecount="102"/>
+        <line num="1996" count="0" type="cond" truecount="0" falsecount="18"/>
+        <line num="2012" count="0" type="cond" truecount="0" falsecount="138"/>
+        <line num="2028" count="0" type="stmt"/>
+        <line num="2044" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="2060" count="0" type="cond" truecount="0" falsecount="14"/>
+        <line num="2076" count="0" type="cond" truecount="0" falsecount="186"/>
+        <line num="2092" count="0" type="cond" truecount="0" falsecount="166"/>
+        <line num="2108" count="0" type="cond" truecount="0" falsecount="41"/>
+        <line num="2124" count="0" type="cond" truecount="0" falsecount="143"/>
+        <line num="2140" count="0" type="cond" truecount="0" falsecount="206"/>
+        <line num="2156" count="0" type="cond" truecount="0" falsecount="54"/>
+        <line num="2172" count="0" type="stmt"/>
+        <line num="2188" count="0" type="cond" truecount="0" falsecount="110"/>
+        <line num="2204" count="0" type="cond" truecount="0" falsecount="44"/>
+        <line num="2220" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="2236" count="0" type="cond" truecount="0" falsecount="119"/>
+        <line num="2252" count="0" type="cond" truecount="0" falsecount="18"/>
+        <line num="2268" count="0" type="cond" truecount="0" falsecount="22"/>
+        <line num="2284" count="0" type="cond" truecount="0" falsecount="37"/>
+        <line num="2300" count="0" type="cond" truecount="0" falsecount="48"/>
+        <line num="2316" count="0" type="cond" truecount="0" falsecount="53"/>
+        <line num="2332" count="0" type="stmt"/>
+        <line num="2348" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="2364" count="0" type="cond" truecount="0" falsecount="17"/>
+        <line num="2380" count="0" type="stmt"/>
+        <line num="2396" count="0" type="cond" truecount="0" falsecount="227"/>
+        <line num="2412" count="0" type="cond" truecount="0" falsecount="327"/>
+        <line num="2428" count="0" type="cond" truecount="0" falsecount="61"/>
+        <line num="2460" count="0" type="cond" truecount="0" falsecount="495"/>
+        <line num="2476" count="0" type="cond" truecount="0" falsecount="185"/>
+        <line num="2508" count="0" type="cond" truecount="0" falsecount="50"/>
+        <line num="2524" count="0" type="cond" truecount="0" falsecount="7"/>
+        <line num="2540" count="0" type="cond" truecount="0" falsecount="68"/>
+        <line num="2556" count="0" type="cond" truecount="0" falsecount="47"/>
+        <line num="2572" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="2588" count="0" type="cond" truecount="0" falsecount="8"/>
+        <line num="2604" count="0" type="cond" truecount="0" falsecount="21"/>
+        <line num="2620" count="0" type="cond" truecount="0" falsecount="57"/>
+        <line num="2636" count="0" type="cond" truecount="0" falsecount="39"/>
+        <line num="2652" count="0" type="cond" truecount="0" falsecount="150"/>
+        <line num="2668" count="0" type="cond" truecount="0" falsecount="171"/>
+        <line num="2684" count="0" type="cond" truecount="0" falsecount="71"/>
+        <line num="2700" count="0" type="cond" truecount="0" falsecount="63"/>
+        <line num="2732" count="0" type="cond" truecount="0" falsecount="173"/>
+        <line num="2748" count="0" type="cond" truecount="0" falsecount="9"/>
+        <line num="2780" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="2795" count="0" type="cond" truecount="0" falsecount="1418"/>
+        <line num="2811" count="0" type="cond" truecount="0" falsecount="63"/>
+        <line num="2827" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="2843" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="2859" count="0" type="stmt"/>
+        <line num="2875" count="0" type="cond" truecount="0" falsecount="587"/>
+        <line num="2892" count="0" type="cond" truecount="0" falsecount="392"/>
+        <line num="2909" count="0" type="stmt"/>
+        <line num="2925" count="0" type="cond" truecount="0" falsecount="114"/>
+        <line num="2942" count="0" type="cond" truecount="0" falsecount="41"/>
+        <line num="2959" count="0" type="cond" truecount="0" falsecount="205"/>
+        <line num="2975" count="0" type="cond" truecount="0" falsecount="28"/>
+        <line num="2991" count="0" type="cond" truecount="0" falsecount="412"/>
+        <line num="3007" count="0" type="cond" truecount="0" falsecount="7"/>
+        <line num="3023" count="0" type="cond" truecount="0" falsecount="394"/>
+        <line num="3039" count="0" type="cond" truecount="0" falsecount="721"/>
+        <line num="3055" count="0" type="stmt"/>
+        <line num="3072" count="0" type="cond" truecount="0" falsecount="111"/>
+        <line num="3089" count="0" type="cond" truecount="0" falsecount="84"/>
+        <line num="3105" count="0" type="cond" truecount="0" falsecount="108"/>
+        <line num="3121" count="0" type="cond" truecount="0" falsecount="6"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src">
+      <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="App.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/App.vue">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="App.vue?dfb6" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/App.vue?dfb6">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="App.vue?f7d7" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/App.vue?f7d7">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="firebase.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/firebase.js">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+      </file>
+      <file name="main.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/main.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.assets">
+      <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
+      <file name="add-catch.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/add-catch.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="bookmark.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/bookmark.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="fishing.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/fishing.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="heart.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/heart.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="heart_red.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/heart_red.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="home.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/home.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="location.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/location.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="logo.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/logo.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="message.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/message.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="start_fishing.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/start_fishing.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="stop_fishing.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/stop_fishing.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.assets.img">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="user_1.png" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/assets/img/user_1.png">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.components.BaseElements">
+      <metrics statements="42" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="15" coveredmethods="0"/>
+      <file name="BaseButton.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseButton.vue">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="BaseButton.vue?3de3" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseButton.vue?3de3">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="BaseButton.vue?67a2" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseButton.vue?67a2">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="BaseCard.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseCard.vue">
+        <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+      </file>
+      <file name="BaseCard.vue?4eb6" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseCard.vue?4eb6">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="BaseCard.vue?7c2f" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseCard.vue?7c2f">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="BaseLayout.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseLayout.vue">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+      </file>
+      <file name="BaseLayout.vue?3bda" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseLayout.vue?3bda">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="BaseLayout.vue?e648" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseLayout.vue?e648">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="BaseOverlay.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseOverlay.vue">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="BaseOverlay.vue?0c77" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseOverlay.vue?0c77">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="BaseOverlay.vue?acf0" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/BaseOverlay.vue?acf0">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="Loader.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/Loader.vue">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="Loader.vue?373f" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/Loader.vue?373f">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="Loader.vue?afb6" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/BaseElements/Loader.vue?afb6">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.components.CatchFish">
+      <metrics statements="134" coveredstatements="0" conditionals="49" coveredconditionals="0" methods="46" coveredmethods="0"/>
+      <file name="Catches.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/Catches.vue">
+        <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+      </file>
+      <file name="Catches.vue?ad69" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/Catches.vue?ad69">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="Catches.vue?ea92" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/Catches.vue?ea92">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="Fish.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/Fish.vue">
+        <metrics statements="26" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+      </file>
+      <file name="Fish.vue?0831" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/Fish.vue?0831">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="Fish.vue?ec19" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/Fish.vue?ec19">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="NewCatch.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/NewCatch.vue">
+        <metrics statements="85" coveredstatements="0" conditionals="41" coveredconditionals="0" methods="30" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="63" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="96" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="106" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="244" count="0" type="stmt"/>
+        <line num="247" count="0" type="stmt"/>
+        <line num="248" count="0" type="stmt"/>
+        <line num="253" count="0" type="stmt"/>
+        <line num="254" count="0" type="stmt"/>
+        <line num="258" count="0" type="stmt"/>
+        <line num="263" count="0" type="stmt"/>
+        <line num="264" count="0" type="stmt"/>
+        <line num="265" count="0" type="stmt"/>
+        <line num="266" count="0" type="stmt"/>
+        <line num="268" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="269" count="0" type="stmt"/>
+        <line num="271" count="0" type="stmt"/>
+        <line num="272" count="0" type="stmt"/>
+        <line num="273" count="0" type="stmt"/>
+        <line num="281" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="282" count="0" type="stmt"/>
+        <line num="283" count="0" type="stmt"/>
+        <line num="284" count="0" type="stmt"/>
+        <line num="285" count="0" type="stmt"/>
+        <line num="287" count="0" type="stmt"/>
+        <line num="290" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="311" count="0" type="stmt"/>
+        <line num="316" count="0" type="stmt"/>
+        <line num="322" count="0" type="stmt"/>
+        <line num="323" count="0" type="stmt"/>
+        <line num="335" count="0" type="stmt"/>
+        <line num="340" count="0" type="stmt"/>
+        <line num="341" count="0" type="stmt"/>
+        <line num="342" count="0" type="stmt"/>
+        <line num="344" count="0" type="stmt"/>
+        <line num="347" count="0" type="stmt"/>
+        <line num="348" count="0" type="stmt"/>
+        <line num="353" count="0" type="stmt"/>
+        <line num="354" count="0" type="stmt"/>
+        <line num="356" count="0" type="stmt"/>
+        <line num="357" count="0" type="stmt"/>
+        <line num="359" count="0" type="stmt"/>
+        <line num="373" count="0" type="stmt"/>
+        <line num="378" count="0" type="stmt"/>
+        <line num="380" count="0" type="stmt"/>
+        <line num="382" count="0" type="stmt"/>
+        <line num="383" count="0" type="stmt"/>
+        <line num="385" count="0" type="stmt"/>
+        <line num="386" count="0" type="stmt"/>
+        <line num="392" count="0" type="stmt"/>
+        <line num="395" count="0" type="stmt"/>
+        <line num="399" count="0" type="stmt"/>
+        <line num="403" count="0" type="stmt"/>
+        <line num="408" count="0" type="stmt"/>
+        <line num="410" count="0" type="stmt"/>
+        <line num="420" count="0" type="stmt"/>
+        <line num="425" count="0" type="stmt"/>
+        <line num="429" count="0" type="stmt"/>
+        <line num="430" count="0" type="stmt"/>
+        <line num="431" count="0" type="stmt"/>
+        <line num="432" count="0" type="stmt"/>
+        <line num="436" count="0" type="stmt"/>
+      </file>
+      <file name="NewCatch.vue?799c" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/NewCatch.vue?799c">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="NewCatch.vue?d69d" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/CatchFish/NewCatch.vue?d69d">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.components.FishingSession">
+      <metrics statements="136" coveredstatements="0" conditionals="38" coveredconditionals="0" methods="49" coveredmethods="0"/>
+      <file name="Ending.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/Ending.vue">
+        <metrics statements="30" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="121" count="0" type="stmt"/>
+        <line num="126" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
+      </file>
+      <file name="Ending.vue?ac89" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/Ending.vue?ac89">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="Ending.vue?d0c6" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/Ending.vue?d0c6">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessionEnd.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessionEnd.vue">
+        <metrics statements="17" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessionEnd.vue?2ec8" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessionEnd.vue?2ec8">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessionEnd.vue?f2cb" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessionEnd.vue?f2cb">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessionStart.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessionStart.vue">
+        <metrics statements="17" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessionStart.vue?037d" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessionStart.vue?037d">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessionStart.vue?f8d6" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessionStart.vue?f8d6">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessions.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessions.vue">
+        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessions.vue?8d7e" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessions.vue?8d7e">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="FishingSessions.vue?e42d" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/FishingSessions.vue?e42d">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="Starting.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/Starting.vue">
+        <metrics statements="44" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="16" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="118" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="135" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="137" count="0" type="stmt"/>
+        <line num="140" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="162" count="0" type="stmt"/>
+        <line num="167" count="0" type="stmt"/>
+        <line num="168" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="180" count="0" type="stmt"/>
+        <line num="184" count="0" type="stmt"/>
+        <line num="189" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="195" count="0" type="stmt"/>
+        <line num="196" count="0" type="stmt"/>
+        <line num="201" count="0" type="stmt"/>
+        <line num="202" count="0" type="stmt"/>
+        <line num="203" count="0" type="stmt"/>
+        <line num="208" count="0" type="stmt"/>
+      </file>
+      <file name="Starting.vue?56cc" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/Starting.vue?56cc">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="Starting.vue?8675" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/FishingSession/Starting.vue?8675">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.components.LayoutElements">
+      <metrics statements="53" coveredstatements="0" conditionals="25" coveredconditionals="0" methods="25" coveredmethods="0"/>
+      <file name="StickyNav.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/StickyNav.vue">
+        <metrics statements="26" coveredstatements="0" conditionals="17" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="121" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="126" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+      </file>
+      <file name="StickyNav.vue?0980" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/StickyNav.vue?0980">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="StickyNav.vue?e59f" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/StickyNav.vue?e59f">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="UserName.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/UserName.vue">
+        <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+      </file>
+      <file name="UserName.vue?3510" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/UserName.vue?3510">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="UserName.vue?cca9" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/UserName.vue?cca9">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="UserPhoto.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/UserPhoto.vue">
+        <metrics statements="9" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+      </file>
+      <file name="UserPhoto.vue?a4ac" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/UserPhoto.vue?a4ac">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="UserPhoto.vue?e5f3" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/LayoutElements/UserPhoto.vue?e5f3">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.components.Settings">
+      <metrics statements="65" coveredstatements="0" conditionals="33" coveredconditionals="0" methods="28" coveredmethods="0"/>
+      <file name="ProfileSettings.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/Settings/ProfileSettings.vue">
+        <metrics statements="62" coveredstatements="0" conditionals="33" coveredconditionals="0" methods="27" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="113" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="153" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="159" count="0" type="stmt"/>
+        <line num="162" count="0" type="stmt"/>
+        <line num="163" count="0" type="stmt"/>
+        <line num="164" count="0" type="stmt"/>
+        <line num="166" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="167" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="171" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="182" count="0" type="stmt"/>
+        <line num="184" count="0" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="188" count="0" type="stmt"/>
+        <line num="193" count="0" type="stmt"/>
+        <line num="194" count="0" type="stmt"/>
+        <line num="196" count="0" type="stmt"/>
+        <line num="197" count="0" type="stmt"/>
+        <line num="199" count="0" type="stmt"/>
+        <line num="204" count="0" type="stmt"/>
+        <line num="209" count="0" type="stmt"/>
+        <line num="211" count="0" type="stmt"/>
+        <line num="213" count="0" type="stmt"/>
+        <line num="214" count="0" type="stmt"/>
+        <line num="216" count="0" type="stmt"/>
+        <line num="217" count="0" type="stmt"/>
+        <line num="223" count="0" type="stmt"/>
+        <line num="226" count="0" type="stmt"/>
+        <line num="230" count="0" type="stmt"/>
+        <line num="234" count="0" type="stmt"/>
+        <line num="239" count="0" type="stmt"/>
+        <line num="241" count="0" type="stmt"/>
+        <line num="251" count="0" type="stmt"/>
+      </file>
+      <file name="ProfileSettings.vue?0110" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/Settings/ProfileSettings.vue?0110">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="ProfileSettings.vue?96a1" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/Settings/ProfileSettings.vue?96a1">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.components.Social">
+      <metrics statements="34" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="14" coveredmethods="0"/>
+      <file name="LikeButton.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/Social/LikeButton.vue">
+        <metrics statements="32" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="14" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="159" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+      <file name="LikeButton.vue?7169" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/components/Social/LikeButton.vue?7169">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.router">
+      <metrics statements="5" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/router/index.js">
+        <metrics statements="5" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="58" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.store">
+      <metrics statements="27" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="index.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/store/index.js">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="sessionstates.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/store/sessionstates.js">
+        <metrics statements="26" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.store.modules.auth">
+      <metrics statements="18" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="actions.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/store/modules/auth/actions.js">
+        <metrics statements="10" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="68" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="70" count="0" type="stmt"/>
+      </file>
+      <file name="getters.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/store/modules/auth/getters.js">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+      <file name="index.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/store/modules/auth/index.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+      <file name="mutations.js" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/store/modules/auth/mutations.js">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.src.views">
+      <metrics statements="86" coveredstatements="0" conditionals="38" coveredconditionals="0" methods="43" coveredmethods="0"/>
+      <file name="ForgotPassword.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/ForgotPassword.vue">
+        <metrics statements="12" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+      </file>
+      <file name="ForgotPassword.vue?26ed" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/ForgotPassword.vue?26ed">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="Home.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Home.vue">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+      </file>
+      <file name="Home.vue?ab8c" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Home.vue?ab8c">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="Home.vue?bd31" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Home.vue?bd31">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="Login.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Login.vue">
+        <metrics statements="17" coveredstatements="0" conditionals="18" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="9"/>
+        <line num="82" count="0" type="stmt"/>
+      </file>
+      <file name="Login.vue?d178" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Login.vue?d178">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="Login.vue?e63b" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Login.vue?e63b">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="Settings.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Settings.vue">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+      </file>
+      <file name="Settings.vue?e8e9" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Settings.vue?e8e9">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="Settings.vue?fcb5" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Settings.vue?fcb5">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+      <file name="Signup.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Signup.vue">
+        <metrics statements="16" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="63" count="0" type="cond" truecount="0" falsecount="4"/>
+      </file>
+      <file name="Signup.vue?c77e" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Signup.vue?c77e">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="Timeline.vue" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Timeline.vue">
+        <metrics statements="14" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="2" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+      </file>
+      <file name="Timeline.vue?a193" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/src/views/Timeline.vue?a193">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.dist.js.webpack:.webpack">
+      <metrics statements="46" coveredstatements="0" conditionals="40" coveredconditionals="0" methods="12" coveredmethods="0"/>
+      <file name="bootstrap" path="/mnt/d/OneDrive/Projects/catchlog/dist/js/webpack:/webpack/bootstrap">
+        <metrics statements="46" coveredstatements="0" conditionals="40" coveredconditionals="0" methods="12" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="68" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="97" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="104" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="117" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="118" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="122" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="128" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="129" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="141" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="143" count="0" type="stmt"/>
+        <line num="145" count="0" type="stmt"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.src">
+      <metrics statements="20" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="firebase.js" path="/mnt/d/OneDrive/Projects/catchlog/src/firebase.js">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+      </file>
+      <file name="main.js" path="/mnt/d/OneDrive/Projects/catchlog/src/main.js">
+        <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+      </file>
+      <file name="main_backup.js" path="/mnt/d/OneDrive/Projects/catchlog/src/main_backup.js">
+        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.src.router">
+      <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.js" path="/mnt/d/OneDrive/Projects/catchlog/src/router/index.js">
+        <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.src.store">
+      <metrics statements="33" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="20" coveredmethods="0"/>
+      <file name="index.js" path="/mnt/d/OneDrive/Projects/catchlog/src/store/index.js">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="sessionstates.js" path="/mnt/d/OneDrive/Projects/catchlog/src/store/sessionstates.js">
+        <metrics statements="33" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="20" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="90" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="catchlog.src.store.modules.auth">
+      <metrics statements="30" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <file name="actions.js" path="/mnt/d/OneDrive/Projects/catchlog/src/store/modules/auth/actions.js">
+        <metrics statements="21" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+      </file>
+      <file name="getters.js" path="/mnt/d/OneDrive/Projects/catchlog/src/store/modules/auth/getters.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+      <file name="index.js" path="/mnt/d/OneDrive/Projects/catchlog/src/store/modules/auth/index.js">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+      <file name="mutations.js" path="/mnt/d/OneDrive/Projects/catchlog/src/store/modules/auth/mutations.js">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
