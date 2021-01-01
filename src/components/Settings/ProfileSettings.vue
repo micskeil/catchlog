@@ -97,7 +97,6 @@ export default {
       return this.$store.getters.user.uid;
     },
   },
-  watch: {},
 
   methods: {
     getUser() {

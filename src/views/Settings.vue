@@ -1,11 +1,11 @@
 <template>
   <div class="container-fluid d-flex flex-column align-items-center">
-    <StickyNav />
+    <sticky-nav></sticky-nav>
     <div class=" container  d-flex justify-content-between row">
       <main
         class="content col-md-8 d-flex flex-column align-items-center m-0  pr-1 pl-1  pb-5"
       >
-        <Settings />
+        <ProfileSettings />
       </main>
       <div class="side-bar d-none d-md-block col-md-4 p-3">
         <div class="side-bar-content">
@@ -25,14 +25,9 @@
 </template>
 
 <script>
-import StickyNav from "../components/LayoutElements/StickyNav";
-import Settings from "../components/Settings/ProfileSettings";
-
+import ProfileSettings from "../components/Settings/ProfileSettings.vue";
 export default {
-  components: {
-    StickyNav,
-    Settings,
-  },
+  components: { ProfileSettings },
   data() {
     return {};
   },
