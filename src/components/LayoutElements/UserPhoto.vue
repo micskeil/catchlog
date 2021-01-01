@@ -48,7 +48,7 @@ export default {
     },
   },
   mounted() {
-    if (this.uid === "Guest") {
+    if (this.uid === "Guest" || this.uid === "") {
       console.log("Hello Guest!");
     } else {
       this.getPhotoUrl();
