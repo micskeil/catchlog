@@ -30,6 +30,14 @@
                 ><img class="nav-icon" src="../../assets/home.png" alt="home"
               /></a>
             </li>
+            <li class="nav-item active" v-on:click="goLikes">
+              <a class="nav-link"
+                ><img
+                  class="nav-icon"
+                  src="../../assets/heart-menu.png"
+                  alt="home"
+              /></a>
+            </li>
             <li class="nav-item active" v-on:click="goHome">
               <a class="nav-link"
                 ><img class="nav-icon" src="../../assets/fishing.png" alt="home"
@@ -127,6 +135,9 @@ export default {
     },
     goHome() {
       this.$router.push({ name: "Home" });
+    },
+    goLikes() {
+      this.$router.push({ name: "Likes" });
     },
   },
   mounted() {},

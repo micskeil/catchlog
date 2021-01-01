@@ -2,11 +2,11 @@
   <div class="container-fluid d-flex flex-column align-items-center ">
     <slot name="header"></slot>
 
-    <div class="container  d-flex justify-content-between row">
+    <div class="container d-flex justify-content-between row">
       <div
         class="content col-md-8 d-flex flex-column align-items-center m-0 pr-2 pl-2"
       >
-        <slot name="main"></slot>
+        <slot class="main" name="main"></slot>
       </div>
 
       <div class="side-bar d-none d-md-block col-md-4 p-3 pl-3">
@@ -24,6 +24,10 @@
 </template>
 
 <style lang="scss" scoped>
+.main {
+  width: 100%;
+}
+
 .side-bar-content {
   position: sticky;
   top: 2rem;

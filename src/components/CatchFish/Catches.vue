@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-for="fish in loadedCatches" v-bind:key="fish.catch_id">
-      <Fish v-bind:fish="fish" />
+    <div v-for="postId in loadedCatches" v-bind:key="postId">
+      <Fish v-bind:postId="postId" />
     </div>
   </div>
 </template>
@@ -36,20 +36,9 @@ export default {
         .orderBy("catch_date", "desc")
         .get()
         .then(function(querySnapshot) {
-          const results = [];
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
-            results.push({
-              catch_id: doc.id,
-              catch_date: new Date(doc.data().catch_date.seconds * 1000),
-              species: doc.data().species,
-              lenght: doc.data().lenght,
-              comment: doc.data().comment,
-              user_id: doc.data().user_id,
-              weight: doc.data().weight,
-              image_src: doc.data().image_src,
-            });
-            that.catches = results;
+            that.catches.push(doc.id);
           });
         })
         .catch((error) => {

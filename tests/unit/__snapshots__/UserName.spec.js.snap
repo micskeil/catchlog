@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserName should give back the defaultPhoto if no uid prop provided  1`] = `
+<div>
+  Guest
+</div>
+`;
+
+exports[`UserName should render to a snapshot when list has items 1`] = `
+<div>
+  Guest
+</div>
+`;

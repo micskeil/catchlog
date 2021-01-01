@@ -28,11 +28,12 @@
 <script>
 import UserName from "../LayoutElements/UserName.vue";
 import UserPhoto from "../LayoutElements/UserPhoto.vue";
+
 export default {
   props: {
     uid: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   components: { UserPhoto, UserName },
@@ -51,7 +52,6 @@ export default {
 
 .card {
   width: 100%;
-  height: fit-content;
 }
 
 .user-img {

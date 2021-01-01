@@ -2,23 +2,23 @@
   <base-card v-bind:uid="uid">
     <template v-slot:user-info>
       <div class="catch-date pr-3 d-flex align-self-center align-content-end">
-        {{ getFormattedDate(fish.catch_date) }}
+        {{ getFormattedDate(post.catch_date) }}
       </div>
     </template>
     <template v-slot:card-img>
       <img
-        v-bind:src="fish.image_src"
+        v-bind:src="post.image_src"
         class="card-img"
         alt="img_uploaded_by_user"
       />
       <div class="fish-info d-flex justify-content-between">
         <div class="species card-text pl-3 font-weight-bold">
-          {{ fish.species }}
+          {{ post.species }}
         </div>
 
         <div class="size d-flex justify-content-end mr-3  align-content-end">
           <p class="measures align-self-center">
-            Méret: &nbsp; {{ fish.weight }} kg, {{ fish.lenght }} cm
+            Méret: &nbsp; {{ post.weight }} kg, {{ post.lenght }} cm
           </p>
         </div>
       </div>
@@ -43,9 +43,9 @@
           />
         </div>
       </div>
-      <div v-if="fish.comment" class="comment row pt-3">
+      <div v-if="post.comment" class="comment row pt-3">
         <p class="align-self-center col-12  pl-3 pr-3 ">
-          {{ fish.comment }}
+          {{ post.comment }}
         </p>
       </div>
     </template>
@@ -53,34 +53,75 @@
   </base-card>
 </template>
 <script>
+import { db } from "../../firebase";
+
 export default {
-  props: ["fish"],
+  props: {
+    postId: {
+      type: String,
+      required: true,
+    },
+  },
+
+  data() {
+    return {
+      post: {},
+    };
+  },
   computed: {
     uid() {
-      return this.fish.user_id;
+      return this.post.user_id;
     },
     catchId() {
-      return this.fish.catch_id;
+      return this.postId;
     },
   },
 
   methods: {
     getFormattedDate(date) {
-      var year = date.getFullYear();
-      var month = (1 + date.getMonth()).toString();
-      month = month.length > 1 ? month : "0" + month;
+      if (date) {
+        var year = date.getFullYear();
+        var month = (1 + date.getMonth()).toString();
+        month = month.length > 1 ? month : "0" + month;
 
-      var day = date.getDate().toString();
-      day = day.length > 1 ? day : "0" + day;
+        var day = date.getDate().toString();
+        day = day.length > 1 ? day : "0" + day;
 
-      var hour = date.getHours().toString();
-      hour = hour.length > 1 ? hour : "0" + hour;
+        var hour = date.getHours().toString();
+        hour = hour.length > 1 ? hour : "0" + hour;
 
-      var minute = date.getMinutes().toString();
-      minute = minute.length > 1 ? minute : "0" + minute;
+        var minute = date.getMinutes().toString();
+        minute = minute.length > 1 ? minute : "0" + minute;
 
-      return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+        return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+      }
     },
+
+    loadPosts() {
+      const that = this;
+
+      db.collection("catches/")
+        .doc(that.postId)
+        .get()
+        .then(function(doc) {
+          that.post = {
+            catch_id: doc.id,
+            catch_date: new Date(doc.data().catch_date.seconds * 1000),
+            comment: doc.data().comment,
+            species: doc.data().species,
+            lenght: doc.data().lenght,
+            user_id: doc.data().user_id,
+            weight: doc.data().weight,
+            image_src: doc.data().image_src,
+          };
+        })
+        .then(() => {
+          that.isLoading = false;
+        });
+    },
+  },
+  beforeMount() {
+    this.loadPosts();
   },
 };
 </script>

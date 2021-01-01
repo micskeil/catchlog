@@ -11,7 +11,7 @@ export default {
   props: {
     uid: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   data() {
@@ -26,6 +26,11 @@ export default {
       } else {
         return this.photoURL;
       }
+    },
+  },
+  watch: {
+    uid: function() {
+      this.getPhotoUrl();
     },
   },
   methods: {
@@ -48,9 +53,7 @@ export default {
     },
   },
   mounted() {
-    if (this.uid === "Guest" || this.uid === "") {
-      console.log("Hello Guest!");
-    } else {
+    if (this.uid !== undefined || this.uid === "") {
       this.getPhotoUrl();
     }
   },

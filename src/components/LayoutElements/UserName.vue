@@ -11,7 +11,7 @@ export default {
   props: {
     uid: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   data() {
@@ -22,6 +22,11 @@ export default {
   computed: {
     updatedDisplayName() {
       return this.displayName;
+    },
+  },
+  watch: {
+    uid: function() {
+      this.getDisplayName();
     },
   },
   methods: {
@@ -44,7 +49,9 @@ export default {
     },
   },
   mounted() {
-    this.getDisplayName();
+    if (this.uid !== undefined) {
+      this.getDisplayName();
+    }
   },
 };
 </script>

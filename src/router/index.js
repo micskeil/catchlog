@@ -4,6 +4,7 @@ import Timeline from "../views/Timeline.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import ForgotPassword from "../views/ForgotPassword.vue";
+import LikedPosts from "../views/LikedPosts.vue";
 import Settings from "../views/Settings.vue";
 import store from "../store/index.js";
 
@@ -12,6 +13,12 @@ const routes = [
     path: "/",
     name: "Timeline",
     component: Timeline,
+  },
+  {
+    path: "/likes",
+    name: "Likes",
+    component: LikedPosts,
+    meta: { requiresAuth: true },
   },
   {
     path: "/home",

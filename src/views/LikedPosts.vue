@@ -8,8 +8,8 @@
       <div>
         <loader v-if="isLoading"></loader>
 
-        <div v-for="fish in loadedCatches" v-bind:key="fish.catch_id">
-          <Fish v-bind:fish="fish" />
+        <div v-for="postId in likedPostIds" v-bind:key="postId">
+          <Fish v-bind:postId="postId" />
         </div>
       </div>
     </template>
@@ -20,59 +20,43 @@
 
 <script>
 import Fish from "../components/CatchFish/Fish.vue";
-
 import { db } from "../firebase";
 
 export default {
-  name: "Timeline",
+  name: "LikedPosts",
   components: { Fish },
+
   data() {
     return {
       isLoading: true,
-      catches: [],
+      likedPostIds: [],
     };
   },
   computed: {
-    loadedCatches() {
-      return this.catches;
-    },
-
     statusLoading() {
       return this.isLoading;
     },
   },
   methods: {
-    loadCatches() {
+    loadLikedPosts() {
       const that = this;
+      const uid = this.$store.getters.user.uid;
 
-      db.collection("catches/")
-        .orderBy("catch_date", "desc")
+      db.collection("users/" + uid + "/likedPosts")
         .get()
-        .then(function(querySnapshot) {
-          const results = [];
-
-          querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            results.push({
-              catch_id: doc.id,
-              catch_date: new Date(doc.data().catch_date.seconds * 1000),
-              comment: doc.data().comment,
-              species: doc.data().species,
-              lenght: doc.data().lenght,
-              user_id: doc.data().user_id,
-              weight: doc.data().weight,
-              image_src: doc.data().image_src,
-            });
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            that.likedPostIds.push(doc.id);
           });
-
-          that.catches = results;
-          that.isLoading = false;
+        })
+        .then((that.isLoading = false))
+        .catch(function(error) {
+          console.log("Error getting documents: ", error);
         });
     },
   },
-
   beforeMount() {
-    this.loadCatches();
+    this.loadLikedPosts();
   },
 };
 </script>
