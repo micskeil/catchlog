@@ -2,6 +2,25 @@ $color: #2c3e50;
 $color2: #c79136;
 $breakpoint-tablet: 768px;
 
+// File: theme.scss
+// Override default BT variables:
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 992px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 960px,
+);
+// Import BT sources
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
 .form {
   input {
     border: none;
@@ -12,6 +31,7 @@ $breakpoint-tablet: 768px;
   width: 400px;
   max-width: 100vw;
   background-color: rgb(255, 255, 255);
+
   @media (max-width: $breakpoint-tablet) {
     box-shadow: none !important;
     max-width: 100vw;

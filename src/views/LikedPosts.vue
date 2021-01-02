@@ -5,7 +5,7 @@
     </template>
 
     <template v-slot:main>
-      <div>
+      <div class="main">
         <loader v-if="isLoading"></loader>
 
         <div v-for="postId in likedPostIds" v-bind:key="postId">
@@ -36,13 +36,16 @@ export default {
     statusLoading() {
       return this.isLoading;
     },
+    uid() {
+      return this.$store.getters.user.uid;
+    },
   },
   methods: {
     loadLikedPosts() {
       const that = this;
-      const uid = this.$store.getters.user.uid;
 
-      db.collection("users/" + uid + "/likedPosts")
+      db.collection("users/" + this.uid + "/likedPosts")
+        .orderBy("like_date", "desc")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
