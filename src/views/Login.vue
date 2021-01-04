@@ -1,6 +1,10 @@
 <template>
   <div class="login p-0 m-0">
-    <form class="form d-flex shadow flex-column p-5" @submit.prevent="login">
+    <form
+      class="form d-flex shadow flex-column p-5"
+      @submit.prevent=""
+      novalidate
+    >
       <div
         class="brand d-flex flex-column pb-5 justify-content-around
       align-items-center "
@@ -10,8 +14,10 @@
       </div>
       <div class="form-group">
         <input
+          required="true"
+          title="Az e-mail cím legalább egy '@'-ot tartalmaz. Például: horgasz@mail.hu"
           type="email"
-          class="form-control"
+          class="email-input form-control"
           placeholder="E-mail"
           v-model.trim="user.email"
         />
@@ -20,16 +26,17 @@
       <div class="form-group pt-3">
         <input
           type="password"
-          class="form-control "
+          class="password-input form-control "
           placeholder="Password"
           v-model.trim="user.password"
         />
       </div>
-      <p v-if="!formIsValid" class="text-warning">
-        Valami baj van a beírt e-maillel vagy jelszóval!
+      <p v-if="!formIsValid" class="warning mt-3 p-1 ">
+        A belépés sikertelen, kérlek ellenőrízd az e-mail címed és a
+        jelszavadat!
       </p>
 
-      <base-button type="submit" class="">
+      <base-button @click="login" type="submit" class="submit">
         BELÉPÉS
       </base-button>
       <p class="forgot-password text-right pt-3">
@@ -49,7 +56,6 @@ export default {
   data() {
     return {
       formIsValid: true,
-      isLoading: false,
       error: null,
 
       user: {
@@ -58,10 +64,19 @@ export default {
       },
     };
   },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    },
+  },
   methods: {
     async login() {
       const that = this;
-      if (this.user.email === "" || !this.user.email.includes("@")) {
+      if (
+        this.user.email === "" ||
+        this.user.email === null ||
+        !this.user.email.includes("@")
+      ) {
         this.formIsValid = false;
         return;
       } else {
@@ -71,16 +86,18 @@ export default {
             email: this.user.email,
             password: this.user.password,
           });
+          console.log(this.$store.getters.isLoggedIn);
+          if (this.isLoggedIn) {
+            this.$router.push({ name: "Timeline" });
+          } else {
+            that.formIsValid = false;
+          }
         } catch (error) {
-          this.formIsValid = false;
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorCode + ": " + errorMessage);
           that.formIsValid = false;
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + ": " + errorMessage);
         }
-
-        this.isLoading = false;
-        this.$router.push({ name: "Timeline" });
       }
     },
   },
@@ -115,6 +132,10 @@ $breakpoint-tablet: 768px;
       border: none;
       border-bottom: 1px solid $color;
       border-radius: 0;
+    }
+    .warning {
+      color: white;
+      background-color: #c79136;
     }
     font-size: 1rem;
     width: 400px;

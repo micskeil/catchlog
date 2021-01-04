@@ -1,6 +1,6 @@
 export default {
   isLoggedIn(state) {
-    return state.user.isLoggedIn;
+    return state.isLoggedIn;
   },
 
   user(state) {
