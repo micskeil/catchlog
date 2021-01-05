@@ -56,7 +56,6 @@ export default {
   data() {
     return {
       formIsValid: true,
-      error: null,
 
       user: {
         email: "",

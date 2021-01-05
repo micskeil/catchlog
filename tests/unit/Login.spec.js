@@ -45,7 +45,7 @@ describe("Login", () => {
     const input = wrapper.find(".email-input");
     await input.setValue("bad@gmail.com");
 
-    const password = wrapper.find(".password");
+    const password = wrapper.find(".password-input");
     await password.setValue("12345678");
 
     const submit = wrapper.find("base-button");
@@ -53,5 +53,38 @@ describe("Login", () => {
 
     const warning = await wrapper.find(".warning");
     expect(warning.element.value).toBe();
+  });
+
+  it("try to log in with good details ", async () => {
+    const mockRoute = {
+      params: {
+        id: 1,
+      },
+    };
+    const mockRouter = {
+      push: jest.fn(),
+    };
+
+    const wrapper = mount(Login, {
+      global: {
+        mocks: {
+          $route: mockRoute,
+          $router: mockRouter,
+        },
+      },
+    });
+
+    const input = wrapper.find(".email-input");
+    await input.setValue("micskeil@gmail.com");
+
+    const password = wrapper.find(".password-input");
+    await password.setValue("123456");
+
+    const submit = wrapper.find("base-button");
+    await submit.trigger("click");
+
+    setTimeout(() => {
+      expect(mockRouter.push).toHaveBeenCalled();
+    }, 500);
   });
 });
