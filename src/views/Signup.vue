@@ -1,7 +1,7 @@
 <template>
   <div class="login p-0">
     <form
-      class="form   d-flex flex-column shadow p-5"
+      class="form d-flex flex-column shadow p-5"
       @submit.prevent=""
       novalidate
     >
@@ -34,7 +34,8 @@
         />
       </div>
       <p v-if="!formIsValid" class="warning mt-3 p-1">
-        Kérlek adj meg egy felhasználónevet, érvényes e-mail címet és jelszót!
+        Kérlek adj meg egy felhasználónevet, érvényes e-mail címet és egy
+        legalább 8 karakter hosszúságú jelszót!
       </p>
 
       <base-button type="submit" class="" @click="signUp()">
@@ -62,24 +63,22 @@ export default {
 
   methods: {
     signUp() {
-      // const that = this;
       if (
         this.name === "" ||
         this.email === "" ||
         !this.email.includes("@") ||
-        this.password < 8
+        this.password.length < 8
       ) {
         this.formIsValid = false;
         return;
       } else {
+        console.log(this.password.length);
+
         this.$store.dispatch("registerUser", {
           email: this.email,
           password: this.password,
           name: this.name,
         });
-
-        alert("A regisztráció sikeres! Már be is jelentkezhetsz.");
-
         this.$router.push("/login");
       }
     },

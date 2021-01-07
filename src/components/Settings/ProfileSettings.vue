@@ -77,35 +77,40 @@ export default {
   components: { BaseButton },
   data() {
     return {
-      user: "",
-
-      storedPhotoURL: null,
       newPhotoURL: null,
       image: null,
-      image_src: "",
+      image_src: null,
     };
   },
   computed: {
     avatar() {
-      if (this.image_src !== "") {
-        return this.image_src;
-      } else {
+      if (this.image_src == null) {
         return this.storedPhotoURL;
+      } else {
+        return this.image_src;
       }
     },
     uid() {
       return this.$store.getters.user.uid;
     },
+    user() {
+      return this.$store.getters.user;
+    },
+    storedPhotoURL() {
+      if (this.user.photoURL !== null || this.user.photoURL !== null) {
+        return this.user.photoURL;
+      } else {
+        return require("../../assets/img/user_1.png");
+      }
+    },
   },
 
   methods: {
-    getUser() {
-      this.user = this.$store.getters.user;
-
-      if (this.user.photoURL === null) {
-        this.storedPhotoURL = "/img/user_1.c159038c.png";
+    getUserPhotoUrl() {
+      if (this.user.photoURL == null || this.user.photoURL) {
+        return require("../../assets/img/user_1.png");
       } else {
-        this.storedPhotoURL = this.user.photoURL;
+        return this.user.photoURL;
       }
     },
 
@@ -247,7 +252,12 @@ export default {
     },
   },
   created() {
-    this.getUser();
+    this.getUserPhotoUrl();
+  },
+  mounted() {
+    console.log("avatar " + this.avatar);
+    console.log(this.storedPhotoURL);
+    console.log("Image src: " + this.image_src);
   },
 };
 </script>
@@ -262,5 +272,12 @@ form {
 
 .warning {
   background-color: orange;
+}
+
+img {
+  padding: 3px;
+  border: 6px solid #c7913655;
+  box-shadow: 0 0 0 6px #fff, 0 0 0 12px #c7913655;
+  border-radius: 50%;
 }
 </style>

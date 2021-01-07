@@ -17,8 +17,7 @@ export default {
         .doc(response.user.uid)
         .set(
           {
-            displayName: this.user.displayName,
-            photoURL: this.newPhotoURL,
+            displayName: payload.name,
           },
           { merge: true }
         )
@@ -28,8 +27,6 @@ export default {
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
-
-      console.log(response);
     } catch (error) {
       var errorCode = error.code;
       var errorMessage = error.message;

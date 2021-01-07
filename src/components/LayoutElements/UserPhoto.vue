@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     updatedPhotoURL() {
-      if (this.photoURL === "") {
+      if (this.photoURL == "" || this.photoURL == null) {
         return require("../../assets/img/user_1.png");
       } else {
         return this.photoURL;
