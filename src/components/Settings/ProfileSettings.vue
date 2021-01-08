@@ -261,7 +261,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 form {
   width: 100%;
 }
@@ -271,7 +271,10 @@ form {
 }
 
 .warning {
-  background-color: orange;
+  background-color: rgb(238, 70, 70);
+  :hover {
+    background-color: rgb(241, 183, 183);
+  }
 }
 
 img {
