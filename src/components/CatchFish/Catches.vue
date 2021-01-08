@@ -12,7 +12,7 @@ import Fish from "../CatchFish/Fish.vue";
 
 export default {
   components: { Fish },
-  props: ["session"],
+  props: { session: { type: String, required: true } },
   data() {
     return {
       catches: [],

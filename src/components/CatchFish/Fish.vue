@@ -43,19 +43,28 @@
           />
         </div>
       </div>
-      <div v-if="post.comment" class="comment row pt-3">
+      <div
+        v-if="post.comment"
+        v-on:click="toggleIsCommentActive()"
+        class="comment row pt-3"
+      >
         <p class="align-self-center col-12  pl-3 pr-3 ">
           {{ post.comment }}
         </p>
       </div>
     </template>
-    <template v-slot:card-info> </template>
+
+    <template v-slot:card-info>
+      <comment v-if="isCommentActive"></comment
+    ></template>
   </base-card>
 </template>
 <script>
 import { db } from "../../firebase";
+import Comment from "../Social/Comment";
 
 export default {
+  components: { Comment },
   props: {
     postId: {
       type: String,
@@ -66,6 +75,7 @@ export default {
   data() {
     return {
       post: {},
+      isCommentActive: false,
     };
   },
   computed: {
@@ -78,6 +88,10 @@ export default {
   },
 
   methods: {
+    toggleIsCommentActive() {
+      this.isCommentActive = !this.isCommentActive;
+    },
+
     getFormattedDate(date) {
       if (date) {
         var year = date.getFullYear();
