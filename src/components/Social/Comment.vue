@@ -1,8 +1,19 @@
 <template>
   <div>
-    <form>
-      <label class="font-weight-bold" for="fname">Komment:</label><br />
-      <input type="text" id="comment" name="comment" /><br />
+    <form class="container row">
+      <label class="font-weight-bold col-12 d-none" for="comment"
+        >Komment:</label
+      >
+      <div class="d-flex">
+        <input
+          class="pr-3"
+          type="text"
+          id="comment"
+          name="comment"
+          placeholder="Hozzászólás írása..."
+        />
+        <img class="ml-3 " src="../../assets/send.png" width="24" height="24" />
+      </div>
     </form>
   </div>
 </template>
@@ -18,16 +29,21 @@ div {
 
   form {
     width: 100%;
-    input {
-      border: none;
-      width: 100%;
-      border-bottom: 1px solid $color;
-      border-radius: 0;
-    }
-    select {
-      border: none;
-      border-bottom: 1px solid $color;
-      border-radius: 0;
+    div {
+      input {
+        border: none;
+        width: 100%;
+        border-bottom: 1px solid $color;
+        border-radius: 0px;
+      }
+      img {
+        opacity: 0.9;
+      }
+      select {
+        border: none;
+        border-bottom: 1px solid $color;
+        border-radius: 0;
+      }
     }
     .warning {
       color: white;

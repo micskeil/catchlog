@@ -26,7 +26,8 @@
         <div class="d-flex">
           <like-button v-bind:catchId="catchId"></like-button>
           <img
-            class="ml-3"
+            v-on:click="toggleIsCommentActive"
+            class="comment-button ml-3"
             src="../../assets/message.png"
             width="24"
             height="24"
@@ -43,11 +44,7 @@
           />
         </div>
       </div>
-      <div
-        v-if="post.comment"
-        v-on:click="toggleIsCommentActive()"
-        class="comment row pt-3"
-      >
+      <div v-if="post.comment" class="row pt-3">
         <p class="align-self-center col-12  pl-3 pr-3 ">
           {{ post.comment }}
         </p>
@@ -55,7 +52,7 @@
     </template>
 
     <template v-slot:card-info>
-      <comment v-if="isCommentActive"></comment
+      <comment v-if="commentField"></comment
     ></template>
   </base-card>
 </template>
@@ -84,6 +81,9 @@ export default {
     },
     catchId() {
       return this.postId;
+    },
+    commentField() {
+      return this.isCommentActive;
     },
   },
 
