@@ -52,6 +52,7 @@
     </template>
 
     <template v-slot:card-info>
+      <show-comments :postId="postId"></show-comments>
       <comment
         class="comment-field"
         v-if="commentField"
@@ -65,9 +66,10 @@
 <script>
 import { db } from "../../firebase";
 import Comment from "../Social/Comment";
+import ShowComments from "../Social/ShowComments.vue";
 
 export default {
-  components: { Comment },
+  components: { Comment, ShowComments },
   props: {
     postId: {
       type: String,

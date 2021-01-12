@@ -19,7 +19,7 @@
       <slot name="card-img"> </slot>
     </div>
 
-    <div class="card-body p-3 d-flex justify-content-between">
+    <div class="card-body p-3 d-flex flex-column justify-content-between">
       <slot name="card-info"> </slot>
     </div>
   </div>
