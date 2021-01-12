@@ -1,5 +1,5 @@
 <template>
-  <div class="container row mb-1">
+  <div v-if="isCommentsActive" class="container row mb-1">
     <div
       class="col-12 mb-1 d-flex"
       v-for="comment in comments"
@@ -26,24 +26,40 @@ export default {
   data() {
     return {
       comments: [],
+      isCommentsActive: false,
     };
+  },
+  computed: {},
+  watch: {
+    comments(oldComments, newComments) {
+      if (newComments.lenght > 0) {
+        this.isCommentsActive = true;
+        console.log("iscommentactive: " + this.isCommentsActive);
+      } else {
+        this.isCommentsActive = false;
+        console.log("iscommentactive: " + this.isCommentsActive);
+      }
+    },
   },
   methods: {
     loadComments() {
       const that = this;
-
-      console.log("Loading comments!");
       db.collection("catches/" + this.postId + "/comments")
         .get()
         .then(function(querySnapshot) {
-          console.log(querySnapshot.docs);
-          querySnapshot.forEach(function(doc) {
-            that.comments.push({
-              user: doc.data().user,
-              comment_date: doc.data().comment_date,
-              comment: doc.data().comment,
+          const queryArray = querySnapshot.docs;
+          if ((queryArray[0] = undefined)) {
+            console.log("No comment found for this post");
+          } else {
+            that.isCommentsActive = true;
+            querySnapshot.forEach(function(doc) {
+              that.comments.push({
+                user: doc.data().user,
+                comment_date: doc.data().comment_date,
+                comment: doc.data().comment,
+              });
             });
-          });
+          }
         })
         .catch((error) => {
           console.log("Error: " + error);
