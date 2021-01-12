@@ -56,6 +56,7 @@
         class="comment-field"
         v-if="commentField"
         :postId="postId"
+        :postOwnerId="post.user_id"
       ></comment
     ></template>
   </base-card>

@@ -33,6 +33,10 @@ export default {
       type: String,
       required: true,
     },
+    postOwnerId: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -48,6 +52,17 @@ export default {
     saveComment() {
       db.collection("catches/" + this.postId + "/comments")
         .doc()
+        .set({
+          comment_date: new Date(),
+          user: this.uid,
+          comment: this.comment,
+        })
+        .catch((error) => {
+          console.log("Error: " + error);
+        });
+
+      db.collection("social/" + this.postOwnerId + "/comments")
+        .doc(this.postId)
         .set({
           comment_date: new Date(),
           user: this.uid,
