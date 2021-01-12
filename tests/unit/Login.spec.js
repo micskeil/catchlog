@@ -1,7 +1,7 @@
 import { shallowMount } from "@vue/test-utils";
 import { mount } from "@vue/test-utils";
 import Login from "../../src/views/Login.vue";
-import "regenerator-runtime/runtime";
+import "regenerator-runtime/runtime.js";
 
 describe("Login", () => {
   it("set the value for e-mail input ", () => {

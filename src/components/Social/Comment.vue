@@ -10,16 +10,35 @@
           type="text"
           id="comment"
           name="comment"
+          v-model="comment"
           placeholder="Hozzászólás írása..."
         />
-        <img class="ml-3 " src="../../assets/send.png" width="24" height="24" />
+        <img
+          class="ml-3 "
+          src="../../assets/send.png"
+          width="24"
+          height="24"
+          v-on:click="saveComment"
+        />
       </div>
     </form>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      comment: "",
+    };
+  },
+
+  methods: {
+    saveComment() {
+      console.log("save comment");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Fish should give back error with no postId  1`] = `<base-card />`;
-
-exports[`Fish should give back error with no postId  2`] = `
-<base-card
-  uid=""
-/>
-`;

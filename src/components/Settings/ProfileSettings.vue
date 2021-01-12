@@ -254,11 +254,6 @@ export default {
   created() {
     this.getUserPhotoUrl();
   },
-  mounted() {
-    console.log("avatar " + this.avatar);
-    console.log(this.storedPhotoURL);
-    console.log("Image src: " + this.image_src);
-  },
 };
 </script>
 <style lang="scss" scoped>
@@ -278,9 +273,6 @@ form {
 }
 
 img {
-  padding: 3px;
-  border: 6px solid #c7913655;
-  box-shadow: 0 0 0 6px #fff, 0 0 0 12px #c7913655;
   border-radius: 50%;
 }
 </style>

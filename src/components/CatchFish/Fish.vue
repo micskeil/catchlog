@@ -52,10 +52,11 @@
     </template>
 
     <template v-slot:card-info>
-      <comment v-if="commentField"></comment
+      <comment class="comment-field" v-if="commentField"></comment
     ></template>
   </base-card>
 </template>
+
 <script>
 import { db } from "../../firebase";
 import Comment from "../Social/Comment";
@@ -111,7 +112,7 @@ export default {
       }
     },
 
-    loadPosts() {
+    loadPost() {
       const that = this;
 
       db.collection("catches/")
@@ -134,8 +135,14 @@ export default {
         });
     },
   },
-  beforeMount() {
-    this.loadPosts();
+  created() {
+    if (
+      this.postId !== "" ||
+      this.postId !== null ||
+      this.postId !== undefined
+    ) {
+      this.loadPost();
+    }
   },
 };
 </script>
