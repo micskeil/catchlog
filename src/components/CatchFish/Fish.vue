@@ -52,7 +52,11 @@
     </template>
 
     <template v-slot:card-info>
-      <comment class="comment-field" v-if="commentField"></comment
+      <comment
+        class="comment-field"
+        v-if="commentField"
+        :postId="postId"
+      ></comment
     ></template>
   </base-card>
 </template>

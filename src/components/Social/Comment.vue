@@ -26,16 +26,36 @@
 </template>
 
 <script>
+import { db } from "../../firebase";
 export default {
+  props: {
+    postId: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       comment: "",
     };
   },
-
+  computed: {
+    uid() {
+      return this.$store.getters.user.uid;
+    },
+  },
   methods: {
     saveComment() {
-      console.log("save comment");
+      db.collection("catches/" + this.postId + "/comments")
+        .doc()
+        .set({
+          comment_date: new Date(),
+          user: this.uid,
+          comment: this.comment,
+        })
+        .catch((error) => {
+          console.log("Error: " + error);
+        });
     },
   },
 };
