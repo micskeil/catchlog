@@ -54,7 +54,7 @@
 
     <template v-slot:card-info>
       <show-comments
-        @numberOfComments="setNumberOfComments"
+        @number-of-comments="setNumberOfComments"
         :postId="postId"
         :key="isCommentActive"
       ></show-comments>
@@ -106,7 +106,6 @@ export default {
   methods: {
     setNumberOfComments(payload) {
       this.numberOfComments = payload;
-      console.log("This post has " + this.numberOfComments + " comments");
     },
 
     toggleIsCommentActive() {

@@ -51,7 +51,7 @@ export default {
               });
               that.numberOfComments += 1;
             });
-            that.$emit("numberOfComments", that.numberOfComments);
+            that.$emit("number-of-comments", that.numberOfComments);
           }
         })
         .catch((error) => {
