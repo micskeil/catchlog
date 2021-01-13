@@ -26,30 +26,21 @@ export default {
   data() {
     return {
       comments: [],
+      numberOfComments: 0,
       isCommentsActive: false,
     };
   },
-  computed: {},
-  watch: {
-    comments(oldComments, newComments) {
-      if (newComments.lenght > 0) {
-        this.isCommentsActive = true;
-        console.log("iscommentactive: " + this.isCommentsActive);
-      } else {
-        this.isCommentsActive = false;
-        console.log("iscommentactive: " + this.isCommentsActive);
-      }
-    },
-  },
+
   methods: {
     loadComments() {
       const that = this;
       db.collection("catches/" + this.postId + "/comments")
+        .orderBy("comment_date", "desc")
         .get()
         .then(function(querySnapshot) {
           const queryArray = querySnapshot.docs;
-          if ((queryArray[0] = undefined)) {
-            console.log("No comment found for this post");
+          if (queryArray[0] === undefined) {
+            that.isCommentsActive = false;
           } else {
             that.isCommentsActive = true;
             querySnapshot.forEach(function(doc) {
@@ -58,7 +49,9 @@ export default {
                 comment_date: doc.data().comment_date,
                 comment: doc.data().comment,
               });
+              that.numberOfComments += 1;
             });
+            that.$emit("numberOfComments", that.numberOfComments);
           }
         })
         .catch((error) => {

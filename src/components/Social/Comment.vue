@@ -38,6 +38,16 @@ export default {
       required: true,
     },
   },
+  emits: {
+    submit: (comment) => {
+      if (comment) {
+        return true;
+      } else {
+        console.warn("Invalid submit event payload!");
+        return false;
+      }
+    },
+  },
   data() {
     return {
       comment: "",
@@ -57,6 +67,7 @@ export default {
           user: this.uid,
           comment: this.comment,
         })
+        .then(this.$emit("submit"))
         .catch((error) => {
           console.log("Error: " + error);
         });

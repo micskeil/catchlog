@@ -33,6 +33,7 @@
             height="24"
             alt="message"
           />
+          <div class="pl-1">{{ numberOfComments }}</div>
         </div>
         <div>
           <img
@@ -52,9 +53,14 @@
     </template>
 
     <template v-slot:card-info>
-      <show-comments :postId="postId"></show-comments>
+      <show-comments
+        @numberOfComments="setNumberOfComments"
+        :postId="postId"
+        :key="isCommentActive"
+      ></show-comments>
       <comment
         class="comment-field"
+        v-on:submit="toggleIsCommentActive"
         v-if="commentField"
         :postId="postId"
         :postOwnerId="post.user_id"
@@ -80,7 +86,9 @@ export default {
   data() {
     return {
       post: {},
+      numberOfComments: 0,
       isCommentActive: false,
+      componentKey: 0,
     };
   },
   computed: {
@@ -96,6 +104,11 @@ export default {
   },
 
   methods: {
+    setNumberOfComments(payload) {
+      this.numberOfComments = payload;
+      console.log("This post has " + this.numberOfComments + " comments");
+    },
+
     toggleIsCommentActive() {
       this.isCommentActive = !this.isCommentActive;
     },
