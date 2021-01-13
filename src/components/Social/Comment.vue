@@ -72,7 +72,7 @@ export default {
           console.log("Error: " + error);
         });
 
-      db.collection("social/" + this.postOwnerId + "/comments")
+      db.collection("social/" + this.postOwnerId)
         .doc(this.postId)
         .set({
           comment_date: new Date(),
