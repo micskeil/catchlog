@@ -5,7 +5,10 @@ import { db } from "../../firebase";
 
 export default {
   data() {
-    return {};
+    return {
+      comments: [],
+      likes: [],
+    };
   },
   methods: {
     getComments() {
